@@ -7,7 +7,7 @@ class RecordsController < ApplicationController
   #SELECT setval(pg_get_serial_sequence('records', 'id'), coalesce(max(id),1), false) FROM records;
 
   # these are callable from the Views
-  helper_method :author_instrument_list, :catall, :sort_column, :sort_direction, :status_filter
+  helper_method :author_instrument_list, :catall, :sort_column, :sort_direction, :status_filter, :status_list
 
 
   include Blacklight::Configurable
@@ -38,9 +38,14 @@ class RecordsController < ApplicationController
     unless params[:q].nil?
       redirect_to :controller => 'catalog', action: "index", q: params[:q]
     end
-
-    #@records = Record.order('updated_at DESC, title').all()i
-    @records = Record.where(:status => status_filter).order(sort_column + " " + sort_direction)
+    unless status_filter=='all'
+      @records = Record.where(:status => status_filter).order(sort_column + " " + sort_direction)
+    else
+      @records = Record.all.order(sort_column + " " + sort_direction)
+    end
+    # use below to paginate, but this will not work with sorting the table
+    #@records, @alphaParams = Record.where(:status => status_filter).order(sort_column + " " + sort_direction)
+    #                                 .alpha_paginate(params[:letter], {:default_field => 'A', :include_all => false, :js => false, :bootstrap3 => true, :merge_params => {:filter => params[:filter]}}){|record| record.author[0]}
 
     # sent here after a ris file upload
     if params[:error_report]
@@ -200,14 +205,18 @@ class RecordsController < ApplicationController
 
   private
 
-  def status_filter
-    # dit kan vast handiger
+  def status_list
     statuses = Category.all.select {|c| c.cat == 'status'}
-    list = []
+    list = ['all']
     statuses.each do |s|
       list.append(s.name)
     end
-    list.include?(params[:filter]) ? params[:filter] : "in review"
+    list
+  end
+
+  def status_filter
+    # dit kan vast handiger
+    status_list.include?(params[:filter]) ? params[:filter] : "in review"
   end
 
   def sort_column

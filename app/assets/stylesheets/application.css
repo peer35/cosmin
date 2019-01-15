@@ -259,3 +259,9 @@ table .absorbing-column {
     font-size: 0.7em;
     font-style: italic;
 }
+
+.rectable {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
