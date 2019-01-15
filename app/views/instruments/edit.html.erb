@@ -3,7 +3,7 @@
 <%= render 'form', instrument: @instrument %>
 
 <!--<%= link_to 'Show', @instrument %> -->
-<%= link_to 'Back', instruments_path %>
+<%= link_to 'Back', instruments_path(anchor: @instrument.id, letter: startletter) %>
 
 <h2>Associated records</h2>
 <% @instrument.records.each do |record| %>
