@@ -62,7 +62,7 @@ gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'blacklight-marc', '~> 6.1'
 
-gem 'pg', '=0.20'
+gem 'pg', '>0.20'
 
 gem 'paper_trail', '>7.0'
 gem 'pundit'
@@ -77,3 +77,4 @@ gem 'caracal-rails'
 gem "blacklight_advanced_search"
 
 gem 'sitemap_generator'
+gem 'alphabetical_paginate'

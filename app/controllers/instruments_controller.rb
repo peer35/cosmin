@@ -20,7 +20,10 @@ class InstrumentsController < ApplicationController
   # GET /instruments
   # GET /instruments.json
   def index
-    @instruments = Instrument.all.order('LOWER(name) ASC')
+    # @instruments = Instrument.all.order('LOWER(name) ASC')
+    # @users, @alphaParams = User.all.alpha_paginate(params[:letter]){|user| user.name}
+    @instruments, @alphaParams = Instrument.all.order('LOWER(name) ASC')
+                                     .alpha_paginate(params[:letter], {:default_field => '0-9', :include_all => false, :js => false, :bootstrap3 => true}){|instrument| instrument.name}
   end
 
   # GET /instruments/1
