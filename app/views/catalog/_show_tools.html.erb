@@ -1,0 +1,37 @@
+<%-
+  # Compare with render_document_functions_partial helper, and
+  # _document_functions partial. BL actually has two groups
+  # of document-related tools. "document functions" by default
+  # contains Bookmark functionality shown on both results and
+  # item view. While "document tools" contains external export type
+  # functions by default only on detail.
+
+-%>
+<% if show_doc_actions? %>
+  <div class="panel panel-default show-tools">
+    <div class="panel-heading">
+      <%= t('blacklight.tools.title') %>
+    </div>
+
+    <div class="panel-body">
+      <ul class="nav">
+        <% unless current_user.to_s.blank? %>
+          <% if Rails.configuration.x.admin_users_email.include? current_user.email %>
+            <li>
+              <%= link_to 'Edit this record', {:action => "edit", :controller => "records", :id => @document.id} %>
+            </li>
+            <li>
+              <%= link_to 'Delete this record', {:controller => "records", :action => "destroy", :id => @document.id}, :method => :delete, :data => {:confirm => 'Are you sure?'} %>
+            </li>
+          <% end %>
+        <% end %>
+
+        <%= render_show_doc_actions @document do |config, inner| %>
+          <li class="<%= config.key %>">
+            <%= inner %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>

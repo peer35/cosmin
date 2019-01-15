@@ -1,0 +1,14 @@
+<h1>Editing Instrument</h1>
+
+<%= render 'form', instrument: @instrument %>
+
+<!--<%= link_to 'Show', @instrument %> -->
+<%= link_to 'Back', instruments_path %>
+
+<h2>Associated records</h2>
+<% @instrument.records.each do |record| %>
+  <%= record.author.join(', ') + ' (' + record.pubyear.to_s + ') '%>
+  <%= link_to('edit', edit_record_path(record), :target => '_blank') %> |
+  <%= link_to('show', {:controller => 'catalog', action: "show", id: record.id}, :target => '_blank') %>
+  <%= '<br>'.html_safe %>
+<% end %>

@@ -1,0 +1,9 @@
+<div id="export_results" class="clearfix">
+  <%= link_to 'Export results page', search_action_url(format: :docx, params: request.query_parameters), :class => "btn btn-default pull-right" %>
+</div>
+
+<%= render 'did_you_mean' %>
+
+<%= render 'constraints' %>
+
+<%= render 'sort_and_per_page' %>

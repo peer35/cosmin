@@ -1,0 +1,55 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cosmin_id: 1
+  abstract: MyText
+  accnum: MyText
+  author: MyText
+  bpv: MyText
+  cu: false
+  disease: MyText
+  doi: MyText
+  fs: MyText
+  ghp: MyText
+  instrument: MyText
+  issn: MyText
+  issue: MyText
+  journal: MyText
+  oc: MyText
+  oql: MyText
+  pnp: MyText
+  age: MyText
+  pubyear: 1
+  ss: MyText
+  startpage: MyText
+  title: MyText
+  tmi: MyText
+  url: MyText
+  user_email: MyText
+
+two:
+  cosmin_id: 1
+  abstract: MyText
+  accnum: MyText
+  author: MyText
+  bpv: MyText
+  cu: false
+  disease: MyText
+  doi: MyText
+  fs: MyText
+  ghp: MyText
+  instrument: MyText
+  issn: MyText
+  issue: MyText
+  journal: MyText
+  oc: MyText
+  oql: MyText
+  pnp: MyText
+  age: MyText
+  pubyear: 1
+  ss: MyText
+  startpage: MyText
+  title: MyText
+  tmi: MyText
+  url: MyText
+  user_email: MyText

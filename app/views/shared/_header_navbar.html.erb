@@ -1,0 +1,38 @@
+<div id="header-navbar" class="navbar navbar-inverse navbar-static-top" role="navigation">
+  <div class="cosmin_menu">
+    <div class="align-left">
+      <button type="button" class="navbar-toggle btn collapsed" data-toggle="collapse" data-target="#user-util-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="user-util-collapse">
+        <%= render :partial => '/user_util_links' %>
+      </div>
+    </div>
+    <!-- END .content -->
+  </div>
+
+
+  <div class="<%= container_classes %>">
+    <div class="navbar-header">
+
+      <%= link_to 'Cosmin Website', 'https://www.cosmin.nl', target: :_blank, class: "navbar-brand" %>
+      <% if Rails.env.development? %>
+        <div class="header-title" style="color: red;">Database test, the stable version is at <a href="https://discovery.labs.vu.nl/cosmin">https://discovery.labs.vu.nl/cosmin</a></div>
+        <!--<div class="header-title">Database of systematic reviews of outcome measurement instruments</div>-->
+      <% else %>
+        <div class="header-title">Database of systematic reviews of outcome measurement instruments</div>
+      <% end %>
+    </div>
+
+
+  </div>
+</div>
+
+<div id="search-navbar" class="navbar navbar-default navbar-static-top" role="navigation">
+  <div class="<%= container_classes %>">
+    <%= render_search_bar %>
+  </div>
+</div>

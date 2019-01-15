@@ -1,0 +1,77 @@
+<%= form_for(instrument) do |f| %>
+  <% if instrument.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(instrument.errors.count, "error") %> prohibited this instrument from being saved:</h2>
+
+      <ul>
+        <% instrument.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field row">
+    <div class="col-sm-12 form-group">
+      <%= f.label :name %>
+      <%= f.text_area :name, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="field row">
+    <div class="col-sm-12 form-group">
+      <%= f.label 'Reference' %>
+      <%= f.text_area :reference, :class => "form-control" %>
+      <span class="form_note">The reference in text</span>
+    </div>
+  </div>
+
+  <div class="field row">
+    <div class="col-sm-12 form-group">
+      <%= f.label :doi %>
+      <%= f.text_field :doi, :class => "form-control" %>
+      <span class="form_note">Just the doi, not a url</span>
+    </div>
+  </div>
+
+  <div class="field row">
+    <div class="col-sm-12 form-group">
+      <%= f.label 'pubmed id' %>
+      <%= f.text_field :pmid, :class => "form-control" %>
+      <span class="form_note">Just the id, not a url</span>
+    </div>
+  </div>
+
+  <div class="field row">
+    <div class="col-sm-12 form-group">
+      <%= f.label 'Other reference url' %>
+      <%= f.text_field :refurl, :class => "form-control" %>
+      <span class="form_note">Use if no doi or pmid is known</span>
+    </div>
+  </div>
+
+  <div class="field row">
+    <div class="col-sm-12 form-group">
+      <%= f.label 'PROQOLID URL' %>
+      <%= f.text_field :url1, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="field row">
+    <div class="col-sm-12 form-group">
+      <%= f.label :url2 %>
+      <%= f.text_field :url2, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="field row">
+    <div class="col-sm-12 form-group">
+      <%= f.label :url3 %>
+      <%= f.text_field :url3, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

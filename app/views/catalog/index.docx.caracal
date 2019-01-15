@@ -1,0 +1,17 @@
+docx.h1 'Search results'
+
+@document_list.each_with_index do |document, document_counter|
+  docx.h2 document[:id] + '. ' + document[:title_s]
+  docx.p 'authors:', bold: true
+  docx.p document[:author_sm].join(', ')
+  docx.p 'doi:', bold: true
+  docx.p document[:doi_s]
+  #docx.p 'url:', bold: true
+  #docx.p document[:url_sm].join(', ')
+  docx.p 'abstract:', bold: true
+  docx.p document[:abstract_s]
+  docx.p 'journal:', bold: true
+  docx.p document[:journal_s]
+  docx.p 'issue:', bold: true
+  docx.p document[:issue_s]
+end

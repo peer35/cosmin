@@ -1,0 +1,134 @@
+@import 'bootstrap-sprockets';
+
+@import 'bootstrap';
+
+@import 'blacklight/blacklight';
+@import 'blacklight_marc';
+
+
+$logo-image: image_url('cosmin_logo.png') !default;
+
+@font-face {
+  font-family: 'Muli';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Muli Italic'), local('Muli-Italic'), url(asset-path('Muli-Italic')) format('truetype');
+}
+@font-face {
+  font-family: 'Muli';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Muli Bold Italic'), local('Muli-BoldItalic'), url(asset-path('Muli-BoldItalic')) format('truetype');
+}
+@font-face {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Muli Regular'), local('Muli-Regular'), url(asset-path('Muli-Regular')) format('truetype');
+}
+@font-face {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Muli SemiBold'), local('Muli-SemiBold'), url(asset-path('Muli-SemiBold')) format('truetype');
+}
+@font-face {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Muli Bold'), local('Muli-Bold'), url(asset-path('Muli-Bold')) format('truetype');
+}
+
+body {
+  background-image: url(image-path('COSMIN-background-light.jpg'));
+  font-family: Muli, Verdana, Geneva, sans-serif;
+  color: rgb(33, 56, 94);
+}
+
+.row {
+  background-color: white;
+}
+
+.btn-primary {
+  background-color: rgb(0, 93, 171);
+}
+
+#sidebar {
+  background-color: rgb(51, 141, 203);;
+  padding-top: 10px;
+  margin-top: -1px;
+  /*min-height: 600px;*/
+  h2 {
+    color: white;
+  }
+}
+#content {
+  padding: 25px;
+}
+
+#header-navbar {
+  .navbar-brand { /* The main logo image for the Blacklight instance */
+    background: transparent url(image-path('cosmin_logo.png')) no-repeat top left;
+    background-size: 85px 103px;
+    height: 103px;
+    margin-top: 10px;
+    margin-left: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  height: 103px;
+  background-color: white;
+  border: none;
+
+}
+
+.header-title {
+  margin-top: 10px;
+  font-size: 24px;
+  text-align: left;
+  font-weight: 400;
+  padding-left: 5px;
+  min-width: 500px;
+}
+
+h1, .h1 {
+  font-size: 24px;
+}
+
+h2, .h2 {
+  font-size: 22px;
+}
+
+h3, .h3 {
+  font-size: 20px;
+}
+
+
+@media(max-width: 768px) {
+  .header-title {
+    font-size: 18px;
+    min-width: 370px;
+  }
+  h1, .h1 {
+    font-size: 18px;
+  }
+ }
+
+.container {
+  width: 100%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: rgb(0, 93, 171);
+  padding-top: 50px;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+  color: rgb(0, 153, 198);
+}
+
+.facet-field-heading {
+  color: #005dab;
+}

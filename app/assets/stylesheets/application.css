@@ -1,0 +1,261 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require select2
+ *= require select2-bootstrap
+ *= require font-awesome
+
+ *= require 'blacklight_advanced_search'
+
+*/
+
+/* Sortable tables 
+ *= require 'blacklight_advanced_search'
+
+*/
+
+body {
+
+}
+
+table.sortable thead {
+    background-color: #eee;
+    color: #666666;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+table.sortable th .asc:after{
+    content: " \25B4"
+}
+
+table.sortable th .desc:after{
+    content: " \25BE"
+}
+
+#recordTable {
+    table-layout: auto;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#recordTable .fit {
+    min-width: 140px;
+}
+
+table .absorbing-column {
+    width: 100%;
+}
+
+.field {
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: #eaf8fb;
+    margin-bottom: 5px;
+}
+
+/* styled checkboxes, see https://bootsnipp.com/snippets/featured/simple-css-custom-checkboxes-and-radios 
+ *= require 'blacklight_advanced_search'
+
+*/
+.field label {
+    position: relative;
+    cursor: pointer;
+    color: #666;
+    font-size: 12px;
+}
+
+.field input[type="checkbox"], input[type="radio"] {
+    position: absolute;
+    right: 9000px;
+}
+
+/*Check box
+ *= require 'blacklight_advanced_search'
+
+*/
+.field input[type="checkbox"] + .label-text:before {
+    content: "\f096";
+    font-family: "FontAwesome";
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    width: 1em;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.field input[type="checkbox"]:checked + .label-text:before {
+    content: "\f14a";
+    color: #2980b9;
+    animation: effect 250ms ease-in;
+}
+
+.field input[type="checkbox"]:disabled + .label-text {
+    color: #aaa;
+}
+
+.field input[type="checkbox"]:disabled + .label-text:before {
+    content: "\f0c8";
+    color: #ccc;
+}
+
+@media (min-width: 768px) {
+    #document .dl-horizontal dt {
+        width: 220px;
+    }
+    #document .dl-horizontal dd {
+        margin-left: 240px;
+    }
+}
+
+
+#export_results {
+    padding-bottom: 10px;
+}
+
+@media print {
+    body {
+        background-color: #FFFFFF;
+        background-image: none;
+        color: #000000
+    }
+
+    .navbar {
+        display: none;
+    }
+
+    #sidebar {
+        display: none;
+    }
+
+    #sortAndPerPage {
+        display: none;
+    }
+
+    .pagination {
+        display: none;
+    }
+
+    .bookmarksTools {
+        display: none;
+    }
+
+    .page-heading {
+        display: none;
+    }
+
+    .index-document-functions {
+        display: none;
+    }
+
+    .document-title-heading {
+        width: 100%;
+    }
+
+    #content {
+        width: 100%;
+        padding: 0px;
+    }
+
+    dt {
+        margin: 0px;
+        float: none;
+        width: auto;
+    }
+
+    dd {
+        margin: 0px;
+        float: none;
+        width: auto;
+    }
+
+    .site-footer {
+        display: none;
+    }
+}
+
+#filter {
+    margin-bottom: 10px
+}
+
+.facet-values {
+    margin-bottom: 0px;
+}
+.panel-body {
+    padding: 5px 15px 5px 15px;
+}
+
+.cosmin_menu .navbar-right .navbar-nav > li > a:hover, .navbar-right .navbar-nav > li > a:focus {
+    color: #fff;
+    background-color: transparent;
+}
+.cosmin_menu .navbar-right .navbar-nav > li > a {
+    padding: 10px;
+    color: #fff;
+}
+.cosmin_menu .navbar-right .navbar-nav > li > a {
+    color: #fff;
+}
+
+.cosmin_menu .navbar-right .navbar-nav > li {
+    border-color: white;
+    border-left: 1px solid;
+}
+
+.cosmin_menu .navbar-right .navbar-nav > li:first-child {
+    border-left: 0px solid;
+}
+
+.cosmin_menu {
+    display: block;
+    font-size: 13px;
+    position: relative;
+    color: white;
+    overflow: hidden;
+    background-color: #2e55a5;
+    padding-left: 10%;
+    padding-right: 10%;
+    /*line-height: 36px;*/
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.advanced_search {
+    float: left;
+}
+
+#header-navbar {
+    height: 170px;
+}
+
+#search-navbar .search-query-form {
+    max-width: 1200px;
+}
+
+#header-navbar .navbar-brand {
+    /* The main logo image for the Blacklight instance */
+    width: 85px;
+    height: 103px;
+    background-size: contain;
+}
+
+.form_note {
+    font-size: 0.7em;
+    font-style: italic;
+}
