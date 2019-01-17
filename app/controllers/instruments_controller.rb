@@ -8,6 +8,8 @@ class InstrumentsController < ApplicationController
   before_action :require_user_authentication_provider
   before_action :verify_user
 
+  helper_method :startletter
+
   def verify_user
     if current_user.to_s.blank?
       flash[:notice] = I18n.t('admin.need_login') and raise Blacklight::Exceptions::AccessDenied
@@ -20,7 +22,10 @@ class InstrumentsController < ApplicationController
   # GET /instruments
   # GET /instruments.json
   def index
-    @instruments = Instrument.all.order('LOWER(name) ASC')
+    # @instruments = Instrument.all.order('LOWER(name) ASC')
+    # @users, @alphaParams = User.all.alpha_paginate(params[:letter]){|user| user.name}
+    @instruments, @alphaParams = Instrument.all.order('LOWER(name) ASC')
+                                     .alpha_paginate(params[:letter], {:default_field => '0-9', :include_all => false, :js => false, :bootstrap3 => true}){|instrument| instrument.name}
   end
 
   # GET /instruments/1
@@ -46,7 +51,7 @@ class InstrumentsController < ApplicationController
 
     respond_to do |format|
       if @instrument.save
-        format.html {redirect_to instruments_url, notice: 'Instrument was successfully created.'}
+        format.html {redirect_to instruments_url(anchor: @instrument.id, letter: startletter), notice: 'Instrument was successfully created.'}
         format.json {render :show, status: :created, location: @instrument}
       else
         format.html {render :new}
@@ -61,7 +66,8 @@ class InstrumentsController < ApplicationController
     # serialize reference here!
     respond_to do |format|
       if @instrument.update(instrument_params)
-        format.html {redirect_to instruments_url, notice: 'Instrument was successfully updated.'}
+        format.html {redirect_to instruments_url(anchor: @instrument.id, letter: startletter), notice: 'Instrument was successfully updated.'}
+        #anchor: @instrument.id, letter: @instrument.name[0]
         format.json {render :show, status: :ok, location: @instrument}
       else
         format.html {render :edit}
@@ -81,6 +87,16 @@ class InstrumentsController < ApplicationController
   end
 
   private
+
+  def startletter
+    if @instrument.name[0] =~ /[A-Za-z]/
+      @instrument.name[0]
+    elsif @instrument.name[0] =~ /[0-9]/
+      '0-9'
+    else
+      '*'
+    end
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_instrument

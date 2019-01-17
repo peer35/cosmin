@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 20180829165132) do
     t.text     "url1"
     t.text     "url2"
     t.text     "url3"
-    t.text     "url4"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
