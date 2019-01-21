@@ -43,7 +43,7 @@ module ApplicationHelper
         url_list.append(link_to('proqolid', o['url1'], target: "_blank"))
       end
       unless o['url2'].nil? || o['url2'] == ''
-        url_list.append(link_to('other', o['url2'], target: "_blank"))
+        url_list.append(link_to('ZUID (NL)', o['url2'], target: "_blank"))
       end
       unless o['url3'].nil? || o['url3'] == ''
         url_list.append(link_to('website3', o['url3'], target: "_blank"))
