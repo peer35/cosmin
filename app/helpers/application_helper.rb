@@ -55,11 +55,16 @@ module ApplicationHelper
           # <a href="#" data-toggle="popover" title="Popover Header" data-content="Some content inside the popover">Toggle popover</a>
           #ref = link_to('reference', '', { :class => 'reference', 'data-toggle' => 'popover', :title => 'Reference', 'data-content' => o['reference']})
           ref = '<a class="reference" data-toggle="popover" data-placement="bottom" data-content="' + o['reference'] + '">reference</a>'
-          html = html + ref + ', '
+          if url_list.count>1
+            html = html + ref + ', '
+          else
+            html = html + ref
+          end
         end
         unless url_list.count == 0
           html = html + url_list.join(', ')
         end
+        # [see: reference, ]
         html = html + ']'
       end
       html = html + '<br>'
