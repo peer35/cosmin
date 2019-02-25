@@ -14,11 +14,12 @@ Rails.application.configure do
 
   # Enable/disable caching. By default caching is disabled.
 
-  config.action_controller.perform_caching = true
+  config.action_controller.perform_caching = false
 
   config.cache_store = :memory_store
   config.public_file_server.headers = {
-      'Cache-Control' => 'public, max-age=172800'
+      #'Cache-Control' => 'public, max-age=172800'
+      'Cache-Control' => 'no-cache'
   }
 
   config.action_mailer.delivery_method = :sendmail
@@ -80,7 +81,7 @@ Rails.application.configure do
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
-  config.i18n.fallbacks = true
+  config.i18n.fallbacks =  [I18n.default_locale]
 
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
