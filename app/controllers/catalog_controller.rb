@@ -170,7 +170,7 @@ class CatalogController < ApplicationController
     #config.add_show_field 'is_sm', label: 'Interpretability aspects'
     config.add_show_field 'cu_sm', label: 'COSMIN used', :link_to_search => true
     #config.add_show_field 'instrument_sm', label: 'Instrument', :link_to_search => true, :helper_method => :break_join_helper
-    config.add_show_field 'instrumentpresentation_sm', label: 'Instrument', :link_to_search => true, :helper_method => :instrument_presentation_helper
+    config.add_show_field 'instrumentpresentation_sfm', label: 'Instrument', :link_to_search => true, :helper_method => :instrument_presentation_helper
 
 
     # "fielded" search configuration. Used by pulldown among other places.

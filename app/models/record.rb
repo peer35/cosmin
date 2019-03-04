@@ -104,10 +104,8 @@ def update_solr
                :url_sm => record.url,
                :fs_sm => record.fs.sort!,
                :ghp_sm => record.ghp.sort!,
-               #condition ? if_true : if_false
-               #:instrument_sm => record.instrument == ['-'] ? [] : record.instrument,
                :instrument_sm => instrument_list.sort_by {|k| k},
-               :instrumentpresentation_sm => instrument_presentation_list.sort_by {|k| k},
+               :instrumentpresentation_sfm => instrument_presentation_list.sort_by {|k| k}, # stored, not indexed
                :issn_s => record.issn,
                :issue_s => record.issue,
                :journal_s => record.journal,
