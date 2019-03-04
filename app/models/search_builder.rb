@@ -14,6 +14,7 @@ class SearchBuilder < Blacklight::SearchBuilder
   #   end
 
   def escape_lonely_hyphen(solr_parameters)
+    solr_parameters[:q] ||= ''
     solr_parameters[:q] = solr_parameters[:q].gsub(/\s-\s/, " ")
   end
 end
