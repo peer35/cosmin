@@ -106,7 +106,7 @@
                 generateNumberParts="0"
                 catenateWords="0"
                 catenateNumbers="0"
-                catenateAll="1"
+                catenateAll="0"
                 preserveOriginal="1"
         />
         <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords_en.txt"/>
@@ -179,6 +179,7 @@
   <copyField source="author_sm" dest="text_suggest"/>
   <copyField source="instrument_sm" dest="text_suggest"/>
 
+  <copyField source="*_i" dest="text"/>
   <copyField source="*_s" dest="text"/>
   <copyField source="*_sm" dest="text"/>
 </schema>
