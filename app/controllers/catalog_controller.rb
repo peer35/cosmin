@@ -146,31 +146,23 @@ class CatalogController < ApplicationController
     #config.add_show_field 'title_s', label: 'Title'
     config.add_show_field 'author_sm', label: 'Authors', :link_to_search => true
     config.add_show_field 'abstract_s', label: 'Abstract', :helper_method => :abstract_show_helper
-    #config.add_show_field 'abstract_s', label: 'Abstract'
-    #config.add_show_field 'doi_s', label: 'DOI', :link_to_doi => true
     config.add_show_field 'doi_s', label: 'DOI', :helper_method => :doi_link_helper
     config.add_show_field 'url_sm', label: 'URL', :helper_method => :url_link_helper
     config.add_show_field 'journal_s', label: 'Journal'
     config.add_show_field 'issn_s', label: 'issn'
     config.add_show_field 'pubyear_s', label: 'Publication year'
     config.add_show_field 'startpage_s', label: 'pages'
-    config.add_show_field 'bpv_sm', label: 'Biological and physiological variables', :link_to_search => true, :helper_method => :break_join_helper
-    config.add_show_field 'ss_sm', label: 'Symptom status', :link_to_search => true, :helper_method => :break_join_helper
-    config.add_show_field 'fs_sm', label: 'Functional status', :link_to_search => true, :helper_method => :break_join_helper
-    config.add_show_field 'ghp_sm', label: 'General health perceptions / HRQoL', :link_to_search => true, :helper_method => :break_join_helper
-    config.add_show_field 'oql_sm', label: 'Overall quality of life', :link_to_search => true, :helper_method => :break_join_helper
-    config.add_show_field 'age_sm', label: 'Age', :link_to_search => true, :helper_method => :break_join_helper
-    config.add_show_field 'disease_sm', label: 'Disease', :link_to_search => true, :helper_method => :break_join_helper
-    config.add_show_field 'pnp_sm', label: 'PRO / non-PRO', :link_to_search => true, :helper_method => :break_join_helper
-    #config.add_show_field 'hr_sm', label: 'Health related'
-    config.add_show_field 'tmi_sm', label: 'Type of measurement instrument', :link_to_search => true, :helper_method => :break_join_helper
-    #config.add_show_field 'pm_sm', label: 'Purpose of measurement'
-    #config.add_show_field 'mp_sm', label: 'Measurement properties'
-    #config.add_show_field 'fa_sm', label: 'Feasibility aspects'
-    #config.add_show_field 'is_sm', label: 'Interpretability aspects'
-    config.add_show_field 'cu_sm', label: 'COSMIN used', :link_to_search => true
-    #config.add_show_field 'instrument_sm', label: 'Instrument', :link_to_search => true, :helper_method => :break_join_helper
-    config.add_show_field 'instrumentpresentation_sfm', label: 'Instrument', :link_to_search => true, :helper_method => :instrument_presentation_helper
+    config.add_show_field 'bpv_sm', label: 'Biological and physiological variables', :link_to_search => true, :separator_options => {words_connector: '<br>', last_word_connector: '<br>', two_words_connector: '<br>'}
+    config.add_show_field 'ss_sm', label: 'Symptom status', :link_to_search => true, :separator_options => {words_connector: '<br>', last_word_connector: '<br>', two_words_connector: '<br>'}
+    config.add_show_field 'fs_sm', label: 'Functional status', :link_to_search => true, :separator_options => {words_connector: '<br>', last_word_connector: '<br>', two_words_connector: '<br>'}
+    config.add_show_field 'ghp_sm', label: 'General health perceptions / HRQoL', :link_to_search => true, :separator_options => {words_connector: '<br>', last_word_connector: '<br>', two_words_connector: '<br>'}
+    config.add_show_field 'oql_sm', label: 'Overall quality of life', :link_to_search => true, :separator_options => {words_connector: '<br>', last_word_connector: '<br>', two_words_connector: '<br>'}
+    config.add_show_field 'age_sm', label: 'Age', :link_to_search => true, :separator_options => {words_connector: '<br>', last_word_connector: '<br>', two_words_connector: '<br>'}
+    config.add_show_field 'disease_sm', label: 'Disease', :link_to_search => true, :separator_options => {words_connector: '<br>', last_word_connector: '<br>', two_words_connector: '<br>'}
+    config.add_show_field 'pnp_sm', label: 'PRO / non-PRO', :link_to_search => true, :separator_options => {words_connector: '<br>', last_word_connector: '<br>', two_words_connector: '<br>'}
+    config.add_show_field 'tmi_sm', label: 'Type of measurement instrument', :link_to_search => true, :separator_options => {words_connector: '<br>', last_word_connector: '<br>', two_words_connector: '<br>'}
+    config.add_show_field 'cu_sm', label: 'COSMIN used', :link_to_search => true, :separator_options => {words_connector: '<br>', last_word_connector: '<br>', two_words_connector: '<br>'}
+    config.add_show_field 'instrumentpresentation_sfm', label: 'Instrument', :helper_method => :instrument_presentation_helper
 
 
     # "fielded" search configuration. Used by pulldown among other places.
