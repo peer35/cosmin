@@ -87,7 +87,7 @@ def update_solr
     instrument_list=[]
     instrument_presentation_list=[]
     record.instruments.order(name: :asc).each do |instrument|
-      instrument_list.append(instrument.name)
+      instrument_list.append(instrument.name.strip)
       instrument_presentation_list.append(instrument.to_json)
     end
 
