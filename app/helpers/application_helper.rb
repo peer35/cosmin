@@ -21,17 +21,13 @@ module ApplicationHelper
     urls.join('<br>').html_safe
   end
 
-  def break_join_helper args
-    args[:document][args[:field]].join('<br>').html_safe
-  end
-
   require 'json'
   def instrument_presentation_helper args
     html = ''
     args[:document][args[:field]].each do |json_string|
       logger.debug json_string
       o = JSON.parse(json_string)
-      html = html + o['name']
+      html = html + facet_link('instrument_sm', o['name'])
       url_list = []
       unless o['doi'].nil? || o['doi'] == ''
         url_list.append('doi: ' + link_to(o['doi'], 'https://dx.doi.org/' + o['doi'], target: "_blank"))
@@ -50,7 +46,7 @@ module ApplicationHelper
       end
       logger.debug url_list
       unless url_list.count == 0 && (o['reference'].nil? || o['reference'] == '')
-        html = html + ' [see: '
+        html = html + '&nbsp;&nbsp;&nbsp;[see: '
         unless o['reference'].nil? || o['reference'] == ''
           # <a href="#" data-toggle="popover" title="Popover Header" data-content="Some content inside the popover">Toggle popover</a>
           #ref = link_to('reference', '', { :class => 'reference', 'data-toggle' => 'popover', :title => 'Reference', 'data-content' => o['reference']})
@@ -70,6 +66,19 @@ module ApplicationHelper
       html = html + '<br>'
     end
     html.html_safe
+  end
+
+  def facet_link(field, v)
+    link_to v, search_path(field, v)
+  end
+
+  def search_path(field, v)
+    params=h_facet_params(field, v)
+    search_action_path(params)
+  end
+
+  def h_facet_params(field, v)
+    search_state.reset.add_facet_params(field, v)
   end
 end
 
