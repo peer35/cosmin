@@ -86,8 +86,8 @@ def update_solr
 
     instrument_list=[]
     instrument_presentation_list=[]
-    record.instruments.each do |instrument|
-      instrument_list.append(instrument.name)
+    record.instruments.order(name: :asc).each do |instrument|
+      instrument_list.append(instrument.name.strip)
       instrument_presentation_list.append(instrument.to_json)
     end
 
@@ -104,10 +104,8 @@ def update_solr
                :url_sm => record.url,
                :fs_sm => record.fs.sort!,
                :ghp_sm => record.ghp.sort!,
-               #condition ? if_true : if_false
-               #:instrument_sm => record.instrument == ['-'] ? [] : record.instrument,
                :instrument_sm => instrument_list.sort_by {|k| k},
-               :instrumentpresentation_sm => instrument_presentation_list.sort_by {|k| k},
+               :instrumentpresentation_sfm => instrument_presentation_list, # stored, not indexed
                :issn_s => record.issn,
                :issue_s => record.issue,
                :journal_s => record.journal,

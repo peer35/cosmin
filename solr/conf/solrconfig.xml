@@ -116,49 +116,44 @@
 
       <str name="q.alt">*:*</str>
       <str name="mm">2&lt;-1 5&lt;-2 6&lt;90%</str>
+      <!-- klopt dit? -->
       <str name="qf">
-        title_unstem_search^100000
-        title_s^25000
-        author_sm^20000
-        instrument_sm^20000
-        abstract_s^10000
-        journal_s^10000
+        title_unstem_search^25000
+        author_unstem_search^20000
+        instrument_unstem_search^20000
         text
       </str>
       <str name="pf">
-        title_unstem_search^100000
-        title_s^25000
-        author_sm^20000
-        instrument_sm^20000
-        abstract_s^10000
-        journal_s^10000
+        title_unstem_search^25000
+        author_unstem_search^20000
+        instrument_unstem_search^20000
         text
       </str>
 
       <str name="title_qf">
-        title_unstem_search^100000
-        title_s^25000
+        title_unstem_search^25000
+        title_s^10000
       </str>
       <str name="title_pf">
-        title_unstem_search^100000
-        title_s^25000
+        title_unstem_search^25000
+        title_s^10000
       </str>
 
       <str name="author_qf">
-        author_unstem_search^100000
+        author_unstem_search^25000
         author_sm^10000
       </str>
       <str name="author_pf">
-        author_unstem_search^100000
+        author_unstem_search^25000
         author_sm^10000
       </str>
 
       <str name="instrument_qf">
-        instrument_unstem_search^100000
+        instrument_unstem_search^25000
         instrument_sm^10000
       </str>
       <str name="instrument_pf">
-        instrument_unstem_search^100000
+        instrument_unstem_search^25000
         instrument_sm^10000
       </str>
 
