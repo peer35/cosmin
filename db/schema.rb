@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180829165132) do
+ActiveRecord::Schema.define(version: 20180920112111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,10 @@ ActiveRecord::Schema.define(version: 20180829165132) do
 
   create_table "instruments", force: :cascade do |t|
     t.text     "name"
+    t.text     "reference"
+    t.text     "doi"
+    t.text     "pmid"
+    t.text     "refurl"
     t.text     "url1"
     t.text     "url2"
     t.text     "url3"
@@ -46,6 +50,7 @@ ActiveRecord::Schema.define(version: 20180829165132) do
   create_table "instruments_records", id: false, force: :cascade do |t|
     t.integer "record_id"
     t.integer "instrument_id"
+    t.index ["instrument_id", "record_id"], name: "by_instruments_and_records", unique: true, using: :btree
     t.index ["instrument_id"], name: "index_instruments_records_on_instrument_id", using: :btree
     t.index ["record_id"], name: "index_instruments_records_on_record_id", using: :btree
   end
@@ -120,4 +125,6 @@ ActiveRecord::Schema.define(version: 20180829165132) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
   end
 
+  add_foreign_key "instruments_records", "instruments"
+  add_foreign_key "instruments_records", "records"
 end
