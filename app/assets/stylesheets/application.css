@@ -265,3 +265,8 @@ table .absorbing-column {
     margin-right: 5px;
     margin-bottom: 5px;
 }
+
+.urlcol {
+    word-break: break-all;
+}
+
