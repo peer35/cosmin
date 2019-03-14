@@ -7,7 +7,7 @@
 <%= alphabetical_paginate @alphaParams %>
 <div class="row">
   <div class="col-md-12">
-<table class="table table-striped table-bordered">
+<table id="instruments" class="table table-striped table-bordered">
   <thead>
 <tr>
   <th>Name</th>
@@ -31,10 +31,10 @@
     <td><%= instrument.reference %></td>
     <td><%= instrument.doi %></td>
     <td><%= instrument.pmid %></td>
-    <td><%= instrument.refurl %></td>
-    <td><%= instrument.url1 %></td>
-    <td><%= instrument.url2 %></td>
-    <td><%= instrument.url3 %></td>
+    <td class="urlcol"><%= instrument.refurl %></td>
+    <td class="urlcol"><%= instrument.url1 %></td>
+    <td class="urlcol"><%= instrument.url2 %></td>
+    <td class="urlcol"><%= instrument.url3 %></td>
     <td><%= instrument.records.count %></td>
     <td><%= instrument.status %></td>
     <td><%= link_to 'Edit', edit_instrument_path(instrument) %></td>
