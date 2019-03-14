@@ -1,0 +1,6 @@
+Error report for RIS file selectietest.txt
+
+Sleep quality in children: questionnaires available in Brazil failed with error(s): 	Endnum endnote record number already present in COSMIN database 
+Identification and appraisal of outcome measures used to evaluate hypodontia care: A systematic review failed with error(s): 	Endnum endnote record number already present in COSMIN database 
+Muscle tone assessments for children aged 0 to 12 years: a systematic review failed with error(s): 	Endnum endnote record number already present in COSMIN database 
+Measurement properties of depression questionnaires in patients with diabetes: a systematic review failed with error(s): 	Endnum endnote record number already present in COSMIN database 

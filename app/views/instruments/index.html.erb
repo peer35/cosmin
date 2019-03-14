@@ -5,6 +5,8 @@
 <%= link_to 'New Instrument', new_instrument_path %>
 </p>
 <%= alphabetical_paginate @alphaParams %>
+<div class="row">
+  <div class="col-md-12">
 <table class="table table-striped table-bordered">
   <thead>
 <tr>
@@ -16,11 +18,12 @@
   <th>PROQOLID</th>
   <th>ZUYD (NL)</th>
   <th>Url3</th>
-  <th>#records</th>
-  <th colspan="8"></th>
+  <th>#</th>
+  <th>status</th>
+  <th>edit</th>
+  <th>remove</th>
 </tr>
 </thead>
-
 <tbody>
 <% @instruments.each do |instrument| %>
   <tr>
@@ -33,6 +36,7 @@
     <td><%= instrument.url2 %></td>
     <td><%= instrument.url3 %></td>
     <td><%= instrument.records.count %></td>
+    <td><%= instrument.status %></td>
     <td><%= link_to 'Edit', edit_instrument_path(instrument) %></td>
     <td>
     <% if instrument.records.count==0 %>
@@ -43,8 +47,8 @@
 <% end %>
 </tbody>
 </table>
-
-<br>
+</div>
+</div>
 
 <%= link_to 'New Instrument', new_instrument_path %>
 

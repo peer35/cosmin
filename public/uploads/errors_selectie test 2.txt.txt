@@ -1,0 +1,5 @@
+Error report for RIS file selectie test 2.txt
+
+Systematic review of health-related quality of life measures for inflammatory bowel disease failed with error(s): 	Title already present in COSMIN database Endnum endnote record number already present in COSMIN database 
+Do patient-reported outcome measures in hip and knee arthroplasty rehabilitation have robust measurement attributes? A systematic review failed with error(s): 	Title already present in COSMIN database Endnum endnote record number already present in COSMIN database 
+Measurement properties of gait-related outcomes in youth with neuromuscular diagnoses: a systematic review failed with error(s): 	Title already present in COSMIN database Endnum endnote record number already present in COSMIN database 

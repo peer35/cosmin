@@ -106,7 +106,7 @@ class InstrumentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def instrument_params
-    params.require(:instrument).permit(:name, :reference, :doi, :pmid, :refurl, :url1, :url2, :url3)
+    params.require(:instrument).permit(:name, :reference, :doi, :pmid, :refurl, :url1, :url2, :url3, :status)
   end
 
   def user_not_authorized
