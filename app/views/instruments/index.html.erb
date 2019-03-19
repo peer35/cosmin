@@ -1,53 +1,63 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Instruments</h1>
-<p>
-<%= link_to 'New Instrument', new_instrument_path %>
-</p>
-<%= alphabetical_paginate @alphaParams %>
-<div class="row">
+<div class="row rectable">
   <div class="col-md-12">
-<table id="instruments" class="table table-striped table-bordered">
-  <thead>
-<tr>
-  <th>Name</th>
-  <th>Reference</th>
-  <th>doi</th>
-  <th>pmid</th>
-  <th>refurl</th>
-  <th>PROQOLID</th>
-  <th>ZUYD (NL)</th>
-  <th>Url3</th>
-  <th>#</th>
-  <th>status</th>
-  <th>edit</th>
-  <th>remove</th>
-</tr>
-</thead>
-<tbody>
-<% @instruments.each do |instrument| %>
-  <tr>
-    <td><a name=<%= instrument.id %>></a><%= instrument.name %></td>
-    <td><%= instrument.reference %></td>
-    <td><%= instrument.doi %></td>
-    <td><%= instrument.pmid %></td>
-    <td class="urlcol"><%= instrument.refurl %></td>
-    <td class="urlcol"><%= instrument.url1 %></td>
-    <td class="urlcol"><%= instrument.url2 %></td>
-    <td class="urlcol"><%= instrument.url3 %></td>
-    <td><%= instrument.records.count %></td>
-    <td><%= instrument.status %></td>
-    <td><%= link_to 'Edit', edit_instrument_path(instrument) %></td>
-    <td>
-    <% if instrument.records.count==0 %>
-      <%= link_to 'Destroy', instrument, method: :delete, data: { confirm: 'Are you sure?' } %>
-    <% end %>
-    </td>
-  </tr>
-<% end %>
-</tbody>
-</table>
+    <div class="pull-left">
+        <%= link_to 'New Instrument', new_instrument_path, :class => 'btn btn-default' %>
+    </div>
+
+    <div class="pull-right">
+        <%= link_to 'Download', instruments_path(format: :csv), :class => 'btn btn-default' %>
+    </div>
+  </div>
 </div>
+<div class="row rectable">
+  <%= alphabetical_paginate @alphaParams %>
+</div>
+<div class="row rectable">
+  <div class="col-md-12">
+    <table id="instruments" class="table table-striped table-bordered">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <!--<th>Reference</th>
+        <th>doi</th>
+        <th>pmid</th>
+        <th>refurl</th>-->
+        <th>PROQOLID</th>
+        <th>ZUYD (NL)</th>
+        <th>Also see</th>
+        <th>#</th>
+        <th>status</th>
+        <th>edit</th>
+        <th>remove</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @instruments.each do |instrument| %>
+        <tr>
+          <td><a name=<%= instrument.id %>></a><%= instrument.name %></td>
+          <!--<td><%= instrument.reference %></td>
+          <td><%= instrument.doi %></td>
+          <td><%= instrument.pmid %></td>
+          <td class="urlcol"><%= instrument.refurl %></td>-->
+          <td class="urlcol"><%= instrument.url1 %></td>
+          <td class="urlcol"><%= instrument.url2 %></td>
+          <td class="urlcol"><%= instrument.url3 %></td>
+          <td><%= instrument.records.count %></td>
+          <td><%= instrument.status %></td>
+          <td><%= link_to 'Edit', edit_instrument_path(instrument) %></td>
+          <td>
+            <% if instrument.records.count == 0 %>
+              <%= link_to 'Delete', instrument, method: :delete, data: {confirm: 'Are you sure?'} %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <%= link_to 'New Instrument', new_instrument_path %>

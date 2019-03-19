@@ -1,4 +1,6 @@
 class InstrumentsController < ApplicationController
+  require 'csv'
+
   include Pundit
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -24,9 +26,17 @@ class InstrumentsController < ApplicationController
   def index
     # @instruments = Instrument.all.order('LOWER(name) ASC')
     # @users, @alphaParams = User.all.alpha_paginate(params[:letter]){|user| user.name}
-    @instruments, @alphaParams = Instrument.all
-                                     .alpha_paginate(params[:letter], {:default_field => '0-9', :include_all => false, :js => false, :bootstrap3 => true}){|instrument| instrument.name}
-    @instruments.sort_by! { |m| m.name.downcase }
+    respond_to do |format|
+      format.csv do
+        send_data to_csv, filename: "instruments-#{Date.today}.csv"
+      end
+
+      format.html do
+        @instruments, @alphaParams = Instrument.all
+                                         .alpha_paginate(params[:letter], {:default_field => '0-9', :include_all => false, :js => false, :bootstrap3 => true}) {|instrument| instrument.name}
+        @instruments.sort_by! {|m| m.name.downcase}
+      end
+    end
   end
 
   # GET /instruments/1
@@ -112,5 +122,29 @@ class InstrumentsController < ApplicationController
   def user_not_authorized
     flash[:alert] = "You are not authorized to perform this action."
     redirect_to(request.referrer || root_path)
+  end
+end
+
+def to_csv
+  headers = ["number of records", "name", "reference", "doi", "pmid", "refurl", "url1", "url2", "url3", "created_at", "updated_at"]
+  fields = ["name", "reference", "doi", "pmid", "refurl", "url1", "url2", "url3", "created_at", "updated_at"]
+
+  CSV.generate(headers: true, :col_sep => ",") do |csv|
+    csv << headers
+    Instrument.all.each do |i|
+      row = []
+      row.append(i.records.count)
+      fields.each do |f|
+        if f=='created_at' || f=='updated_at'
+            row.append(i[f].localtime.strftime('%F %R'))
+        else
+          row.append(i[f])
+        end
+      end
+
+
+      csv << row
+      row.clear
+    end
   end
 end
