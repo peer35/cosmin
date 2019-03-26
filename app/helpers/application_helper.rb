@@ -29,12 +29,6 @@ module ApplicationHelper
       o = JSON.parse(json_string)
       html = html + facet_link('instrument_sm', o['name'])
       url_list = []
-      unless o['doi'].nil? || o['doi'] == ''
-        url_list.append('doi: ' + link_to(o['doi'], 'https://dx.doi.org/' + o['doi'], target: "_blank"))
-      end
-      unless o['pmid'].nil? || o['pmid'] == ''
-        url_list.append(link_to('pubmed', 'https://www.ncbi.nlm.nih.gov/pubmed/' + o['pmid'], target: "_blank"))
-      end
       unless o['url1'].nil? || o['url1'] == ''
         url_list.append(link_to('proqolid', o['url1'], target: "_blank"))
       end
@@ -42,25 +36,11 @@ module ApplicationHelper
         url_list.append(link_to('ZUYD (NL)', o['url2'], target: "_blank"))
       end
       unless o['url3'].nil? || o['url3'] == ''
-        url_list.append(link_to('website3', o['url3'], target: "_blank"))
+        url_list.append('also see: ' + o['url3'])
       end
-      logger.debug url_list
-      unless url_list.count == 0 && (o['reference'].nil? || o['reference'] == '')
+      unless url_list.count == 0
         html = html + '&nbsp;&nbsp;&nbsp;[see: '
-        unless o['reference'].nil? || o['reference'] == ''
-          # <a href="#" data-toggle="popover" title="Popover Header" data-content="Some content inside the popover">Toggle popover</a>
-          #ref = link_to('reference', '', { :class => 'reference', 'data-toggle' => 'popover', :title => 'Reference', 'data-content' => o['reference']})
-          ref = '<a class="reference" data-toggle="popover" data-placement="bottom" data-content="' + o['reference'] + '">reference</a>'
-          if url_list.count>1
-            html = html + ref + ', '
-          else
-            html = html + ref
-          end
-        end
-        unless url_list.count == 0
-          html = html + url_list.join(', ')
-        end
-        # [see: reference, ]
+        html = html + url_list.join(', ')
         html = html + ']'
       end
       html = html + '<br>'
@@ -73,7 +53,7 @@ module ApplicationHelper
   end
 
   def search_path(field, v)
-    params=h_facet_params(field, v)
+    params = h_facet_params(field, v)
     search_action_path(params)
   end
 
@@ -98,7 +78,7 @@ module AlphabeticalPaginate
           range += ["*"]
         end
         if options[:enumerate] && options[:numbers]
-          range = (0..9).to_a.map{|x| x.to_s} + range
+          range = (0..9).to_a.map {|x| x.to_s} + range
         elsif options[:numbers]
           range = ["0-9"] + range
         end
@@ -108,7 +88,7 @@ module AlphabeticalPaginate
           if options[:slugged_link] && (l =~ options[:language].letters_regexp || l == "All")
             link_letter = options[:language].slugged_letters[l]
           end
-          letter_options = { letter: link_letter }
+          letter_options = {letter: link_letter}
           if !options[:all_as_link] && (l == "All")
             letter_options[:letter] = nil
           end
@@ -118,7 +98,7 @@ module AlphabeticalPaginate
           url = options[:scope].url_for(letter_options)
           value = options[:language].output_letter(l)
           if l == options[:currentField]
-            links += content_tag(:li, link_to(value, "#",  "data-letter" => l), :class => "active")
+            links += content_tag(:li, link_to(value, "#", "data-letter" => l), :class => "active")
           elsif options[:db_mode] or options[:availableLetters].include? l
             links += content_tag(:li, link_to(value, url, "data-letter" => l))
           else
@@ -133,7 +113,7 @@ module AlphabeticalPaginate
           options[:availableLetters].delete("All") if options[:availableLetters].include?("All")
           options[:availableLetters].unshift("All")
         end
-        options[:availableLetters] -= (1..9).to_a.map{|x| x.to_s} if !options[:numbers]
+        options[:availableLetters] -= (1..9).to_a.map {|x| x.to_s} if !options[:numbers]
         options[:availableLetters] -= ["*"] if !options[:others]
 
         options[:availableLetters].each do |l|
@@ -141,18 +121,18 @@ module AlphabeticalPaginate
           if options[:slugged_link] && (l =~ options[:language].letters_regexp || l == "All")
             link_letter = options[:language].slugged_letters[l]
           end
-          letter_options = { letter: link_letter }
+          letter_options = {letter: link_letter}
           if !options[:all_as_link] && (l == "All")
             letter_options[:letter] = nil
           end
           logger.debug options[:merge_params]
           logger.debug letter_options
-          letter_options=letter_options.merge(options[:merge_params])
+          letter_options = letter_options.merge(options[:merge_params])
           logger.debug letter_options
 
           url = options[:scope].url_for(letter_options)
           value = options[:language].output_letter(l)
-          links += content_tag(:li, link_to(value, url, "data-letter" => l), :class => ("active" if l == options[:currentField] ))
+          links += content_tag(:li, link_to(value, url, "data-letter" => l), :class => ("active" if l == options[:currentField]))
         end
       end
 
