@@ -21,7 +21,6 @@
 //= require blacklight/blacklight
 
 //= require_tree .
-//= require bootstrap
 //= require select2
 
 ready = function(){
