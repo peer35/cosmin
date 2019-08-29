@@ -1,0 +1,3 @@
+Error report for RIS file selectie 4.txt
+
+Review of Severity Rating Scales for Restless Legs Syndrome: Critique and Recommendations failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database Endnum endnote record number already present in COSMIN database 
