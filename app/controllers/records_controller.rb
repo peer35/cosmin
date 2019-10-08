@@ -363,11 +363,13 @@ def to_csv(status)
     recs = Record.all
   end
   #headers = ["abstract","accnum","author","disease","doi","fs","ghp","instrument","issn","issue","journal","oc","oql","pnp","age","pubyear","ss","startpage","title","tmi","url","user_email","created_at","updated_at","admin_notes","status","endnum"]
-  #headers = ["Reference Type","Accession Number","Author","DOI","ISSN","Issue","Journal","Year","Start Page","Title","URL"]
+  #fields = ["abstract","accnum","author","bpv","cu","disease","doi","fs","ghp","instrument","issn","issue","journal","oc","oql","pnp","age","pubyear","ss","startpage","title","tmi","url","user_email","created_at","updated_at","admin_notes","status","endnum"]
+
+  # This format can be directly imported in Endnote, see the "List of Reference Types in Endnote Help"
+  # Because we put the Reference type in the first column we need to use Generic field names, zee:https://support.clarivate.com/Endnote/s/article/EndNote-Creating-a-Tab-Delimited-Import-Format?language=en_US
   headers = ["Reference Type","Accession Number","Author","DOI","ISBN/ISSN","Number","Secondary Title","Year","Title","URL","Abstract"]
   fields = ["accnum","author" ,"doi","issn","issue","journal","pubyear","title","url","abstract"]
-  #fields = ["accnum","author" ,"doi","issn","issue","journal","pubyear","startpage","title","url"]
-  #fields = ["abstract","accnum","author","bpv","cu","disease","doi","fs","ghp","instrument","issn","issue","journal","oc","oql","pnp","age","pubyear","ss","startpage","title","tmi","url","user_email","created_at","updated_at","admin_notes","status","endnum"]
+
 
   CSV.generate(headers: true, :col_sep => "\t") do |csv|
     csv << headers
