@@ -20,12 +20,18 @@
   </div>
 </div>
 
+
   <div class="row rectable">
     <h2>All records</h2>
   <div class="col-md-3">
     <label>Filter:</label>
     <%= select_tag "record[status]", options_for_select(status_list, {:selected => status_filter}), :multiple => false, :id => "filter", :class => "form-control" %>
   </div>
+    <div class="col-md-9">
+      <div class="pull-right">
+        <%= link_to 'Download', records_path(format: :csv, filter: status_filter), :class => 'btn btn-default' %>
+      </div>
+    </div>
   </div>
   <div class="row rectable">
     <div class="col-md-12">
