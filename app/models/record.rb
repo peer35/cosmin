@@ -28,6 +28,8 @@ class Record < ApplicationRecord
   after_save :update_solr
   after_initialize :init
 
+  before_destroy :delete_from_solr
+
   def init
     # set empty array for multivalued fields
     self.age ||= []
@@ -124,6 +126,14 @@ def update_solr
     @@solr.delete_by_id(record.id)
     @@solr.commit
   end
-
   return true
+end
+
+def delete_from_solr
+  record = self
+  solr_config = Rails.application.config_for :blacklight
+  logger.debug 'delete record from solr'
+  @@solr = RSolr.connect :url => solr_config['url'] # get this from blacklight config
+  @@solr.delete_by_id(record.id)
+  @@solr.commit
 end

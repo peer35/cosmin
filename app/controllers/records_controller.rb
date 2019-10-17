@@ -1,4 +1,5 @@
 class RecordsController < ApplicationController
+  require 'csv'
   # Duplicate key on id:
   #ALTER TABLE "records" RENAME COLUMN "id" TO "id_orig";
   #ALTER TABLE "records" ADD COLUMN "id" bigserial NOT NULL;
@@ -38,31 +39,38 @@ class RecordsController < ApplicationController
     unless params[:q].nil?
       redirect_to :controller => 'catalog', action: "index", q: params[:q]
     end
-    unless status_filter=='all'
-      @records = Record.where(:status => status_filter).order(sort_column + " " + sort_direction)
-    else
-      @records = Record.all.order(sort_column + " " + sort_direction)
-    end
-    # use below to paginate, but this will not work with sorting the table
-    #@records, @alphaParams = Record.where(:status => status_filter).order(sort_column + " " + sort_direction)
-    #                                 .alpha_paginate(params[:letter], {:default_field => 'A', :include_all => false, :js => false, :bootstrap3 => true, :merge_params => {:filter => params[:filter]}}){|record| record.author[0]}
+    status=status_filter()
+    respond_to do |format|
+      format.csv do
+        send_data to_csv(status), filename: "records-#{status}-#{Date.today}.txt"
+      end
+      format.html do
+        unless status == 'all'
+          @records = Record.where(:status => status).order(sort_column + " " + sort_direction)
+        else
+          @records = Record.all.order(sort_column + " " + sort_direction)
+        end
+        # use below to paginate, but this will not work with sorting the table
+        #@records, @alphaParams = Record.where(:status => status_filter).order(sort_column + " " + sort_direction)
+        #                                 .alpha_paginate(params[:letter], {:default_field => 'A', :include_all => false, :js => false, :bootstrap3 => true, :merge_params => {:filter => params[:filter]}}){|record| record.author[0]}
 
-    # sent here after a ris file upload
-    if params[:error_report]
-      @error_report = params[:error_report]
+        # sent here after a ris file upload
+        if params[:error_report]
+          @error_report = params[:error_report]
+        end
+      end
     end
   end
 
   # GET /records/1
   # GET /records/1.json
   def show
-    if @record.status=='published'
+    if @record.status == 'published'
       redirect_to :controller => 'catalog', action: "show", id: @record.id
     else
       redirect_to action: "index"
     end
   end
-
 
 
   # GET /records/new
@@ -90,7 +98,7 @@ class RecordsController < ApplicationController
   # POST /records
   # POST /records.json
   def create
-    record_params['author']=record_params['author_str'].split(';')
+    record_params['author'] = record_params['author_str'].split(';')
     record_params.delete('author_str')
     @record = Record.new(record_params)
     @record.user_email = current_user.email
@@ -116,7 +124,7 @@ class RecordsController < ApplicationController
   def update
     respond_to do |format|
       @record.user_email = current_user.email
-      record_params['author']=record_params['author_str'].split(';')
+      record_params['author'] = record_params['author_str'].split(';')
       record_params.delete('author_str')
       logger.debug record_params
       if @record.update(record_params)
@@ -348,3 +356,37 @@ def user_not_authorized
   redirect_to(request.referrer || root_path)
 end
 
+def to_csv(status)
+  unless status == 'all'
+    recs = Record.where(:status => status)
+  else
+    recs = Record.all
+  end
+  #headers = ["abstract","accnum","author","disease","doi","fs","ghp","instrument","issn","issue","journal","oc","oql","pnp","age","pubyear","ss","startpage","title","tmi","url","user_email","created_at","updated_at","admin_notes","status","endnum"]
+  #fields = ["abstract","accnum","author","bpv","cu","disease","doi","fs","ghp","instrument","issn","issue","journal","oc","oql","pnp","age","pubyear","ss","startpage","title","tmi","url","user_email","created_at","updated_at","admin_notes","status","endnum"]
+
+  # This format can be directly imported in Endnote, see the "List of Reference Types in Endnote Help"
+  # Because we put the Reference type in the first column we need to use Generic field names, zee:https://support.clarivate.com/Endnote/s/article/EndNote-Creating-a-Tab-Delimited-Import-Format?language=en_US
+  headers = ["Reference Type","Accession Number","Author","DOI","ISBN/ISSN","Number","Secondary Title","Year","Title","URL","Abstract"]
+  fields = ["accnum","author" ,"doi","issn","issue","journal","pubyear","title","url","abstract"]
+
+
+  CSV.generate(headers: true, :col_sep => "\t") do |csv|
+    csv << headers
+    recs.all.each do |r|
+      row = []
+      row.append('Journal Article')
+      fields.each do |f|
+        if f=='created_at' || f=='updated_at'
+          row.append(r[f].localtime.strftime('%F %R'))
+        elsif f=='author' || f == 'url'
+          row.append(r[f].join(';'))
+        else
+          row.append(r[f])
+        end
+      end
+      csv << row
+      row.clear
+    end
+  end
+end
