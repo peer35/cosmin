@@ -1,0 +1,4 @@
+Error report for RIS file HR review update maart 2018.txt
+
+Patient-reported outcome measures for patients with meniscal tears: a systematic review of measurement properties and evaluation with the COSMIN checklist failed with error(s): 	Title already present in COSMIN database Endnum endnote record number already present in COSMIN database 
+Review of Severity Rating Scales for Restless Legs Syndrome: Critique and Recommendations failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 

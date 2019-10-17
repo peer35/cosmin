@@ -126,7 +126,6 @@ def update_solr
     @@solr.delete_by_id(record.id)
     @@solr.commit
   end
-
   return true
 end
 
