@@ -42,7 +42,7 @@ class RecordsController < ApplicationController
     status=status_filter()
     respond_to do |format|
       format.csv do
-        send_data to_csv(status), filename: "records-#{status}-#{Date.today}.txt"
+        send_data to_endnote_txt(status), filename: "records-#{status}-#{Date.today}.txt"
       end
       format.html do
         unless status == 'all'
@@ -356,7 +356,7 @@ def user_not_authorized
   redirect_to(request.referrer || root_path)
 end
 
-def to_csv(status)
+def to_endnote_txt(status)
   unless status == 'all'
     recs = Record.where(:status => status)
   else
