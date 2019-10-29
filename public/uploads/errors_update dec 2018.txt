@@ -1,0 +1,43 @@
+Error report for RIS file update dec 2018.txt
+
+Cross-cultural adaptation and measurement properties of generic and cancer-related patient-reported outcome measures (PROMs) for use with cancer patients in Brazil: a systematic review failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Walking measures to evaluate assistive technology for foot drop in multiple sclerosis: A systematic review of psychometric properties failed with error(s): 	Doi already present in COSMIN database 
+Measuring Development of Adolescent and Young Adult Cancer Patients: An Integrative Review of Available Instruments failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Comprehensive clinical sitting balance measures for individuals following stroke: a systematic review on the methodological quality failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Structured review of the patient-reported outcome instruments used in clinical trials in head and neck surgery failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Diagnostic scores, questionnaires, quality of life, and outcome measures in pediatric continence: A review of available tools from the International Children's Continence Society failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+A systematic review highlights the need to investigate the content validity of patient-reported outcome measures for physical functioning in patients with low back pain failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+The assessment of anxiety in aged care residents: a systematic review of the psychometric properties of commonly used measures failed with error(s): 	Doi already present in COSMIN database 
+Measures of Parent Engagement for Children Receiving Developmental or Rehabilitation Interventions: A Systematic Review failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Everyday memory measures in multiple sclerosis: a systematic review failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Updating the Evidence on Functional Capacity Evaluation Methods: A Systematic Review failed with error(s): 	Doi already present in COSMIN database 
+Patient-Reported Outcome Measures in Carotid Artery Revascularization: Systematic Review and Psychometric Analysis failed with error(s): 	Doi already present in COSMIN database 
+Assessing Patient-reported Quality of Life Outcomes in Vulva Cancer Patients: A Systematic Literature Review failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Delirium Assessment Tools for Use in Critically Ill Adults: A Psychometric Analysis and Systematic Review failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Muscle tone assessments for children aged 0 to 12 years: a systematic review failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Assessing the impact of headaches and the outcomes of treatment: A systematic review of patient-reported outcome measures (PROMs) failed with error(s): 	Doi already present in COSMIN database 
+Assessing health-related quality of life (HRQoL) in survivors of out-of-hospital cardiac arrest: A systematic review of patient-reported outcome measures failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+A systematic review of measurement properties of patient reported outcome measures in psoriatic arthritis: A GRAPPA-OMERACT initiative failed with error(s): 	Doi already present in COSMIN database 
+Patient-Reported Outcome Measures for Fatigue in Patients on Hemodialysis: A Systematic Review failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Structured Review of Dichotic Tests of Binaural Integration: Clinical Performance in Children failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Patient-reported outcome measures in amblyopia and strabismus: a systematic review failed with error(s): 	Doi already present in COSMIN database 
+Measurement properties of instruments that assess participation in young people with autism spectrum disorder: a systematic review failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Functional outcome measures for infantile Charcot-Marie-Tooth disease: a systematic review failed with error(s): 	Doi already present in COSMIN database 
+Evaluation of Psychometric and Linguistic Properties of the Italian Adolescent Pain Assessment Scales: A Systematic Review failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Evaluation of the psychometric properties of self-reported measures of alcohol consumption: a COSMIN systematic review failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Rating scales for cognition in Huntington's disease: Critique and recommendations failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Psychometric properties of outcome measures evaluating decline in gait in cerebellar ataxia: A systematic review failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+The use of standardised short-term and working memory tests in aphasia research: a systematic review failed with error(s): 	Doi already present in COSMIN database 
+Outcome Measures Used in Pulmonary Rehabilitation in Patients With Acute Exacerbation of Chronic Obstructive Pulmonary Disease: A Systematic Review failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Child and adolescent self-report symptom measurement in pediatric oncology research: a systematic literature review failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+The Clinimetric Properties of Instruments Measuring Home Hazards for Older People at Risk of Falling: A Systematic Review failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Assessment of content validity for patient-reported outcome measures used in patients with non-muscle invasive bladder cancer: a systematic review failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Patient-Reported Outcome Measures for Symptom Perception During a Cystic Fibrosis Exacerbation failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Systematic review: Disease-specific instruments to assess gastrointestinal symptoms in functional dyspepsia failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+A systematic review of patient-reported measures associated with vestibular dysfunction failed with error(s): 	Doi already present in COSMIN database 
+Systematic review of the psychometric properties of disease-specific, quality-of-life questionnaires for patients with hepatobiliary or pancreatic cancers failed with error(s): 	Doi already present in COSMIN database 
+Reliability and Validity of Subjective Measures of Aerobic Intensity in Adults With Spinal Cord Injury: A Systematic Review failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Measurement properties of depression questionnaires in patients with diabetes: a systematic review failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Assessment of Somatization and Medically Unexplained Symptoms in Later Life failed with error(s): 	Doi already present in COSMIN database 
+Measuring health-related quality of life in patients with advanced cancer: a systematic review of self-administered measurement instruments failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Content Validity of Patient-Reported Outcome Instruments used with Pediatric Patients with Facial Differences: A Systematic Review failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 

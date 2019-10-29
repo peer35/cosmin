@@ -1,0 +1,12 @@
+Error report for RIS file missings-part2 feb 2019 door.txt
+
+Psychometric evaluation of self-report measures of binge-eating symptoms and related psychopathology: A systematic review of the literature failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Instruments for Assessing Chemotherapy-Induced Peripheral Neuropathy: A Review of the Literature failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Inter- and intra-rater reliability of clinical tests associated to functional lumbar segmental instability and motor control impairment in patients with LBP: a systematic review failed with error(s): 	Doi already present in COSMIN database 
+The assessment of developmental trauma in children and adolescents: A systematic review failed with error(s): 	Doi already present in COSMIN database 
+Evaluation of the measurement properties of symptom measurement instruments for atopic eczema: a systematic review failed with error(s): 	Doi already present in COSMIN database 
+Content validity of symptom-based measures for diabetic, chemotherapy, and HIV peripheral neuropathy failed with error(s): 	Doi already present in COSMIN database 
+Measurement Properties of Instruments for Measuring of Lymphedema: Systematic Review failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Easy-to-use clinical measures of walking ability in children and adolescents with cerebral palsy: a systematic review failed with error(s): 	Doi already present in COSMIN database 
+Arabic Tools for Assessment of Multidimensions of Pain and Discomfort Related to Cancer failed with error(s): 	Title already present in COSMIN database 
+Identifying depression post-stroke in patients with aphasia: a systematic review of the reliability, validity and feasibility of available instruments failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
