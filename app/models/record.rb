@@ -93,7 +93,7 @@ def update_solr
       instrument_presentation_list.append(instrument.to_json)
     end
 
-    logger.info 'index ' + record.id
+    logger.info 'index ' + record.id.to_s
 
     @@solr.add :id => record.id,
                :endnum_i => record.endnum,
