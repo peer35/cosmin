@@ -229,6 +229,8 @@
       <!--<str name="lookupImpl">FuzzyLookupFactory</str>
       <str name="storeDir">suggester_fuzzy</str>-->
       <str name="lookupImpl">BlendedInfixLookupFactory</str>
+      <str name="blenderType">position_linear</str>
+      <str name="weightField">weight_f</str>
       <str name="indexPath">suggester_blendedinfix_dir</str>
       <str name="highlight">false</str>
       <!--<str name="lookupImpl">FreeTextLookupFactory</str>

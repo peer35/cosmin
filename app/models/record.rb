@@ -120,7 +120,8 @@ def update_solr
                :startpage_s => record.startpage,
                :title_s => record.title,
                :tmi_sm => record.tmi.sort!,
-               :author_sort => first_author
+               :author_sort => first_author,
+               :weight_f => 1.0
     @@solr.commit
   else
     @@solr.delete_by_id(record.id)
