@@ -2,7 +2,7 @@
 <schema name="geoblacklight-schema" version="1.6">
   <uniqueKey>id</uniqueKey>
   <!-- SolrQueryParser configuration: defaultOperator="AND|OR" -->
-  <solrQueryParser defaultOperator="AND"/>
+  <!--<solrQueryParser defaultOperator="AND"/> deprecated -->
   <fields>
     <field name="_version_" type="long" stored="true" indexed="true"/>
     <field name="timestamp" type="date" stored="true" indexed="true" default="NOW"/>
@@ -139,7 +139,8 @@
     <fieldType class="solr.TextField" name="textSuggest" positionIncrementGap="100">
       <analyzer>
         <!--<tokenizer class="solr.KeywordTokenizerFactory"/>-->
-        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <!-- classic tokenizer "Words are split at hyphens, unless there is a number in the word, in which case the token is not split and the numbers and hyphen(s) are preserved." -->
+        <tokenizer class="solr.ClassicTokenizerFactory"/>
         <filter class="solr.StandardFilterFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
         <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
