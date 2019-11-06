@@ -123,7 +123,7 @@ def update_solr
                :title_s => record.title,
                :tmi_sm => record.tmi.sort!,
                :author_sort => first_author,
-               :weight_f => 1.0
+               :weight_f => 100
     @@solr.commit
   else
     @@solr.delete_by_id(record.id)
