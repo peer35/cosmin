@@ -23,7 +23,6 @@ Rails.application.configure do
   }
 
   config.action_mailer.delivery_method = :sendmail
-  config.mailer_sender = 'noreply.ub@vu.nl'
   # Default Mailer Host
   #Rails.application.routes.default_url_options[:host] = 'pvsge081.labs.vu.nl'
   # prevent host header injection
