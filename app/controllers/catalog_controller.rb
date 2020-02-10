@@ -203,7 +203,7 @@ class CatalogController < ApplicationController
 
     config.add_search_field('title') do |field|
       # solr_parameters hash are sent to Solr as ordinary url query params.
-      field.solr_local_parameters = {
+      field.solr_parameters = {
           'spellcheck.dictionary': 'title',
           qf: "'${title_qf}'",
           pf: "'${title_pf}'"
