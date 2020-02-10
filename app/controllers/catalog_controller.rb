@@ -184,18 +184,19 @@ class CatalogController < ApplicationController
     # since we aren't specifying it otherwise.
 
     config.add_search_field 'all_fields', label: 'All Fields'
+
     config.add_search_field('author_sm', label: 'Author') do |field|
       # solr_parameters hash are sent to Solr as ordinary url query params.
-      field.solr_local_parameters = {
-          qf: '$author_qf',
-          pf: '$author_pf'
+      field.solr_parameters = {
+          qf: "'${author_qf}'",
+          pf: "'${author_pf}'"
       }
     end
 
     config.add_search_field('instrument_sm', label: 'Instrument') do |field|
-      field.solr_local_parameters = {
-          qf: '$instrument_qf',
-          pf: '$instrument_pf'
+      field.solr_parameters = {
+          qf: "'${instrument_qf}'",
+          pf: "'${instrument_pf}'"
       }
     end
 
@@ -207,8 +208,8 @@ class CatalogController < ApplicationController
       # solr_parameters hash are sent to Solr as ordinary url query params.
       field.solr_local_parameters = {
           'spellcheck.dictionary': 'title',
-          qf: '$title_qf',
-          pf: '$title_pf'
+          qf: "'${title_qf}'",
+          pf: "'${title_pf}'"
       }
     end
 
