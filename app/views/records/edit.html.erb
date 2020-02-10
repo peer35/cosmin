@@ -1,7 +1,8 @@
 <div id="content" class="col-md-12 col-sm-8 show-document">
   <h1>Edit</h1>
   <div class="alert alert-info">Editing <%= @versionshowing['status'] %> version,
-    created <%= @versionshowing['created_at'].localtime.strftime('%F %R') %>, by: <%= @versionshowing['created_by'] %></div>
+    created <%= @versionshowing['created_at'].localtime.strftime('%F %R') %>,
+    by: <%= @versionshowing['created_by'] %></div>
 
   <div class="edit-block">
     <%= render 'form', {record: @record} %>
@@ -10,20 +11,24 @@
   <ul class="record_versions">
 
     <% @versions.each do |version| %>
-      <% if version.event=='update' %>
-        <% a=version.reify %>
-        <% if a.updated_at==@versionshowing['created_at']  %>
-          <li class="selected"><%= version.index %>: Created at: <%= a.updated_at.localtime.strftime('%F %R') %>, by: <%= a.user_email %></li>
+      <% if version.event == 'update' %>
+        <% a = version.reify %>
+        <% if a.updated_at == @versionshowing['created_at'] %>
+          <li class="selected"><%= version.index %>: Created at: <%= a.updated_at.localtime.strftime('%F %R') %>,
+            by: <%= a.user_email %></li>
         <% else %>
-          <li><%= version.index %>: Created at: <%= a.updated_at.localtime.strftime('%F %R') %>, by: <%= a.user_email %> <%= link_to "Open version", {:version => (version)} %></li>
+          <li><%= version.index %>: Created at: <%= a.updated_at.localtime.strftime('%F %R') %>,
+            by: <%= a.user_email %> <%= link_to "Open version", {:version => (version)} %></li>
         <% end %>
       <% end %>
     <% end %>
 
-    <% if @versionshowing['status']=='current'  %>
-      <li class="selected">Current version: <%= @current.updated_at.localtime.strftime('%F %R') %>, by: <%= @current.user_email %> </li>
+    <% if @versionshowing['status'] == 'current' %>
+      <li class="selected">Current version: <%= @current.updated_at.localtime.strftime('%F %R') %>,
+        by: <%= @current.user_email %> </li>
     <% else %>
-      <li><%= link_to "Go to current version" %>: <%= @current.updated_at.localtime.strftime('%F %R') %>, by: <%= @current.user_email %> </li>
+      <li><%= link_to "Go to current version" %>: <%= @current.updated_at.localtime.strftime('%F %R') %>,
+        by: <%= @current.user_email %> </li>
     <% end %>
 
   </ul>

@@ -1,5 +1,5 @@
 class Instrument < ApplicationRecord
-  has_and_belongs_to_many :records, -> { distinct } do
+  has_and_belongs_to_many :records, -> {distinct} do
     def << (value)
       super value rescue ActiveRecord::RecordNotUnique
     end

@@ -39,7 +39,7 @@ class RecordsController < ApplicationController
     unless params[:q].nil?
       redirect_to :controller => 'catalog', action: "index", q: params[:q]
     end
-    status=status_filter()
+    status = status_filter()
     respond_to do |format|
       format.csv do
         send_data to_endnote_txt(status), filename: "records-#{status}-#{Date.today}.txt"
@@ -367,8 +367,8 @@ def to_endnote_txt(status)
 
   # This format can be directly imported in Endnote, see the "List of Reference Types in Endnote Help"
   # Because we put the Reference type in the first column we need to use Generic field names, zee:https://support.clarivate.com/Endnote/s/article/EndNote-Creating-a-Tab-Delimited-Import-Format?language=en_US
-  headers = ["Reference Type","Accession Number","Author","DOI","ISBN/ISSN","Number","Secondary Title","Year","Title","URL","Abstract"]
-  fields = ["accnum","author" ,"doi","issn","issue","journal","pubyear","title","url","abstract"]
+  headers = ["Reference Type", "Accession Number", "Author", "DOI", "ISBN/ISSN", "Number", "Secondary Title", "Year", "Title", "URL", "Abstract"]
+  fields = ["accnum", "author", "doi", "issn", "issue", "journal", "pubyear", "title", "url", "abstract"]
 
 
   CSV.generate(headers: true, :col_sep => "\t") do |csv|
@@ -377,9 +377,9 @@ def to_endnote_txt(status)
       row = []
       row.append('Journal Article')
       fields.each do |f|
-        if f=='created_at' || f=='updated_at'
+        if f == 'created_at' || f == 'updated_at'
           row.append(r[f].localtime.strftime('%F %R'))
-        elsif f=='author' || f == 'url'
+        elsif f == 'author' || f == 'url'
           row.append(r[f].join(';'))
         else
           row.append(r[f])

@@ -116,9 +116,6 @@ class CatalogController < ApplicationController
     config.add_facet_field 'author_sm', label: 'Author', sort: 'count', limit: 10, index_range: 'A'..'Z'
 
 
-
-
-
     #config.add_facet_field 'example_query_facet_field', label: 'Publish Date', :query => {
     #   :years_5 => { label: 'within 5 Years', fq: "pub_date:[#{Time.zone.now.year - 5 } TO *]" },
     #   :years_10 => { label: 'within 10 Years', fq: "pub_date:[#{Time.zone.now.year - 10 } TO *]" },

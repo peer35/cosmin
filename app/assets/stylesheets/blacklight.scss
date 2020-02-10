@@ -1,7 +1,5 @@
 @import 'bootstrap-sprockets';
-
 @import 'bootstrap';
-
 @import 'blacklight/blacklight';
 @import 'blacklight_marc';
 
@@ -14,24 +12,28 @@ $logo-image: image_url('cosmin_logo.png') !default;
   font-weight: 400;
   src: local('Muli Italic'), local('Muli-Italic'), url(asset-path('Muli-Italic')) format('truetype');
 }
+
 @font-face {
   font-family: 'Muli';
   font-style: italic;
   font-weight: 700;
   src: local('Muli Bold Italic'), local('Muli-BoldItalic'), url(asset-path('Muli-BoldItalic')) format('truetype');
 }
+
 @font-face {
   font-family: 'Muli';
   font-style: normal;
   font-weight: 400;
   src: local('Muli Regular'), local('Muli-Regular'), url(asset-path('Muli-Regular')) format('truetype');
 }
+
 @font-face {
   font-family: 'Muli';
   font-style: normal;
   font-weight: 600;
   src: local('Muli SemiBold'), local('Muli-SemiBold'), url(asset-path('Muli-SemiBold')) format('truetype');
 }
+
 @font-face {
   font-family: 'Muli';
   font-style: normal;
@@ -62,6 +64,7 @@ body {
     color: white;
   }
 }
+
 #content {
   padding: 25px;
 }
@@ -76,6 +79,7 @@ body {
     padding-top: 0px;
     padding-bottom: 0px;
   }
+
   height: 103px;
   background-color: white;
   border: none;
@@ -112,7 +116,7 @@ h3, .h3 {
   h1, .h1 {
     font-size: 18px;
   }
- }
+}
 
 .container {
   width: 100%;

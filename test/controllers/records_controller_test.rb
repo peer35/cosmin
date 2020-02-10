@@ -17,7 +17,7 @@ class RecordsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create record" do
     assert_difference('Record.count') do
-      post records_url, params: { record: { abstract: @record.abstract, accnum: @record.accnum, age: @record.age, author: @record.author, bpv: @record.bpv, cosmin_id: @record.cosmin_id, cu: @record.cu, disease: @record.disease, doi: @record.doi, fs: @record.fs, ghp: @record.ghp, instrument: @record.instrument, issn: @record.issn, issue: @record.issue, journal: @record.journal, oc: @record.oc, oql: @record.oql, pnp: @record.pnp, pubyear: @record.pubyear, ss: @record.ss, startpage: @record.startpage, title: @record.title, tmi: @record.tmi, url: @record.url, user_email: @record.user_email } }
+      post records_url, params: {record: {abstract: @record.abstract, accnum: @record.accnum, age: @record.age, author: @record.author, bpv: @record.bpv, cosmin_id: @record.cosmin_id, cu: @record.cu, disease: @record.disease, doi: @record.doi, fs: @record.fs, ghp: @record.ghp, instrument: @record.instrument, issn: @record.issn, issue: @record.issue, journal: @record.journal, oc: @record.oc, oql: @record.oql, pnp: @record.pnp, pubyear: @record.pubyear, ss: @record.ss, startpage: @record.startpage, title: @record.title, tmi: @record.tmi, url: @record.url, user_email: @record.user_email}}
     end
 
     assert_redirected_to record_url(Record.last)
@@ -34,7 +34,7 @@ class RecordsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update record" do
-    patch record_url(@record), params: { record: { abstract: @record.abstract, accnum: @record.accnum, age: @record.age, author: @record.author, bpv: @record.bpv, cosmin_id: @record.cosmin_id, cu: @record.cu, disease: @record.disease, doi: @record.doi, fs: @record.fs, ghp: @record.ghp, instrument: @record.instrument, issn: @record.issn, issue: @record.issue, journal: @record.journal, oc: @record.oc, oql: @record.oql, pnp: @record.pnp, pubyear: @record.pubyear, ss: @record.ss, startpage: @record.startpage, title: @record.title, tmi: @record.tmi, url: @record.url, user_email: @record.user_email } }
+    patch record_url(@record), params: {record: {abstract: @record.abstract, accnum: @record.accnum, age: @record.age, author: @record.author, bpv: @record.bpv, cosmin_id: @record.cosmin_id, cu: @record.cu, disease: @record.disease, doi: @record.doi, fs: @record.fs, ghp: @record.ghp, instrument: @record.instrument, issn: @record.issn, issue: @record.issue, journal: @record.journal, oc: @record.oc, oql: @record.oql, pnp: @record.pnp, pubyear: @record.pubyear, ss: @record.ss, startpage: @record.startpage, title: @record.title, tmi: @record.tmi, url: @record.url, user_email: @record.user_email}}
     assert_redirected_to record_url(@record)
   end
 

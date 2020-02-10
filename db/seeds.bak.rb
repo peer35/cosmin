@@ -1,14 +1,14 @@
-instrument_list=[]
+instrument_list = []
 Record.all.each do |record|
   record.instrument.each do |ins|
-    exists=false
+    exists = false
     unless instrument_list.include? ins
       instrument_list.append(ins)
       @ins = Instrument.create({name: ins})
     else
       puts ins
       puts 'exists'
-      exists=true
+      exists = true
       puts record.id
       @ins = Instrument.where(name: ins).first
       puts @ins.id

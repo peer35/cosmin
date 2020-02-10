@@ -6,7 +6,7 @@
     <% end %>
 
 
-  <% if has_user_authentication_provider? %>
+    <% if has_user_authentication_provider? %>
 
       <% if current_user %>
         <li>
@@ -27,6 +27,6 @@
           <%= link_to t('blacklight.header_links.login'), new_user_session_path %>
         </li>
       <% end %>
-    </ul>
-  <% end %>
-</div>
+      </ul>
+    <% end %>
+    </div>

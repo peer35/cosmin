@@ -23,7 +23,7 @@
 //= require_tree .
 //= require select2
 
-ready = function(){
+ready = function () {
     $('[data-toggle="popover"]').popover();
 };
 $(document).ready(ready);

@@ -17,7 +17,7 @@ class InstrumentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create instrument" do
     assert_difference('Instrument.count') do
-      post instruments_url, params: { instrument: { name: @instrument.name, urls: @instrument.urls } }
+      post instruments_url, params: {instrument: {name: @instrument.name, urls: @instrument.urls}}
     end
 
     assert_redirected_to instrument_url(Instrument.last)
@@ -34,7 +34,7 @@ class InstrumentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update instrument" do
-    patch instrument_url(@instrument), params: { instrument: { name: @instrument.name, urls: @instrument.urls } }
+    patch instrument_url(@instrument), params: {instrument: {name: @instrument.name, urls: @instrument.urls}}
     assert_redirected_to instrument_url(@instrument)
   end
 
