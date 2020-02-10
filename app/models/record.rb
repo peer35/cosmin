@@ -1,7 +1,7 @@
 require 'rsolr'
 
 class Record < ApplicationRecord
-  has_and_belongs_to_many :instruments, -> { distinct } do
+  has_and_belongs_to_many :instruments, -> {distinct} do
     def << (value)
       super value rescue ActiveRecord::RecordNotUnique
     end
@@ -86,8 +86,8 @@ def update_solr
       first_author = ''
     end
 
-    instrument_list=[]
-    instrument_presentation_list=[]
+    instrument_list = []
+    instrument_presentation_list = []
     record.instruments.order(name: :asc).each do |instrument|
       instrument_list.append(instrument.name.strip)
       instrument_presentation_list.append(instrument.to_json)

@@ -10,13 +10,13 @@ SitemapGenerator::Sitemap.create do
   solr = RSolr.connect :url => 'http://127.0.0.1:8983/solr/cosmin'
 
   loop do
-    response = solr.get('select', :params => { # you may need to change the request handler
-                                                                           'q'          => '*:*', # all docs
-                                                                           'fl'         => 'id', # we only need the ids
-                                                                           'fq'         => '', # optional filter query
-                                                                           'cursorMark' => cursorMark, # we need to use the cursor mark to handle paging
-                                                                           'rows'       => 1000,
-                                                                           'sort'       => 'id asc'
+    response = solr.get('select', :params => {# you may need to change the request handler
+                                              'q' => '*:*', # all docs
+                                              'fl' => 'id', # we only need the ids
+                                              'fq' => '', # optional filter query
+                                              'cursorMark' => cursorMark, # we need to use the cursor mark to handle paging
+                                              'rows' => 1000,
+                                              'sort' => 'id asc'
     })
 
     response['response']['docs'].each do |doc|

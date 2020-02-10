@@ -36,11 +36,11 @@ table.sortable thead {
     cursor: pointer;
 }
 
-table.sortable th .asc:after{
+table.sortable th .asc:after {
     content: " \25B4"
 }
 
-table.sortable th .desc:after{
+table.sortable th .desc:after {
     content: " \25BE"
 }
 
@@ -119,6 +119,7 @@ table .absorbing-column {
     #document .dl-horizontal dt {
         width: 220px;
     }
+
     #document .dl-horizontal dd {
         margin-left: 240px;
     }
@@ -197,6 +198,7 @@ table .absorbing-column {
 .facet-values {
     margin-bottom: 0px;
 }
+
 .panel-body {
     padding: 5px 15px 5px 15px;
 }
@@ -205,10 +207,12 @@ table .absorbing-column {
     color: #fff;
     background-color: transparent;
 }
+
 .cosmin_menu .navbar-right .navbar-nav > li > a {
     padding: 10px;
     color: #fff;
 }
+
 .cosmin_menu .navbar-right .navbar-nav > li > a {
     color: #fff;
 }

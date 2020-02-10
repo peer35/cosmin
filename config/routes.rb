@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   resources :instruments
   resources :records
 
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   Blacklight::Marc.add_routes(self)
   root to: "catalog#index"
-    concern :searchable, Blacklight::Routes::Searchable.new
+  concern :searchable, Blacklight::Routes::Searchable.new
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
     concerns :searchable

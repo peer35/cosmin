@@ -21,21 +21,25 @@
   Simple transform of Solr query results to HTML
  -->
 <xsl:stylesheet version='1.0'
-    xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
+                xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
 >
 
-  <xsl:output media-type="text/html; charset=UTF-8" encoding="UTF-8"/> 
-  
+  <xsl:output media-type="text/html; charset=UTF-8" encoding="UTF-8"/>
+
   <xsl:variable name="title" select="concat('Solr search results (',response/result/@numFound,' documents)')"/>
-  
+
   <xsl:template match='/'>
     <html>
       <head>
-        <title><xsl:value-of select="$title"/></title>
+        <title>
+          <xsl:value-of select="$title"/>
+        </title>
         <xsl:call-template name="css"/>
       </head>
       <body>
-        <h1><xsl:value-of select="$title"/></h1>
+        <h1>
+          <xsl:value-of select="$title"/>
+        </h1>
         <div class="note">
           This has been formatted by the sample "example.xsl" transform -
           use your own XSLT to get a nicer page
@@ -44,13 +48,15 @@
       </body>
     </html>
   </xsl:template>
-  
+
   <xsl:template match="doc">
     <xsl:variable name="pos" select="position()"/>
     <div class="doc">
       <table width="100%">
         <xsl:apply-templates>
-          <xsl:with-param name="pos"><xsl:value-of select="$pos"/></xsl:with-param>
+          <xsl:with-param name="pos">
+            <xsl:value-of select="$pos"/>
+          </xsl:with-param>
         </xsl:apply-templates>
       </table>
     </div>
@@ -68,12 +74,15 @@
         <xsl:if test="boolean(//lst[@name='explain'])">
           <xsl:element name="a">
             <!-- can't allow whitespace here -->
-            <xsl:attribute name="href">javascript:toggle("<xsl:value-of select="concat('exp-',$pos)" />");</xsl:attribute>?</xsl:element>
+            <xsl:attribute name="href">javascript:toggle("<xsl:value-of select="concat('exp-',$pos)"/>");
+            </xsl:attribute>
+            ?
+          </xsl:element>
           <br/>
           <xsl:element name="div">
             <xsl:attribute name="class">exp</xsl:attribute>
             <xsl:attribute name="id">
-              <xsl:value-of select="concat('exp-',$pos)" />
+              <xsl:value-of select="concat('exp-',$pos)"/>
             </xsl:attribute>
             <xsl:value-of select="//lst[@name='explain']/str[position()=$pos]"/>
           </xsl:element>
@@ -89,9 +98,11 @@
       </td>
       <td class="value">
         <ul>
-        <xsl:for-each select="*">
-          <li><xsl:value-of select="."/></li>
-        </xsl:for-each>
+          <xsl:for-each select="*">
+            <li>
+              <xsl:value-of select="."/>
+            </li>
+          </xsl:for-each>
         </ul>
       </td>
     </tr>
@@ -110,12 +121,12 @@
   </xsl:template>
 
   <xsl:template match="*"/>
-  
+
   <xsl:template name="css">
     <script>
       function toggle(id) {
-        var obj = document.getElementById(id);
-        obj.style.display = (obj.style.display != 'block') ? 'block' : 'none';
+      var obj = document.getElementById(id);
+      obj.style.display = (obj.style.display != 'block') ? 'block' : 'none';
       }
     </script>
     <style type="text/css">

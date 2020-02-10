@@ -141,9 +141,11 @@
         <!--<tokenizer class="solr.KeywordTokenizerFactory"/>-->
         <!-- classic tokenizer "Words are split at hyphens, unless there is a number in the word, in which case the token is not split and the numbers and hyphen(s) are preserved." -->
         <tokenizer class="solr.ClassicTokenizerFactory"/>
+        <!-- slightly boost exact matches? -->
+        <filter class="solr.KeywordRepeatFilterFactory"/>
+        <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
         <filter class="solr.StandardFilterFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
-        <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
       </analyzer>
     </fieldType>
 

@@ -116,9 +116,6 @@ class CatalogController < ApplicationController
     config.add_facet_field 'author_sm', label: 'Author', sort: 'count', limit: 10, index_range: 'A'..'Z'
 
 
-
-
-
     #config.add_facet_field 'example_query_facet_field', label: 'Publish Date', :query => {
     #   :years_5 => { label: 'within 5 Years', fq: "pub_date:[#{Time.zone.now.year - 5 } TO *]" },
     #   :years_10 => { label: 'within 10 Years', fq: "pub_date:[#{Time.zone.now.year - 10 } TO *]" },
@@ -184,18 +181,19 @@ class CatalogController < ApplicationController
     # since we aren't specifying it otherwise.
 
     config.add_search_field 'all_fields', label: 'All Fields'
+
     config.add_search_field('author_sm', label: 'Author') do |field|
       # solr_parameters hash are sent to Solr as ordinary url query params.
-      field.solr_local_parameters = {
-          qf: '$author_qf',
-          pf: '$author_pf'
+      field.solr_parameters = {
+          qf: "'${author_qf}'",
+          pf: "'${author_pf}'"
       }
     end
 
     config.add_search_field('instrument_sm', label: 'Instrument') do |field|
-      field.solr_local_parameters = {
-          qf: '$instrument_qf',
-          pf: '$instrument_pf'
+      field.solr_parameters = {
+          qf: "'${instrument_qf}'",
+          pf: "'${instrument_pf}'"
       }
     end
 
@@ -207,8 +205,8 @@ class CatalogController < ApplicationController
       # solr_parameters hash are sent to Solr as ordinary url query params.
       field.solr_local_parameters = {
           'spellcheck.dictionary': 'title',
-          qf: '$title_qf',
-          pf: '$title_pf'
+          qf: "'${title_qf}'",
+          pf: "'${title_pf}'"
       }
     end
 

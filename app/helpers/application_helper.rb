@@ -22,6 +22,7 @@ module ApplicationHelper
   end
 
   require 'json'
+
   def instrument_presentation_helper args
     html = ''
     args[:document][args[:field]].each do |json_string|

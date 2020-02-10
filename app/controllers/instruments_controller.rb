@@ -136,8 +136,8 @@ def to_csv
       row = []
       row.append(i.records.count)
       fields.each do |f|
-        if f=='created_at' || f=='updated_at'
-            row.append(i[f].localtime.strftime('%F %R'))
+        if f == 'created_at' || f == 'updated_at'
+          row.append(i[f].localtime.strftime('%F %R'))
         else
           row.append(i[f])
         end
