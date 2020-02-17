@@ -1,5 +1,6 @@
 class InstrumentsController < ApplicationController
   require 'csv'
+  require 'caxlsx'
 
   include Pundit
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
@@ -30,6 +31,10 @@ class InstrumentsController < ApplicationController
       format.csv do
         send_data to_csv, filename: "instruments-#{Date.today}.csv"
       end
+
+      format.xlsx {
+            response.headers['Content-Disposition'] = 'attachment; filename="my_new_filename.xlsx"'
+        }
 
       format.html do
         @instruments, @alphaParams = Instrument.all

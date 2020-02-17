@@ -1,0 +1,8 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: 'Instruments') do |sheet|
+  sheet .add_row ["records", "name", "reference", "doi", "pmid", "refurl", "url1", "url2", "url3", "created_at", "updated_at"]
+  Instrument.all.each do |ins|
+    sheet .add_row [ins.records.count, ins.name, ins.reference, ins.doi, ins.pmid, ins.refurl, ins.url1, ins.url2, ins.url3, ins.created_at.localtime.strftime('%F %R'), ins.updated_at.localtime.strftime('%F %R')]
+  end
+  sheet.column_widths 5,25,25,25,25,25,25,25,25,15,15
+end
