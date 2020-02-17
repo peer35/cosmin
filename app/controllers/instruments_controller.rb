@@ -33,7 +33,7 @@ class InstrumentsController < ApplicationController
       end
 
       format.xlsx {
-            response.headers['Content-Disposition'] = 'attachment; filename="my_new_filename.xlsx"'
+            response.headers['Content-Disposition'] = 'attachment; filename="instruments-#{Date.today}.xlsx"'
         }
 
       format.html do
