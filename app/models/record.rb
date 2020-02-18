@@ -1,7 +1,7 @@
 require 'rsolr'
 
 class Record < ApplicationRecord
-  has_and_belongs_to_many :instruments, -> {distinct} do
+  has_and_belongs_to_many :instruments, -> { distinct } do
     def << (value)
       super value rescue ActiveRecord::RecordNotUnique
     end
@@ -108,7 +108,7 @@ def update_solr
                :url_sm => record.url,
                :fs_sm => record.fs.sort!,
                :ghp_sm => record.ghp.sort!,
-               :instrument_sm => instrument_list.sort_by {|k| k},
+               :instrument_sm => instrument_list.sort_by { |k| k },
                :instrumentpresentation_sfm => instrument_presentation_list, # stored, not indexed
                :issn_s => record.issn,
                :issue_s => record.issue,

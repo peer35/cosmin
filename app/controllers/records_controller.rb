@@ -106,15 +106,15 @@ class RecordsController < ApplicationController
       if @record.save
         if @record.status == 'published'
           flash[:notice] = "Record was successfully created."
-          format.html {redirect_to :controller => 'catalog', action: "show", id: @record.id}
-          format.json {render :show, status: :created, location: @record}
+          format.html { redirect_to :controller => 'catalog', action: "show", id: @record.id }
+          format.json { render :show, status: :created, location: @record }
         else
-          format.html {redirect_to records_url, notice: 'Record was successfully created.'}
-          format.json {render :show, status: :ok, location: @record}
+          format.html { redirect_to records_url, notice: 'Record was successfully created.' }
+          format.json { render :show, status: :ok, location: @record }
         end
       else
-        format.html {render action: "new"}
-        format.json {render json: @record.errors, status: :unprocessable_entity}
+        format.html { render action: "new" }
+        format.json { render json: @record.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -130,15 +130,15 @@ class RecordsController < ApplicationController
       if @record.update(record_params)
         if @record.status == 'published'
           flash[:notice] = "Record was successfully updated."
-          format.html {redirect_to :controller => 'catalog', action: "show", id: @record.id}
-          format.json {render :show, status: :ok, location: @record}
+          format.html { redirect_to :controller => 'catalog', action: "show", id: @record.id }
+          format.json { render :show, status: :ok, location: @record }
         else
-          format.html {redirect_to records_url, notice: 'Record was successfully updated.'}
-          format.json {render :show, status: :ok, location: @record}
+          format.html { redirect_to records_url, notice: 'Record was successfully updated.' }
+          format.json { render :show, status: :ok, location: @record }
         end
       else
-        format.html {render :edit}
-        format.json {render json: @record.errors, status: :unprocessable_entity}
+        format.html { render :edit }
+        format.json { render json: @record.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -148,8 +148,8 @@ class RecordsController < ApplicationController
   def destroy
     @record.destroy
     respond_to do |format|
-      format.html {redirect_to records_url(filter: params[:filter], sort: params[:sort], direction: params[:direction]), notice: 'Record was successfully destroyed.'}
-      format.json {head :no_content}
+      format.html { redirect_to records_url(filter: params[:filter], sort: params[:sort], direction: params[:direction]), notice: 'Record was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 
@@ -160,7 +160,7 @@ class RecordsController < ApplicationController
         record.update_index
       end
       flash[:notice] = 'Records reindexed.'
-      format.html {redirect_to :controller => 'catalog', action: "index"}
+      format.html { redirect_to :controller => 'catalog', action: "index" }
     end
   end
 
@@ -174,7 +174,7 @@ class RecordsController < ApplicationController
       error_file, messages = read_ris(Rails.root.join('tmp', 'uploads', uploaded_io.original_filename))
 
       File.delete(Rails.root.join('tmp', 'uploads', uploaded_io.original_filename))
-      format.html {redirect_to records_url(error_report: 'uploads/' + error_file, filter: 'new'), notice: messages}
+      format.html { redirect_to records_url(error_report: 'uploads/' + error_file, filter: 'new'), notice: messages }
     end
   end
 
@@ -188,7 +188,7 @@ class RecordsController < ApplicationController
           authors.append(aut)
         end
       end
-      list['author'] = authors.sort_by {|k| k}
+      list['author'] = authors.sort_by { |k| k }
     end
     return list
   end
@@ -197,15 +197,15 @@ class RecordsController < ApplicationController
   def catall
     if @cats.nil?
       @cats = {
-          :age => Category.all.select {|c| c.cat == 'age'},
-          :bpv => Category.all.select {|c| c.cat == 'bpv'},
-          :disease => Category.all.order(:id).select {|c| c.cat == 'disease'},
-          :fs => Category.all.select {|c| c.cat == 'fs'},
-          :ghp => Category.all.select {|c| c.cat == 'ghp'},
-          :oql => Category.all.select {|c| c.cat == 'oql'},
-          :pnp => Category.all.select {|c| c.cat == 'pnp'},
-          :ss => Category.all.select {|c| c.cat == 'ss'},
-          :tmi => Category.all.order(:name).select {|c| c.cat == 'tmi'},
+          :age => Category.all.select { |c| c.cat == 'age' },
+          :bpv => Category.all.select { |c| c.cat == 'bpv' },
+          :disease => Category.all.order(:id).select { |c| c.cat == 'disease' },
+          :fs => Category.all.select { |c| c.cat == 'fs' },
+          :ghp => Category.all.select { |c| c.cat == 'ghp' },
+          :oql => Category.all.select { |c| c.cat == 'oql' },
+          :pnp => Category.all.select { |c| c.cat == 'pnp' },
+          :ss => Category.all.select { |c| c.cat == 'ss' },
+          :tmi => Category.all.order(:name).select { |c| c.cat == 'tmi' },
       }
     end
     return @cats
@@ -214,7 +214,7 @@ class RecordsController < ApplicationController
   private
 
   def status_list
-    statuses = Category.all.select {|c| c.cat == 'status'}
+    statuses = Category.all.select { |c| c.cat == 'status' }
     list = ['all']
     statuses.each do |s|
       list.append(s.name)

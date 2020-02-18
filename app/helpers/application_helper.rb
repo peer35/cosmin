@@ -1,5 +1,6 @@
 module ApplicationHelper
   require 'uri'
+
   def abstract_show_helper args
     args[:document][args[:field]].gsub(/(([A-Z]{2,}|\s)+):/, '<br><br><b>\1:</b>').gsub(/^<br><br>/, '').html_safe
   end
@@ -82,7 +83,7 @@ module AlphabeticalPaginate
           range += ["*"]
         end
         if options[:enumerate] && options[:numbers]
-          range = (0..9).to_a.map {|x| x.to_s} + range
+          range = (0..9).to_a.map { |x| x.to_s } + range
         elsif options[:numbers]
           range = ["0-9"] + range
         end
@@ -117,7 +118,7 @@ module AlphabeticalPaginate
           options[:availableLetters].delete("All") if options[:availableLetters].include?("All")
           options[:availableLetters].unshift("All")
         end
-        options[:availableLetters] -= (1..9).to_a.map {|x| x.to_s} if !options[:numbers]
+        options[:availableLetters] -= (1..9).to_a.map { |x| x.to_s } if !options[:numbers]
         options[:availableLetters] -= ["*"] if !options[:others]
 
         options[:availableLetters].each do |l|
