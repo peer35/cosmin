@@ -54,7 +54,7 @@
   <div class="field row">
     <div class="col-sm-12 form-group">
       <%= f.label :url %>
-      <% data_for_select = @record.url.each {|k| [k, k]} %>
+      <% data_for_select = @record.url.each { |k| [k, k] } %>
       <%= select_tag "record[url][]", options_for_select(data_for_select), :multiple => true, :id => "url" %>
       <!--<%= f.text_field :url, :class => "form-control" %>-->
     </div>
@@ -206,7 +206,7 @@
   </div>
 
   <div class="field row">
-    <!--<%= select_tag "disease[]", options_from_collection_for_select(Category.all.select {|c| c.cat == 'disease'}, :name, :name, {:selected => @record.disease}), :multiple => true, :id => "disease", :class => "form-control category" %>-->
+    <!--<%= select_tag "disease[]", options_from_collection_for_select(Category.all.select { |c| c.cat == 'disease' }, :name, :name, {:selected => @record.disease}), :multiple => true, :id => "disease", :class => "form-control category" %>-->
 
     <h4>Disease</h4>
     <% i = 0 %>
@@ -292,7 +292,7 @@
     <h3>Status</h3>
     <div class="field row">
       <div class="col-md-3">
-        <%= select_tag "record[status]", options_from_collection_for_select(Category.all.select {|c| c.cat == 'status'}, :name, :name, {:selected => @record.status}), :multiple => false, :id => "disease", :class => "form-control" %>
+        <%= select_tag "record[status]", options_from_collection_for_select(Category.all.select { |c| c.cat == 'status' }, :name, :name, {:selected => @record.status}), :multiple => false, :id => "disease", :class => "form-control" %>
       </div>
     </div>
     <div class="actions">

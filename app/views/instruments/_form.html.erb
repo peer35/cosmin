@@ -74,7 +74,7 @@
   <div class="field row">
     <div class="col-md-3">
       <%= f.label :status %>
-      <%= select_tag "instrument[status]", options_from_collection_for_select(Category.all.select {|c| c.cat == 'instrument_status'}, :name, :name, {:selected => @instrument.status}), :multiple => false, :id => "status", :class => "form-control" %>
+      <%= select_tag "instrument[status]", options_from_collection_for_select(Category.all.select { |c| c.cat == 'instrument_status' }, :name, :name, {:selected => @instrument.status}), :multiple => false, :id => "status", :class => "form-control" %>
     </div>
   </div>
 
