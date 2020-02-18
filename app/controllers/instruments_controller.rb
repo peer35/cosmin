@@ -1,5 +1,6 @@
 class InstrumentsController < ApplicationController
   require 'csv'
+  require 'caxlsx'
 
   include Pundit
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
@@ -31,10 +32,14 @@ class InstrumentsController < ApplicationController
         send_data to_csv, filename: "instruments-#{Date.today}.csv"
       end
 
+      format.xlsx {
+        response.headers['Content-Disposition'] = 'attachment; filename="instruments-#{Date.today}.xlsx"'
+      }
+
       format.html do
         @instruments, @alphaParams = Instrument.all
-                                         .alpha_paginate(params[:letter], {:default_field => '0-9', :include_all => false, :js => false, :bootstrap3 => true}) {|instrument| instrument.name}
-        @instruments.sort_by! {|m| m.name.downcase}
+                                         .alpha_paginate(params[:letter], {:default_field => '0-9', :include_all => false, :js => false, :bootstrap3 => true}) { |instrument| instrument.name }
+        @instruments.sort_by! { |m| m.name.downcase }
       end
     end
   end
@@ -62,11 +67,11 @@ class InstrumentsController < ApplicationController
 
     respond_to do |format|
       if @instrument.save
-        format.html {redirect_to instruments_url(anchor: @instrument.id, letter: startletter), notice: 'Instrument was successfully created.'}
-        format.json {render :show, status: :created, location: @instrument}
+        format.html { redirect_to instruments_url(anchor: @instrument.id, letter: startletter), notice: 'Instrument was successfully created.' }
+        format.json { render :show, status: :created, location: @instrument }
       else
-        format.html {render :new}
-        format.json {render json: @instrument.errors, status: :unprocessable_entity}
+        format.html { render :new }
+        format.json { render json: @instrument.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -77,12 +82,12 @@ class InstrumentsController < ApplicationController
     # serialize reference here!
     respond_to do |format|
       if @instrument.update(instrument_params)
-        format.html {redirect_to instruments_url(anchor: @instrument.id, letter: startletter), notice: 'Instrument was successfully updated.'}
+        format.html { redirect_to instruments_url(anchor: @instrument.id, letter: startletter), notice: 'Instrument was successfully updated.' }
         #anchor: @instrument.id, letter: @instrument.name[0]
-        format.json {render :show, status: :ok, location: @instrument}
+        format.json { render :show, status: :ok, location: @instrument }
       else
-        format.html {render :edit}
-        format.json {render json: @instrument.errors, status: :unprocessable_entity}
+        format.html { render :edit }
+        format.json { render json: @instrument.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -93,8 +98,8 @@ class InstrumentsController < ApplicationController
     s = startletter
     @instrument.destroy
     respond_to do |format|
-      format.html {redirect_to instruments_url(letter: s), notice: 'Instrument was successfully destroyed.'}
-      format.json {head :no_content}
+      format.html { redirect_to instruments_url(letter: s), notice: 'Instrument was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 

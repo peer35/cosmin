@@ -1,4 +1,6 @@
 module ApplicationHelper
+  require 'uri'
+
   def abstract_show_helper args
     args[:document][args[:field]].gsub(/(([A-Z]{2,}|\s)+):/, '<br><br><b>\1:</b>').gsub(/^<br><br>/, '').html_safe
   end
@@ -31,18 +33,20 @@ module ApplicationHelper
       html = html + facet_link('instrument_sm', o['name'])
       url_list = []
       unless o['url1'].nil? || o['url1'] == ''
-        url_list.append(link_to('proqolid', o['url1'], target: "_blank"))
+        #url_list.append(link_to('proqolid', o['url1'], target: "_blank"))
+        url_list.append(link_to(image_tag('proqolid-blue.png', height: '14'), o['url1'], target: "_blank"))
       end
       unless o['url2'].nil? || o['url2'] == ''
-        url_list.append(link_to('ZUYD (NL)', o['url2'], target: "_blank"))
+        url_list.append(link_to(image_tag('LogoZUYD.png', height: "14"), o['url2'], target: "_blank"))
       end
       unless o['url3'].nil? || o['url3'] == ''
-        url_list.append('also see: ' + o['url3'])
+        uri = URI.parse(o['url3'])
+        url_list.append('also see: ' + link_to(uri.host, o['url3'], target: "_blank"))
       end
       unless url_list.count == 0
-        html = html + '&nbsp;&nbsp;&nbsp;[see: '
-        html = html + url_list.join(', ')
-        html = html + ']'
+        html = html + '&nbsp;&nbsp;&nbsp;'
+        html = html + url_list.join('&nbsp;|&nbsp;')
+        #html = html + ']'
       end
       html = html + '<br>'
     end
@@ -79,7 +83,7 @@ module AlphabeticalPaginate
           range += ["*"]
         end
         if options[:enumerate] && options[:numbers]
-          range = (0..9).to_a.map {|x| x.to_s} + range
+          range = (0..9).to_a.map { |x| x.to_s } + range
         elsif options[:numbers]
           range = ["0-9"] + range
         end
@@ -114,7 +118,7 @@ module AlphabeticalPaginate
           options[:availableLetters].delete("All") if options[:availableLetters].include?("All")
           options[:availableLetters].unshift("All")
         end
-        options[:availableLetters] -= (1..9).to_a.map {|x| x.to_s} if !options[:numbers]
+        options[:availableLetters] -= (1..9).to_a.map { |x| x.to_s } if !options[:numbers]
         options[:availableLetters] -= ["*"] if !options[:others]
 
         options[:availableLetters].each do |l|
