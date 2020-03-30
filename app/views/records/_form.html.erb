@@ -3,12 +3,30 @@
     $(document).on('turbolinks:load', ready)
 
     function ready() {
-        $("#record_instrument_ids").select2({});
-
+        //https://select2.org/data-sources/ajax
+        $("#record_instrument_ids").select2({
+            minimumInputLength: 3,
+            placeholder: 'Search',
+            ajax: {
+                url: "<%= instruments_path %>.json",
+                dataType: 'json',
+                quietMillis: 100,
+                data: function (params) {
+                    var query = {
+                        term: params.term,
+                    };
+                    return query;
+                },
+                processResults: function(data) {
+                    return {
+                      results: data
+                    }
+                }
+            }
+        });
         $("#url").select2({
             tags: true
         });
-
         $('#url').val(<%= @record.url.to_json.html_safe %>);
         $('#url').trigger('change');
         $(".category").select2({});
@@ -274,7 +292,7 @@
     <h3>Name of included instruments</h3>
     <div class="field row">
       <div class="col-sm-12 form-group">
-        <%= f.collection_select :instrument_ids, Instrument.all.order('name'), :id, :name, {selected: @record.instrument_ids}, {:multiple => true} %>
+        <%= f.collection_select :instrument_ids, @record.instruments.sort_by { |m| m.name.downcase  }, :id, :name, {selected: @record.instrument_ids}, {:multiple => true} %>
       </div>
       <p>
         <%= link_to 'Instrument list', instruments_url, :target => '_blank' %>

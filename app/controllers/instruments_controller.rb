@@ -41,6 +41,13 @@ class InstrumentsController < ApplicationController
                                          .alpha_paginate(params[:letter], {:default_field => '0-9', :include_all => false, :js => false, :bootstrap3 => true}) { |instrument| instrument.name }
         @instruments.sort_by! { |m| m.name.downcase }
       end
+
+
+      format.json do
+        @instruments = Instrument.where("name ILIKE ?", "%#{params[:term]}%").map { |instrument| {:id => instrument.id, :text => instrument.name} }
+        render :json => @instruments
+      end
+
     end
   end
 
