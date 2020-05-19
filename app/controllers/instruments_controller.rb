@@ -11,7 +11,9 @@ class InstrumentsController < ApplicationController
   before_action :require_user_authentication_provider
   before_action :verify_user
 
-  helper_method :startletter
+  # update the cache for the table when changes have happened, this is cheaper than just rebuilding the whole datastructure
+  after_action :update_table_cache, only: [:create, :update, :destroy]
+
 
   def verify_user
     if current_user.to_s.blank?
@@ -22,11 +24,19 @@ class InstrumentsController < ApplicationController
     end
   end
 
+  # GET /instruments/instrument/table
+  def table
+    respond_to do |format|
+      format.json do
+        ins_data = update_table_cache(false)
+        render :json => {data: ins_data}
+      end
+    end
+  end
+
   # GET /instruments
   # GET /instruments.json
   def index
-    # @instruments = Instrument.all.order('LOWER(name) ASC')
-    # @users, @alphaParams = User.all.alpha_paginate(params[:letter]){|user| user.name}
     respond_to do |format|
       format.csv do
         send_data to_csv, filename: "instruments-#{Date.today}.csv"
@@ -37,11 +47,9 @@ class InstrumentsController < ApplicationController
       }
 
       format.html do
-        @instruments, @alphaParams = Instrument.all
-                                         .alpha_paginate(params[:letter], {:default_field => '0-9', :include_all => false, :js => false, :bootstrap3 => true}) { |instrument| instrument.name }
-        @instruments.sort_by! { |m| m.name.downcase }
+        @name=params[:name]
+        render :index
       end
-
 
       format.json do
         @instruments = Instrument.where("name ILIKE ?", "%#{params[:term]}%").map { |instrument| {:id => instrument.id, :text => instrument.name} }
@@ -74,7 +82,7 @@ class InstrumentsController < ApplicationController
 
     respond_to do |format|
       if @instrument.save
-        format.html { redirect_to instruments_url(anchor: @instrument.id, letter: startletter), notice: 'Instrument was successfully created.' }
+        format.html { redirect_to instruments_url(anchor: @instrument.id, name: @instrument.name), notice: 'Instrument was successfully created.' }
         format.json { render :show, status: :created, location: @instrument }
       else
         format.html { render :new }
@@ -89,8 +97,7 @@ class InstrumentsController < ApplicationController
     # serialize reference here!
     respond_to do |format|
       if @instrument.update(instrument_params)
-        format.html { redirect_to instruments_url(anchor: @instrument.id, letter: startletter), notice: 'Instrument was successfully updated.' }
-        #anchor: @instrument.id, letter: @instrument.name[0]
+        format.html { redirect_to instruments_url(anchor: @instrument.id, name: @instrument.name), notice: 'Instrument was successfully updated.' }
         format.json { render :show, status: :ok, location: @instrument }
       else
         format.html { render :edit }
@@ -102,24 +109,60 @@ class InstrumentsController < ApplicationController
   # DELETE /instruments/1
   # DELETE /instruments/1.json
   def destroy
-    s = startletter
     @instrument.destroy
     respond_to do |format|
-      format.html { redirect_to instruments_url(letter: s), notice: 'Instrument was successfully destroyed.' }
+      format.html { redirect_to instruments_url(name: @instrument.name), notice: 'Instrument was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
 
-  def startletter
-    if @instrument.name[0] =~ /[A-Za-z]/
-      @instrument.name[0]
-    elsif @instrument.name[0] =~ /[0-9]/
-      '0-9'
-    else
-      '*'
+  def update_table_cache(changes = true)
+    table_key = "instrumentstable"
+    expire_in = 1.day
+    data = Rails.cache.read(table_key)
+    if data.nil?
+      data = Instrument.all.order('LOWER(name) ASC').map { |instrument|
+        cache_record(instrument)
+      }
+      Rails.cache.write(table_key, data, :expires_in => expire_in)
+    elsif changes # one record changed and cache already filled, do not rerun query but use existing cache as base
+      Rails.cache.delete(table_key)
+      id = @instrument.id
+      logger.info "********************* #{action_name} on #{id}"
+      old_data = data
+      data = []
+      old_data.each do |ins|
+        logger.info(ins[:id])
+        if ins[:id] == id
+          unless action_name == 'destroy'
+            data.append(cache_record(@instrument))
+          end
+        else
+          data.append(ins)
+        end
+      end
+      if action_name == 'create'
+        data.append(cache_record(@instrument))
+      end
+      Rails.cache.write(table_key, data, expire_in)
     end
+    return data
+  end
+
+  def cache_record(instrument)
+    return {
+        :id => instrument.id,
+        :name => instrument.name.strip,
+        :url1 => instrument.url1 || "",
+        :url2 => instrument.url2 || "",
+        :url3 => instrument.url3 || "",
+        :count => instrument.records.count,
+        :status => instrument.status || "",
+        :edit => view_context.link_to('Edit', edit_instrument_path(instrument)),
+        :delete => view_context.link_to('Delete', instrument, method: :delete, data: {confirm: 'Are you sure?'})
+    }
   end
 
   # Use callbacks to share common setup or constraints between actions.

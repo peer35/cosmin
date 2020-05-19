@@ -23,8 +23,10 @@
 //= require_tree .
 //= require select2
 
+//= require jquery.dataTables.min
+
 ready = function () {
-    $('[data-toggle="popover"]').popover();
+    //$('[data-toggle="popover"]').popover();
 };
 $(document).ready(ready);
 $(document).on('page:load', ready);

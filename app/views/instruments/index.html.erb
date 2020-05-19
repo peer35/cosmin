@@ -1,3 +1,50 @@
+<script type="application/javascript">
+    jQuery.fn.dataTable.Api.register('page.jumpToData()', function (data, column) {
+        var pos = this.column(column, {order: 'current'}).data().indexOf(data);
+        if (pos >= 0) {
+            var page = Math.floor(pos / this.page.info().length);
+            this.page(page).draw(false);
+        }
+        return this;
+    });
+    $(document).ready(ready);
+
+    function ready() {
+        var table = null
+        console.log('ready');
+        $('#instruments').DataTable().destroy();
+        table = $('#instruments').DataTable({
+                "deferRender": true,
+                "ajax": {
+                    "url": '/cosmin/instruments/instrument/table.json',
+                    "cache": false,
+                    "data": ''
+                },
+                "dataSrc": "",
+                "columns": [
+                    {data: 'name'},
+                    {data: 'url1'},
+                    {data: 'url2'},
+                    {data: 'url3'},
+                    {data: 'count'},
+                    {data: 'status'},
+                    {data: 'edit'},
+                    {data: 'delete'}
+                ],
+                "autoWidth": false,
+                "columnDefs": [
+                    {"targets": [1, 2, 3, 4, 5, 6, 7], "searchable": false}
+                ],
+                "pageLength": 25,
+                "initComplete": function () {
+                    $('#instruments').DataTable().page.jumpToData('<%= @name %>', 0);
+                }
+            },
+        );
+
+    }
+</script>
+
 <p id="notice"><%= notice %></p>
 
 <h1>Instruments</h1>
@@ -6,14 +53,10 @@
     <div class="pull-left">
       <%= link_to 'New Instrument', new_instrument_path, :class => 'btn btn-default' %>
     </div>
-
     <div class="pull-right">
       <%= link_to 'Download', instruments_path(format: :xlsx), :class => 'btn btn-default' %>
     </div>
   </div>
-</div>
-<div class="row rectable">
-  <%= alphabetical_paginate @alphaParams %>
 </div>
 <div class="row rectable">
   <div class="col-md-12">
@@ -21,40 +64,26 @@
       <thead>
       <tr>
         <th>Name</th>
-        <!--<th>Reference</th>
-        <th>doi</th>
-        <th>pmid</th>
-        <th>refurl</th>-->
         <th>PROQOLID</th>
         <th>ZUYD (NL)</th>
         <th>Also see</th>
         <th>#</th>
         <th>status</th>
         <th>edit</th>
-        <th>remove</th>
+        <th>delete</th>
       </tr>
       </thead>
       <tbody>
-      <% @instruments.each do |instrument| %>
-        <tr>
-          <td><a name=<%= instrument.id %>></a><%= instrument.name %></td>
-          <!--<td><%= instrument.reference %></td>
-          <td><%= instrument.doi %></td>
-          <td><%= instrument.pmid %></td>
-          <td class="urlcol"><%= instrument.refurl %></td>-->
-          <td class="urlcol"><%= instrument.url1 %></td>
-          <td class="urlcol"><%= instrument.url2 %></td>
-          <td class="urlcol"><%= instrument.url3 %></td>
-          <td><%= instrument.records.count %></td>
-          <td><%= instrument.status %></td>
-          <td><%= link_to 'Edit', edit_instrument_path(instrument) %></td>
-          <td>
-            <% if instrument.records.count == 0 %>
-              <%= link_to 'Delete', instrument, method: :delete, data: {confirm: 'Are you sure?'} %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
+      <tr>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+      </tr>
       </tbody>
     </table>
   </div>

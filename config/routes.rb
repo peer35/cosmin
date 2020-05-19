@@ -8,6 +8,11 @@ Rails.application.routes.draw do
     post 'record/upload' => 'records#upload'
   end
 
+  resource :instruments do
+    post 'instrument/table' => 'instruments#table'
+    get 'instrument/table' => 'instruments#table'
+  end
+
   mount Blacklight::Engine => '/'
   mount BlacklightAdvancedSearch::Engine => '/'
 

@@ -14,12 +14,11 @@ Rails.application.configure do
 
   # Enable/disable caching. By default caching is disabled.
 
-  config.action_controller.perform_caching = false
+  config.action_controller.perform_caching = true
 
-  config.cache_store = :memory_store
+  config.cache_store = :dalli_store
   config.public_file_server.headers = {
-      #'Cache-Control' => 'public, max-age=172800'
-      'Cache-Control' => 'no-cache'
+      'Cache-Control' => 'public, max-age=3600'
   }
 
   config.action_mailer.delivery_method = :sendmail
