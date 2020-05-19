@@ -146,7 +146,7 @@ class InstrumentsController < ApplicationController
       if action_name == 'create'
         data.append(cache_record(@instrument))
       end
-      Rails.cache.write(table_key, data, expire_in)
+      Rails.cache.write(table_key, data, :expires_in => expire_in)
     end
     return data
   end
