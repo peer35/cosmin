@@ -122,7 +122,9 @@ class InstrumentsController < ApplicationController
     table_key = "instrumentstable"
     expire_in = 1.day
     data = Rails.cache.read(table_key)
+    logger.info "********************* reading cache"
     if data.nil?
+      logger.info "********************* cache empty"
       data = Instrument.all.order('LOWER(name) ASC').map { |instrument|
         cache_record(instrument)
       }
@@ -130,7 +132,7 @@ class InstrumentsController < ApplicationController
     elsif changes # one record changed and cache already filled, do not rerun query but use existing cache as base
       Rails.cache.delete(table_key)
       id = @instrument.id
-      logger.info "********************* #{action_name} on #{id}"
+      logger.info "********************* cache: #{action_name} on #{id}"
       old_data = data
       data = []
       old_data.each do |ins|
@@ -160,8 +162,8 @@ class InstrumentsController < ApplicationController
         :url3 => instrument.url3 || "",
         :count => instrument.records.count,
         :status => instrument.status || "",
-        :edit => view_context.link_to('Edit', edit_instrument_path(instrument)),
-        :delete => view_context.link_to('Delete', instrument, method: :delete, data: {confirm: 'Are you sure?'})
+        #:edit => view_context.link_to('Edit', edit_instrument_path(instrument)),
+        #:delete => view_context.link_to('Delete', instrument, method: :delete, data: {confirm: 'Are you sure?'})
     }
   end
 

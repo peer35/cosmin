@@ -28,8 +28,18 @@
                     {data: 'url3'},
                     {data: 'count'},
                     {data: 'status'},
-                    {data: 'edit'},
-                    {data: 'delete'}
+                    {data: 'id',
+                        "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                            //<a href="/cosmin/instruments/10032/edit">Edit</a>
+                            $(nTd).html("<a href='instruments/"+oData.id+"/edit'>edit</a>");
+                        }
+                        },
+                    {data: 'id',
+                        "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                            //<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/cosmin/instruments/10032">Delete</a>
+                            $(nTd).html("<a data-confirm='Are you sure?' rel='nofollow' data-method='delete' href='instruments/"+oData.id+"'>delete</a>");
+                        }
+                    }
                 ],
                 "autoWidth": false,
                 "columnDefs": [

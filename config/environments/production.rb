@@ -16,7 +16,7 @@ Rails.application.configure do
 
   config.action_controller.perform_caching = true
 
-  config.cache_store = :dalli_store
+  config.cache_store = :dalli_store, 'localhost', {:compress => true}
   config.public_file_server.headers = {
       'Cache-Control' => 'public, max-age=3600'
   }
