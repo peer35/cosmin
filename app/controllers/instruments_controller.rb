@@ -125,7 +125,7 @@ class InstrumentsController < ApplicationController
     logger.info "********************* reading cache"
     if data.nil?
       logger.info "********************* cache empty"
-      data = Instrument.all.order('LOWER(name) ASC').map { |instrument|
+      data = Instrument.includes(:records).all.map { |instrument|
         cache_record(instrument)
       }
       Rails.cache.write(table_key, data, :expires_in => expire_in)
@@ -160,7 +160,7 @@ class InstrumentsController < ApplicationController
         :url1 => instrument.url1 || "",
         :url2 => instrument.url2 || "",
         :url3 => instrument.url3 || "",
-        :count => instrument.records.count,
+        :hasrecords => instrument.records.any?,
         :status => instrument.status || "",
         #:edit => view_context.link_to('Edit', edit_instrument_path(instrument)),
         #:delete => view_context.link_to('Delete', instrument, method: :delete, data: {confirm: 'Are you sure?'})

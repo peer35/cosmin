@@ -24,6 +24,7 @@
 //= require select2
 
 //= require jquery.dataTables.min
+//= require dataTables.responsive.min
 
 ready = function () {
     //$('[data-toggle="popover"]').popover();
