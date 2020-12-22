@@ -3,12 +3,31 @@
     $(document).on('turbolinks:load', ready)
 
     function ready() {
-        $("#record_instrument_ids").select2({});
-
+        //https://select2.org/data-sources/ajax
+        $("#record_instrument_ids").select2({
+            minimumInputLength: 3,
+            placeholder: 'Search',
+            ajax: {
+                url: "<%= instruments_path %>.json",
+                dataType: 'json',
+                quietMillis: 100,
+                data: function (params) {
+                    var query = {
+                        term: params.term,
+                    };
+                    return query;
+                },
+                processResults: function(data) {
+                    return {
+                      results: data
+                    }
+                },
+                cache: false
+            }
+        });
         $("#url").select2({
             tags: true
         });
-
         $('#url').val(<%= @record.url.to_json.html_safe %>);
         $('#url').trigger('change');
         $(".category").select2({});
@@ -54,7 +73,7 @@
   <div class="field row">
     <div class="col-sm-12 form-group">
       <%= f.label :url %>
-      <% data_for_select = @record.url.each {|k| [k, k]} %>
+      <% data_for_select = @record.url.each { |k| [k, k] } %>
       <%= select_tag "record[url][]", options_for_select(data_for_select), :multiple => true, :id => "url" %>
       <!--<%= f.text_field :url, :class => "form-control" %>-->
     </div>
@@ -206,7 +225,7 @@
   </div>
 
   <div class="field row">
-    <!--<%= select_tag "disease[]", options_from_collection_for_select(Category.all.select {|c| c.cat == 'disease'}, :name, :name, {:selected => @record.disease}), :multiple => true, :id => "disease", :class => "form-control category" %>-->
+    <!--<%= select_tag "disease[]", options_from_collection_for_select(Category.all.select { |c| c.cat == 'disease' }, :name, :name, {:selected => @record.disease}), :multiple => true, :id => "disease", :class => "form-control category" %>-->
 
     <h4>Disease</h4>
     <% i = 0 %>
@@ -274,7 +293,7 @@
     <h3>Name of included instruments</h3>
     <div class="field row">
       <div class="col-sm-12 form-group">
-        <%= f.collection_select :instrument_ids, Instrument.all.order('name'), :id, :name, {selected: @record.instrument_ids}, {:multiple => true} %>
+        <%= f.collection_select :instrument_ids, @record.instruments.sort_by { |m| m.name.downcase  }, :id, :name, {selected: @record.instrument_ids}, {:multiple => true} %>
       </div>
       <p>
         <%= link_to 'Instrument list', instruments_url, :target => '_blank' %>
@@ -292,7 +311,7 @@
     <h3>Status</h3>
     <div class="field row">
       <div class="col-md-3">
-        <%= select_tag "record[status]", options_from_collection_for_select(Category.all.select {|c| c.cat == 'status'}, :name, :name, {:selected => @record.status}), :multiple => false, :id => "disease", :class => "form-control" %>
+        <%= select_tag "record[status]", options_from_collection_for_select(Category.all.select { |c| c.cat == 'status' }, :name, :name, {:selected => @record.status}), :multiple => false, :id => "disease", :class => "form-control" %>
       </div>
     </div>
     <div class="actions">

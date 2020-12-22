@@ -23,7 +23,7 @@ class MarcIndexer < Blacklight::Marc::Indexer
     to_field "format", get_format
     to_field "isbn_t", extract_marc('020a', :separator => nil) do |rec, acc|
       orig = acc.dup
-      acc.map! {|x| StdNum::ISBN.allNormalizedValues(x)}
+      acc.map! { |x| StdNum::ISBN.allNormalizedValues(x) }
       acc << orig
       acc.flatten!
       acc.uniq!
@@ -104,7 +104,7 @@ class MarcIndexer < Blacklight::Marc::Indexer
     to_field 'lc_callnum_display', extract_marc('050ab', :first => true)
     to_field 'lc_1letter_facet', extract_marc('050ab', :first => true, :translation_map => 'callnumber_map') do |rec, acc|
       # Just get the first letter to send to the translation map
-      acc.map! {|x| x[0]}
+      acc.map! { |x| x[0] }
     end
 
     alpha_pat = /\A([A-Z]{1,3})\d.*\Z/
@@ -125,7 +125,7 @@ class MarcIndexer < Blacklight::Marc::Indexer
       rec.fields('856').each do |f|
         case f.indicator2
         when '0'
-          f.find_all {|sf| sf.code == 'u'}.each do |url|
+          f.find_all { |sf| sf.code == 'u' }.each do |url|
             acc << url.value
           end
         when '2'
@@ -144,7 +144,7 @@ class MarcIndexer < Blacklight::Marc::Indexer
       rec.fields('856').each do |f|
         case f.indicator2
         when '2'
-          f.find_all {|sf| sf.code == 'u'}.each do |url|
+          f.find_all { |sf| sf.code == 'u' }.each do |url|
             acc << url.value
           end
         when '0'

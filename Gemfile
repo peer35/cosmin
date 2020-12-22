@@ -78,3 +78,6 @@ gem "blacklight_advanced_search", "< 7.0"
 
 gem 'sitemap_generator'
 gem 'alphabetical_paginate'
+
+gem 'caxlsx'
+gem 'caxlsx_rails'
