@@ -1,0 +1,10 @@
+Error report for RIS file HR review update_44 twijfels.txt
+
+Diagnostic scores, questionnaires, quality of life, and outcome measures in pediatric continence: A review of available tools from the International Children's Continence Society failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Patient-reported outcome measures in advanced musculoskeletal physiotherapy practice: a systematic review failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Assessing Patient-reported Quality of Life Outcomes in Vulva Cancer Patients: A Systematic Literature Review failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Patient-Reported Outcome Measures in Neurosurgery: A Review of the Current Literature failed with error(s): 	Doi already present in COSMIN database 
+Frailty assessment instruments in heart failure: A systematic review failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Understanding lower leg volume measurements used in clinical studies focused on venous leg edema failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Towards clinical outcome measures in myotonic dystrophy type 2: a systematic review failed with error(s): 	Title already present in COSMIN database Doi already present in COSMIN database 
+Hyperhidrosis quality of life measures: review and patient perspective failed with error(s): 	Doi already present in COSMIN database 
