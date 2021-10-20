@@ -37,9 +37,6 @@ class InstrumentsController < ApplicationController
       }
 
       format.html do
-        # TODO: Change this, it selects all the instruments in chunks of 500 and only then filters them.
-        # We know all the fields are there and only need instrument "LIKE '%<letter>'"
-        #
         if params[:letter].nil? or params[:letter]=='0-9'
           exp="name ~ '^[0-9]'"
         elsif params[:letter]=='*'
