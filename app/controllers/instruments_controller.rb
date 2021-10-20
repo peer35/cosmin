@@ -37,9 +37,26 @@ class InstrumentsController < ApplicationController
       }
 
       format.html do
-        @instruments, @alphaParams = Instrument.all
-                                         .alpha_paginate(params[:letter], {:default_field => '0-9', :include_all => false, :js => false, :bootstrap3 => true}) { |instrument| instrument.name }
-        @instruments.sort_by! { |m| m.name.downcase }
+        # TODO: Change this, it selects all the instruments in chunks of 500 and only then filters them.
+        # We know all the fields are there and only need instrument "LIKE '%<letter>'"
+        #
+        if params[:letter].nil? or params[:letter]=='0-9'
+          exp="name ~ '^[0-9]'"
+        elsif params[:letter]=='*'
+          exp="name ~ '^[^a-zA-Z0-9]'"
+        else
+          exp="LOWER(name) LIKE ?", "#{params[:letter].downcase}%"
+        end
+        instrument_selection = Instrument.select('instruments.*, count(record_id) as count_records')
+                                         .where(exp)
+                                         .joins(:records)
+                                         .group('instruments.id')
+                                         .order('LOWER(name) ASC')
+
+        @instruments, @alphaParams = instrument_selection
+                                         .alpha_paginate(params[:letter], {:default_field => '0-9', :include_all => false, :paginate_all => true, :js => false, :bootstrap3 => true}) { |instrument| instrument.name }
+        @alphaParams[:availableLetters]=['0-9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','*']
+        #@instruments.sort_by! { |m| m.name.downcase }
       end
 
 
