@@ -32,7 +32,7 @@ class Instrument < ApplicationRecord
   def update_solr
     # update associated SOLR records
     self.records.each do |record|
-      record.update_index
+      record.delay.update_index
     end
   end
 end

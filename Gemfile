@@ -81,3 +81,6 @@ gem 'alphabetical_paginate'
 
 gem 'caxlsx'
 gem 'caxlsx_rails'
+
+gem 'delayed_job_active_record'
+gem "daemons"
