@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190314135440) do
+ActiveRecord::Schema.define(version: 2021_10_20_111110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "bookmarks", force: :cascade do |t|
+  create_table "bookmarks", id: :serial, force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "user_type"
     t.string "document_id"
@@ -23,18 +23,33 @@ ActiveRecord::Schema.define(version: 20190314135440) do
     t.binary "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["document_id"], name: "index_bookmarks_on_document_id", using: :btree
-    t.index ["user_id"], name: "index_bookmarks_on_user_id", using: :btree
+    t.index ["document_id"], name: "index_bookmarks_on_document_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
-  create_table "categories", force: :cascade do |t|
+  create_table "categories", id: :serial, force: :cascade do |t|
     t.text "cat"
     t.text "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "instruments", force: :cascade do |t|
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer "priority", default: 0, null: false
+    t.integer "attempts", default: 0, null: false
+    t.text "handler", null: false
+    t.text "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string "locked_by"
+    t.string "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
+  create_table "instruments", id: :serial, force: :cascade do |t|
     t.text "name"
     t.text "reference"
     t.text "doi"
@@ -51,12 +66,12 @@ ActiveRecord::Schema.define(version: 20190314135440) do
   create_table "instruments_records", id: false, force: :cascade do |t|
     t.integer "record_id"
     t.integer "instrument_id"
-    t.index ["instrument_id", "record_id"], name: "by_instruments_and_records", unique: true, using: :btree
-    t.index ["instrument_id"], name: "index_instruments_records_on_instrument_id", using: :btree
-    t.index ["record_id"], name: "index_instruments_records_on_record_id", using: :btree
+    t.index ["instrument_id", "record_id"], name: "by_instruments_and_records", unique: true
+    t.index ["instrument_id"], name: "index_instruments_records_on_instrument_id"
+    t.index ["record_id"], name: "index_instruments_records_on_record_id"
   end
 
-  create_table "records", force: :cascade do |t|
+  create_table "records", id: :serial, force: :cascade do |t|
     t.integer "cosmin_id"
     t.text "abstract"
     t.text "accnum"
@@ -89,16 +104,16 @@ ActiveRecord::Schema.define(version: 20190314135440) do
     t.integer "endnum"
   end
 
-  create_table "searches", force: :cascade do |t|
+  create_table "searches", id: :serial, force: :cascade do |t|
     t.binary "query_params"
     t.integer "user_id"
     t.string "user_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_searches_on_user_id", using: :btree
+    t.index ["user_id"], name: "index_searches_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -112,18 +127,18 @@ ActiveRecord::Schema.define(version: 20190314135440) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "guest", default: false
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "versions", force: :cascade do |t|
+  create_table "versions", id: :serial, force: :cascade do |t|
     t.string "item_type", null: false
     t.integer "item_id", null: false
     t.string "event", null: false
     t.string "whodunnit"
     t.text "object"
     t.datetime "created_at"
-    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
   add_foreign_key "instruments_records", "instruments"
