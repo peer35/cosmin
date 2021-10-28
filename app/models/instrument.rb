@@ -11,7 +11,7 @@ class Instrument < ApplicationRecord
   validates :name, presence: true
   validate :check_doubles, :on => :create
 
-  after_save :update_solr
+  after_save :delayed_solr_update
 
   def check_doubles
     if !Instrument.where(:name => self.name).blank?
@@ -32,7 +32,11 @@ class Instrument < ApplicationRecord
   def update_solr
     # update associated SOLR records
     self.records.each do |record|
-      record.delay.update_index
+      record.update_index
     end
+  end
+
+  def delayed_solr_update
+    self.delay.update_solr
   end
 end
