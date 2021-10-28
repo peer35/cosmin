@@ -103,8 +103,8 @@ class InstrumentsController < ApplicationController
     # serialize reference here!
     respond_to do |format|
       if @instrument.update(instrument_params)
-        format.html { redirect_to instruments_url(anchor: @instrument.id, letter: startletter), notice: 'Instrument was successfully updated.' }
-        #anchor: @instrument.id, letter: @instrument.name[0]
+        #format.html { redirect_to instruments_url(anchor: @instrument.id, letter: startletter), notice: 'Instrument was successfully updated.' }
+        format.html { redirect_to instruments_url(letter: startletter), notice: 'Instrument was successfully updated.' }
         format.json { render :show, status: :ok, location: @instrument }
       else
         format.html { render :edit }
