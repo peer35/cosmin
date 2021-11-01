@@ -46,7 +46,7 @@ class InstrumentsController < ApplicationController
         end
         instrument_selection = Instrument.select('instruments.*, count(record_id) as count_records')
                                          .where(exp)
-                                         .joins(:records)
+                                         .left_outer_joins(:records)
                                          .group('instruments.id')
                                          .order('LOWER(name) ASC')
 
