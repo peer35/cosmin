@@ -26,8 +26,8 @@ Rails.application.configure do
   # Default Mailer Host
   #Rails.application.routes.default_url_options[:host] = 'pvsge081.labs.vu.nl'
   # prevent host header injection
-  config.action_controller.default_url_options = {host: "database.cosmin.nl"}
-  config.action_mailer.default_url_options = {host: "database.cosmin.nl"}
+  config.action_controller.default_url_options = {host: ENV["SITE_NAME"]}
+  config.action_mailer.default_url_options = {host: ENV["SITE_NAME"]}
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
@@ -91,6 +91,7 @@ Rails.application.configure do
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
+  config.logger = Logger.new(config.paths["log"].first, 5, 10.megabytes)
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger = ActiveSupport::Logger.new(STDOUT)
