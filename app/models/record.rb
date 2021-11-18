@@ -52,18 +52,18 @@ class Record < ApplicationRecord
     if !Record.where(:title => self.title, :pubyear => self.pubyear).blank?
       errors.add(:title, "already present in COSMIN database")
     end
-    logger.debug '**********'
-    logger.debug self.doi
     unless self.doi == '' or self.doi.nil?
       if !Record.where(:doi => self.doi).blank?
         errors.add(:doi, "already present in COSMIN database")
       end
     end
+=begin
     unless self.endnum == '' or self.endnum.nil?
       if !Record.where(:endnum => self.endnum).blank?
         errors.add(:endnum, "endnote record number already present in COSMIN database")
       end
     end
+=end
   end
 
   def update_index
