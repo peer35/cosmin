@@ -168,13 +168,16 @@ class RecordsController < ApplicationController
   def upload
     respond_to do |format|
       uploaded_io = params[:upload_ris]
-      File.open(Rails.root.join('tmp', 'uploads', uploaded_io.original_filename), 'wb') do |file|
-        file.write(uploaded_io.read)
+      if uploaded_io.nil?
+        format.html { redirect_to records_url(filter: 'new'), notice: 'No file uploaded, please use the browse button to select a file first.' }
+      else
+        File.open(Rails.root.join('tmp', 'uploads', uploaded_io.original_filename), 'wb') do |file|
+          file.write(uploaded_io.read)
+        end
+        error_file, messages = read_ris(Rails.root.join('tmp', 'uploads', uploaded_io.original_filename))
+        File.delete(Rails.root.join('tmp', 'uploads', uploaded_io.original_filename))
+        format.html { redirect_to records_url(error_report: 'uploads/' + error_file, filter: 'new'), notice: messages }
       end
-      error_file, messages = read_ris(Rails.root.join('tmp', 'uploads', uploaded_io.original_filename))
-
-      File.delete(Rails.root.join('tmp', 'uploads', uploaded_io.original_filename))
-      format.html { redirect_to records_url(error_report: 'uploads/' + error_file, filter: 'new'), notice: messages }
     end
   end
 
