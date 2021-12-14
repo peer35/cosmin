@@ -176,7 +176,7 @@ class RecordsController < ApplicationController
         end
         error_file, messages = read_ris(Rails.root.join('tmp', 'uploads', uploaded_io.original_filename))
         File.delete(Rails.root.join('tmp', 'uploads', uploaded_io.original_filename))
-        format.html { redirect_to records_url(error_report: 'uploads/' + error_file, filter: 'new'), notice: messages }
+        format.html { redirect_to records_url(error_report: 'uploads/' + error_file, filter: 'new'), alert: messages }
       end
     end
   end
