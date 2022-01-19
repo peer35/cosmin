@@ -157,7 +157,7 @@ class RecordsController < ApplicationController
   def indexall
     respond_to do |format|
       Record.all.each do |record|
-        record.update_index
+        record.delay.update_index
       end
       flash[:notice] = 'Records reindexed.'
       format.html { redirect_to :controller => 'catalog', action: "index" }
