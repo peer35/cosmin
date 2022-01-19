@@ -28,7 +28,7 @@ services:
       DB_NAME: ${DB_NAME}
       RAILS_ENV: production
       #SITE_NAME: database.cosmin.nl
-      SITE_NAME: 192.168.56.10
+      SITE_NAME: 127.0.0.1
       SECRET_KEY_BASE: ${SECRET_KEY_BASE}
       SOLR_URL: http://${SOLR_HOST}:8983/solr/${SOLR_CORE}
       #puma workers and threads
