@@ -6,8 +6,5 @@ if [ -f /usr/src/app/tmp/pids/server.pid ]; then
   rm /usr/src/app/tmp/pids/server.pid
 fi
 
-bundle exec rake app:update:bin
-bundle exec rake db:migrate
-rails generate delayed_job
-
+# Then exec the container's main process (what's set as CMD in the docker-compose.yml).
 exec bundle exec "$@"

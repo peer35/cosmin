@@ -15,7 +15,7 @@ COPY Gemfile* ./
 ENV ENV_RAILS=production
 RUN bundle install
 COPY . .
-RUN chmod +x /usr/src/app/lib/docker-entrypoint.sh
+RUN chmod +x /usr/src/app/lib/docker-entrypoint.sh && bundle exec rake db:migrate && bundle exec rake app:update:bin && rails generate delayed_job
 
 EXPOSE 3000
 
