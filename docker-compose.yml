@@ -2,6 +2,7 @@ version: '3'
 services:
   cosmin-solr:
     container_name: ${SOLR_HOST}
+    restart: always
     image: solr:8
     ports:
       - "8984:8983"
@@ -17,6 +18,7 @@ services:
 
   cosmin-app:
     container_name: cosmin-app
+    restart: on-failure
     build: .
     depends_on:
       - cosmin-db
