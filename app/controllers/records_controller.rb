@@ -126,7 +126,15 @@ class RecordsController < ApplicationController
       @record.user_email = current_user.email
       record_params['author'] = record_params['author_str'].split(';')
       record_params.delete('author_str')
-      logger.debug record_params
+      # check if all instrument relations still exist, an instrument might have been deleted during filling of the form.
+      instrument_ids=[]
+      for id in record_params['instrument_ids']
+        if Instrument.exists?(id)
+          instrument_ids.append(id)
+        end
+      end
+      record_params['instrument_ids'] = instrument_ids
+      logger.info record_params
       if @record.update(record_params)
         if @record.status == 'published'
           flash[:notice] = "Record was successfully updated."
