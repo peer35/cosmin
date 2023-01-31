@@ -25,7 +25,7 @@ class Record < ApplicationRecord
 
   has_paper_trail
 
-  after_save :update_solr
+  after_save :delayed_solr_update
   after_initialize :init
 
   before_destroy :delete_from_solr
@@ -139,4 +139,8 @@ def delete_from_solr
   @@solr = RSolr.connect :url => solr_config['url'] # get this from blacklight config
   @@solr.delete_by_id(record.id)
   @@solr.commit
+end
+
+def delayed_solr_update
+  self.delay.update_solr
 end
