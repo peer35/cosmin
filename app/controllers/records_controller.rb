@@ -62,16 +62,6 @@ class RecordsController < ApplicationController
     end
   end
 
-  # GET /records/1
-  # GET /records/1.json
-  def show
-    if @record.status == 'published'
-      redirect_to :controller => 'catalog', action: "show", id: @record.id
-    else
-      redirect_to action: "index"
-    end
-  end
-
 
   # GET /records/new
   def new
@@ -105,13 +95,12 @@ class RecordsController < ApplicationController
     respond_to do |format|
       if @record.save
         if @record.status == 'published'
-          flash[:notice] = "Record was successfully created."
-          format.html { redirect_to :controller => 'catalog', action: "show", id: @record.id }
-          format.json { render :show, status: :created, location: @record }
+          flash[:notice] = "Record was successfully created and will be added to the index."
         else
-          format.html { redirect_to records_url, notice: 'Record was successfully created.' }
-          format.json { render :show, status: :ok, location: @record }
+          flash[:notice] = "Record was successfully created."
         end
+        format.html { render :show, status: :created, location: @record }
+        format.json { render :show, status: :created, location: @record }
       else
         format.html { render action: "new" }
         format.json { render json: @record.errors, status: :unprocessable_entity }
@@ -137,13 +126,12 @@ class RecordsController < ApplicationController
       logger.info record_params
       if @record.update(record_params)
         if @record.status == 'published'
-          flash[:notice] = "Record was successfully updated."
-          format.html { redirect_to :controller => 'catalog', action: "show", id: @record.id }
-          format.json { render :show, status: :ok, location: @record }
+          flash[:notice] = "Record was successfully updated. The index will be updated in a few moments."
         else
-          format.html { redirect_to records_url, notice: 'Record was successfully updated.' }
-          format.json { render :show, status: :ok, location: @record }
+          flash[:notice] =  'Record was successfully updated.'
         end
+        format.html { render :show, status: :ok, location: @record }
+        format.json { render :show, status: :ok, location: @record }
       else
         format.html { render :edit }
         format.json { render json: @record.errors, status: :unprocessable_entity }

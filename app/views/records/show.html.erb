@@ -1,129 +1,95 @@
-<p id="notice"><%= notice %></p>
+<div id="content" class="col-md-9 col-sm-8 show-document">
+  <%= link_to 'Edit', edit_record_path(@record) %> |
+  <%= link_to 'Go to record list', records_path, :target => '_blank' %> |
+  <%= link_to 'Go to instrument list', instruments_path, :target => '_blank' %>
 
-<p>
-  <strong>Cosmin:</strong>
-  <%= @record.cosmin_id %>
-</p>
-
-<p>
-  <strong>Abstract:</strong>
-  <%= @record.abstract %>
-</p>
-
-<p>
-  <strong>Accnum:</strong>
-  <%= @record.accnum %>
-</p>
-
-<p>
-  <strong>Author:</strong>
-  <%= @record.author %>
-</p>
-
-<p>
-  <strong>Bpv:</strong>
-  <%= @record.bpv %>
-</p>
-
-<p>
-  <strong>Cu:</strong>
-  <%= @record.cu %>
-</p>
-
-<p>
-  <strong>Disease:</strong>
-  <%= @record.disease %>
-</p>
-
-<p>
-  <strong>Doi:</strong>
-  <%= @record.doi %>
-</p>
-
-<p>
-  <strong>Fs:</strong>
-  <%= @record.fs %>
-</p>
-
-<p>
-  <strong>Ghp:</strong>
-  <%= @record.ghp %>
-</p>
-
-<p>
-  <strong>Instrument:</strong>
-  <%= @record.instrument %>
-</p>
-
-<p>
-  <strong>Issn:</strong>
-  <%= @record.issn %>
-</p>
-
-<p>
-  <strong>Issue:</strong>
-  <%= @record.issue %>
-</p>
-
-<p>
-  <strong>Journal:</strong>
-  <%= @record.journal %>
-</p>
-
-<p>
-  <strong>Oc:</strong>
-  <%= @record.oc %>
-</p>
-
-<p>
-  <strong>Oql:</strong>
-  <%= @record.oql %>
-</p>
-
-<p>
-  <strong>Pnp:</strong>
-  <%= @record.pnp %>
-</p>
-
-<p>
-  <strong>Age:</strong>
-  <%= @record.age %>
-</p>
-
-<p>
-  <strong>Pubyear:</strong>
-  <%= @record.pubyear %>
-</p>
-
-<p>
-  <strong>Ss:</strong>
-  <%= @record.ss %>
-</p>
-
-<p>
-  <strong>Startpage:</strong>
-  <%= @record.startpage %>
-</p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @record.title %>
-</p>
-
-<p>
-  <strong>Tmi:</strong>
-  <%= @record.tmi %>
-</p>
-
-<p>
-  <strong>Url:</strong>
-  <%= @record.url %>
-</p>
-
-<p>
-  <strong>User email:</strong>
-  <%= @record.user_email %>
-</p>
-
-<%= link_to 'Edit', edit_record_path(@record) %> |
-<%= link_to 'Back', records_path %>
+  <h1>COSMIN database record <%= @record.id %>:</h1>
+  <dl class="dl-horizontal  dl-invert">
+    <dt>Title:</dt>
+    <dd><%= @record.title %></dd>
+    <dt>Status:</dt>
+    <dd>
+      <% if @record.status == 'published' %>
+        <b>PUBLISHED</b> <i><a href="../catalog/<%= @record.id %>">go to published record</a></i>
+      <% else %>
+        <b>Record is not published</b>
+      <% end %>
+    </dd>
+    <dt class="blacklight-author_sm">Authors:</dt>
+    <dd class="blacklight-author_sm">
+      <%= @record.author.join(', ') %>
+    </dd>
+    <dt class="blacklight-abstract_s">Abstract:</dt>
+    <dd class="blacklight-abstract_s"><%= @record.abstract %></dd>
+    <dt class="blacklight-doi_s">DOI:</dt>
+    <dd class="blacklight-doi_s"><a target="_blank" href="https://dx.doi.org/<%= @record.doi %>"><%= @record.doi %></a>
+    </dd>
+    <dt class="blacklight-url_sm">URL:</dt>
+    <dd class="blacklight-url_sm">
+      <% @record.url.each do |v| %>
+        <%= v %>
+        <br>
+      <% end %>
+    </dd>
+    <dt class="blacklight-journal_s">Journal:</dt>
+    <dd class="blacklight-journal_s"><%= @record.journal %></dd>
+    <dt class="blacklight-issn_s">issn:</dt>
+    <dd class="blacklight-issn_s"><%= @record.issn %></dd>
+    <dt class="blacklight-pubyear_s">Publication year:</dt>
+    <dd class="blacklight-pubyear_s"><%= @record.pubyear %></dd>
+    <dt class="blacklight-startpage_s">pages:</dt>
+    <dd class="blacklight-startpage_s"><%= @record.startpage %></dd>
+    <dt class="blacklight-ss_sm">Symptom status:</dt>
+    <dd class="blacklight-ss_sm">
+      <% @record.ss.sort!.each do |v| %>
+        <%= v %>
+        <br>
+      <% end %>
+    </dd>
+    <dt class="blacklight-fs_sm">Functional status:</dt>
+    <dd class="blacklight-fs_sm">
+      <% @record.fs.sort!.each do |v| %>
+        <%= v %>
+        <br>
+      <% end %>
+    </dd>
+    <dt class="blacklight-age_sm">Age:</dt>
+    <dd class="blacklight-age_sm">
+      <% @record.age.sort!.each do |v| %>
+        <%= v %>
+        <br>
+      <% end %>
+    </dd>
+    <dt class="blacklight-disease_sm">Disease:</dt>
+    <dd class="blacklight-disease_sm">
+      <% @record.disease.sort!.each do |v| %>
+        <%= v %>
+        <br>
+      <% end %>
+    </dd>
+    <dt class="blacklight-pnp_sm">PRO / non-PRO:</dt>
+    <dd class="blacklight-pnp_sm">
+      <% @record.pnp.sort!.each do |v| %>
+        <%= v %>
+        <br>
+      <% end %>
+    </dd>
+    <dt class="blacklight-tmi_sm">Type of measurement instrument:</dt>
+    <dd class="blacklight-tmi_sm">
+      <% @record.tmi.sort!.each do |v| %>
+        <%= v %>
+        <br>
+      <% end %>
+    </dd>
+    <dt class="blacklight-instrumentpresentation_sfm">Instrument:</dt>
+    <dd class="blacklight-instrumentpresentation_sfm">
+      <% @record.instruments.order(name: :asc).each do |instrument| %>
+        <%= instrument.name.strip %>
+        <a href="<%= instrument.url1.strip %>"><%= instrument.url1.strip %></a>
+        <a href="<%= instrument.url2.strip %>"><%= instrument.url2.strip %></a>
+        <a href="<%= instrument.url3.strip %>"><%= instrument.url3.strip %></a>
+        <br>
+      <% end %>
+    </dd>
+  </dl>
+</div>
