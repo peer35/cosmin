@@ -3,16 +3,15 @@
   <%= link_to 'Go to record list', records_path, :target => '_blank' %> |
   <%= link_to 'Go to instrument list', instruments_path, :target => '_blank' %>
 
-  <h1>COSMIN database record <%= @record.id %>:</h1>
+  <h1>COSMIN database record <%= @record.id %> - <%= @record.status %>:</h1>
   <dl class="dl-horizontal  dl-invert">
     <dt>Title:</dt>
     <dd><%= @record.title %></dd>
     <dt>Status:</dt>
     <dd>
+      <b><%= @record.status %></b>
       <% if @record.status == 'published' %>
-        <b>PUBLISHED</b> <i><a href="../catalog/<%= @record.id %>">go to published record</a></i>
-      <% else %>
-        <b>Record is not published</b>
+         - <i><a href="../catalog/<%= @record.id %>">go to published record</a></i>
       <% end %>
     </dd>
     <dt class="blacklight-author_sm">Authors:</dt>
