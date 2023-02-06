@@ -28,3 +28,4 @@ sitemap.xml.gz
 /config/initializers/records.rb
 /.idea
 /.svn
+.env

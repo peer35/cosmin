@@ -1,0 +1,67 @@
+version: '3'
+networks:
+  default:
+    external:
+      name: bl-network # create with docker network create bl-network
+
+services:
+  solr:
+    container_name: ${SOLR_HOST}
+    #restart: always
+    image: solr:8
+    environment:
+      SOLR_JAVA_MEM: "-Xms512m -Xmx512m"
+    ports:
+      - "8985:8983"
+    volumes:
+      - /docker/solr/data:/var/solr/data
+      - /docker/solr/configsets:/opt/solr/server/solr/configsets
+    entrypoint:
+      - bash
+      - "-c"
+      - "precreate-core ${SOLR_CORE_COSMIN} /opt/solr/server/solr/configsets/${SOLR_CORE_COSMIN};
+         exec solr -f"
+
+  cosmin-app:
+    container_name: cosmin-app
+    #restart: always
+    build:
+      context: ../cosmin
+      args:
+        - APP_USER_UID=${COSMIN_USER_UID}
+        - APP_USER_GID=${COSMIN_USER_GID}
+    user: ${COSMIN_USER_UID}:${COSMIN_USER_GID}
+    depends_on:
+      - cosmin-db
+      - solr
+    environment:
+      DB_USER: ${DB_USER_COSMIN}
+      DB_PW: ${DB_PW_COSMIN}
+      DB_HOST: ${DB_HOST_COSMIN}
+      DB_NAME: ${DB_NAME_COSMIN}
+      RAILS_ENV: development
+      #SITE_NAME: database.cosmin.nl
+      SITE_NAME: 127.0.0.1
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE_COSMIN}
+      SOLR_URL: http://${SOLR_HOST}:8983/solr/${SOLR_CORE_COSMIN}
+      #puma workers and threads
+      WEB_CONCURRENCY: 1
+      RAILS_MAX_THREADS: 5
+    command: sh -c "bin/delayed_job start && bin/rails server -e development -b 0.0.0.0"
+    volumes:
+      - ../cosmin:/usr/src/app
+      - /docker/cosmin/log:/usr/src/app/log
+    ports:
+      - "3013:3000"
+
+  cosmin-db:
+    container_name: ${DB_HOST_COSMIN}
+    image: postgres:14
+    #restart: always
+    environment:
+      POSTGRES_PASSWORD: ${DB_PW_COSMIN}
+      POSTGRES_USER: ${DB_USER_COSMIN}
+      POSTGRES_DB: ${DB_NAME_COSMIN}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - /docker/cosmin/db:/var/lib/postgresql/data
