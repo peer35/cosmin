@@ -25,6 +25,7 @@ ENV ENV_RAILS=production
 RUN bundle install
 COPY --chown=$APP_USER:$APP_GROUP . .
 RUN chmod +x /usr/src/app/lib/docker-entrypoint.sh && bundle exec rake app:update:bin && rails generate delayed_job
+RUN chmod -R 777 /usr/src/app/tmp
 ENTRYPOINT ["sh","/usr/src/app/lib/docker-entrypoint.sh"]
 CMD sh -c "bin/delayed_job start && bin/rails server -e production -b 0.0.0.0"
 
