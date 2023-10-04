@@ -41,8 +41,12 @@ class RecordsController < ApplicationController
     end
     status = status_filter()
     respond_to do |format|
-      format.csv do
+      format.txt do
         send_data to_endnote_txt(status), filename: "records-#{status}-#{Date.today}.txt"
+        #send_data export_full_csv(), filename: "records-full-#{Date.today}.txt"
+      end
+      format.csv do
+        send_data export_full_csv(), filename: "records-full-#{Date.today}.csv"
       end
       format.html do
         unless status == 'all'
@@ -380,6 +384,29 @@ def to_endnote_txt(status)
           row.append(r[f].localtime.strftime('%F %R'))
         elsif f == 'author' || f == 'url'
           row.append(r[f].join(';'))
+        else
+          row.append(r[f])
+        end
+      end
+      csv << row
+      row.clear
+    end
+  end
+end
+
+def export_full_csv()
+  recs=Record.all
+  headers = ["author","abstract","doi","url","journal","issn","pubyear","startpage","bpv","ss","fs","ghp","oql","age","disease","pnp","tmi","cu","instrument","user_email","created_at","updated_at","admin_notes","status","endnum"]
+  fields = headers
+  CSV.generate(headers: true, :col_sep => ",", :quote_char => '"', :force_quotes => true) do |csv|
+    csv << headers
+    recs.all.each do |r|
+      row = []
+      fields.each do |f|
+        if f == 'created_at' || f == 'updated_at'
+          row.append(r[f].localtime.strftime('%F %R'))
+        elsif f == 'author' || f == 'url' || f == 'instrument' || f == 'disease'|| f == 'fs'|| f == 'ghp'|| f == 'oql'|| f == 'pnp'|| f == 'ss'|| f == 'tmi'|| f == 'age'|| f == 'bpv'
+          row.append(r[f].join("\n"))
         else
           row.append(r[f])
         end
