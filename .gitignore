@@ -18,6 +18,8 @@
 !/log/.keep
 !/tmp/uploads
 !/tmp/.keep
+!/tmp/pids
+/tmp/pids/*.pid
 
 
 # Ignore Byebug command history file.
@@ -29,3 +31,4 @@ sitemap.xml.gz
 /.idea
 /.svn
 .env
+pid
