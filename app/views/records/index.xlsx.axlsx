@@ -4,6 +4,6 @@ wb.use_autowidth = true
 wb.add_worksheet(name: 'Records') do |sheet|
   sheet .add_row ["author","abstract","doi","url","journal","issn","pubyear","startpage","bpv","ss","fs","ghp","oql","age","disease","pnp","tmi","cu","instrument","user_email","created_at","updated_at","admin_notes","status","endnum"]
   Record.all.each do |rec|
-    sheet .add_row [rec.author.join("\r"),rec.abstract,rec.doi,rec.url,rec.journal,rec.issn,rec.pubyear,rec.startpage,rec.bpv.join("\r"),rec.ss.join("\r"),rec.fs.join("\r"),rec.ghp.join("\r"),rec.oql.join("\r"),rec.age.join("\r"),rec.disease.join("\r"),rec.pnp.join("\r"),rec.tmi.join("\r"),rec.cu,rec.instrument.join("\r"),rec.user_email,rec.created_at.localtime.strftime('%F %R'),rec.updated_at.localtime.strftime('%F %R'),rec.admin_notes,rec.status,rec.endnum], :style => wrap
+    sheet .add_row [rec.author.join("\r"),rec.abstract,rec.doi,rec.url.join("\r"),rec.journal,rec.issn,rec.pubyear,rec.startpage,rec.bpv.join("\r"),rec.ss.join("\r"),rec.fs.join("\r"),rec.ghp.join("\r"),rec.oql.join("\r"),rec.age.join("\r"),rec.disease.join("\r"),rec.pnp.join("\r"),rec.tmi.join("\r"),rec.cu,rec.instrument.join("\r"),rec.user_email,rec.created_at.localtime.strftime('%F %R'),rec.updated_at.localtime.strftime('%F %R'),rec.admin_notes,rec.status,rec.endnum], :style => wrap
   end
 end
