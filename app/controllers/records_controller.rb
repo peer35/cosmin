@@ -1,5 +1,6 @@
 class RecordsController < ApplicationController
   require 'csv'
+  require 'caxlsx'  
   # Duplicate key on id:
   #ALTER TABLE "records" RENAME COLUMN "id" TO "id_orig";
   #ALTER TABLE "records" ADD COLUMN "id" bigserial NOT NULL;
@@ -41,6 +42,9 @@ class RecordsController < ApplicationController
     end
     status = status_filter()
     respond_to do |format|
+      format.xlsx {
+        response.headers['Content-Disposition'] = 'attachment; filename="records-' + Date.today.to_s + '.xlsx"'
+      }
       format.csv do
         send_data to_endnote_txt(status), filename: "records-#{status}-#{Date.today}.txt"
       end
