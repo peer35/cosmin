@@ -19,8 +19,7 @@ services:
     entrypoint:
       - bash
       - "-c"
-      - "precreate-core ${SOLR_CORE_COSMIN} /opt/solr/server/solr/configsets/${SOLR_CORE_COSMIN};
-         exec solr -f"
+      - "precreate-core ${SOLR_CORE_COSMIN} /opt/solr/server/solr/configsets/${SOLR_CORE_COSMIN}; exec solr -f"
 
   cosmin-app:
     container_name: cosmin-app

@@ -8,7 +8,7 @@ ARG APP_GROUP_GID=1000
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         postgresql-client \
-    && curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y nodejs \
     #for troubleshooting
     && apt-get install -y nano \
