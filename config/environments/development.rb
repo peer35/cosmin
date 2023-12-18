@@ -43,6 +43,8 @@ Rails.application.configure do
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
+  config.assets.compile = true
+  config.assets.digest = false
 
   config.assets.enabled = true
   config.assets.paths << Rails.root.join('/app/assets/fonts')
@@ -52,7 +54,7 @@ Rails.application.configure do
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
-  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  config.file_watcher = ActiveSupport::FileUpdateChecker
 
   config.active_record.use_yaml_unsafe_load = true # This is a temporary fix for the following error: "Psych::DisallowedClass: Tried to load unspecified class: Time"
 end
