@@ -7,13 +7,13 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0'
+gem 'rails', '< 7.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 4.0'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 6.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -52,7 +52,9 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'blacklight', '< 7.0'
+gem 'blacklight', '< 8.0'
+gem "blacklight_advanced_search", "< 8.0"
+
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
 end
@@ -60,7 +62,6 @@ end
 gem 'rsolr', '>= 1.0'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
-gem 'blacklight-marc', '~> 6.1'
 
 gem 'pg', '>0.20'
 
@@ -74,8 +75,6 @@ gem "font-awesome-rails"
 gem 'caracal'
 gem 'caracal-rails'
 
-gem "blacklight_advanced_search", "< 7.0"
-
 gem 'sitemap_generator'
 gem 'alphabetical_paginate'
 
@@ -84,3 +83,7 @@ gem 'caxlsx_rails'
 
 gem 'delayed_job_active_record'
 gem "daemons"
+
+gem 'bootstrap', '~> 4.0'
+gem 'popper_js'
+gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript' 

@@ -101,4 +101,6 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.active_record.use_yaml_unsafe_load = true # This is a temporary fix for the following error: "Psych::DisallowedClass: Tried to load unspecified class: Time"
 end
