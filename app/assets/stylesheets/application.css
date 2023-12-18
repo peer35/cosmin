@@ -14,8 +14,8 @@
  *= require_self
  *= require select2
  *= require select2-bootstrap
- 
  *= require 'blacklight_advanced_search'
+ *= require font-awesome
 
 */
 

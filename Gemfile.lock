@@ -140,6 +140,8 @@ GEM
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
+    font-awesome-rails (4.7.0.8)
+      railties (>= 3.2, < 8.0)
     font-awesome-sass (6.5.1)
       sassc (~> 2.0)
     globalid (1.2.1)
@@ -345,6 +347,7 @@ DEPENDENCIES
   delayed_job_active_record
   devise
   devise-guests (~> 0.6)
+  font-awesome-rails
   font-awesome-sass (~> 6.5.1)
   jbuilder (~> 2.5)
   jquery-rails

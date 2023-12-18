@@ -4,89 +4,89 @@
   <%= link_to 'Go to instrument list', instruments_path, :target => '_blank' %>
 
   <h1>COSMIN database record <%= @record.id %> - <%= @record.status %>:</h1>
-  <dl class="dl-horizontal  dl-invert">
-    <dt>Title:</dt>
-    <dd><%= @record.title %></dd>
-    <dt>Status:</dt>
-    <dd>
+  <dl class="document-metadata dl-invert row">
+    <dt class="col-md-3">Title:</dt>
+    <dd class="col-md-9"><%= @record.title %></dd>
+    <dt class="col-md-3">Status:</dt>
+    <dd class="col-md-9">
       <b><%= @record.status %></b>
       <% if @record.status == 'published' %>
          - <i><a href="../catalog/<%= @record.id %>">go to published record</a></i>
       <% end %>
     </dd>
-    <dt class="blacklight-author_sm">Authors:</dt>
-    <dd class="blacklight-author_sm">
+    <dt class="col-md-3 blacklight-author_sm">Authors:</dt>
+    <dd class="col-md-9 blacklight-author_sm">
       <%= @record.author.join(', ') %>
     </dd>
-    <dt class="blacklight-abstract_s">Abstract:</dt>
-    <dd class="blacklight-abstract_s"><%= @record.abstract %></dd>
-    <dt class="blacklight-doi_s">DOI:</dt>
-    <dd class="blacklight-doi_s"><a target="_blank" href="https://dx.doi.org/<%= @record.doi %>"><%= @record.doi %></a>
+    <dt class="col-md-3 blacklight-abstract_s">Abstract:</dt>
+    <dd class="col-md-9 blacklight-abstract_s"><%= @record.abstract %></dd>
+    <dt class="col-md-3 blacklight-doi_s">DOI:</dt>
+    <dd class="col-md-9 blacklight-doi_s"><a target="_blank" href="https://dx.doi.org/<%= @record.doi %>"><%= @record.doi %></a>
     </dd>
-    <dt class="blacklight-url_sm">URL:</dt>
-    <dd class="blacklight-url_sm">
+    <dt class="col-md-3 blacklight-url_sm">URL:</dt>
+    <dd class="col-md-9 blacklight-url_sm">
       <% @record.url.each do |v| %>
         <%= v %>
         <br>
       <% end %>
     </dd>
-    <dt class="blacklight-journal_s">Journal:</dt>
-    <dd class="blacklight-journal_s"><%= @record.journal %></dd>
-    <dt class="blacklight-issn_s">issn:</dt>
-    <dd class="blacklight-issn_s"><%= @record.issn %></dd>
-    <dt class="blacklight-pubyear_s">Publication year:</dt>
-    <dd class="blacklight-pubyear_s"><%= @record.pubyear %></dd>
-    <dt class="blacklight-startpage_s">pages:</dt>
-    <dd class="blacklight-startpage_s"><%= @record.startpage %></dd>
-    <dt class="blacklight-ss_sm">Symptom status:</dt>
-    <dd class="blacklight-ss_sm">
+    <dt class="col-md-3 blacklight-journal_s">Journal:</dt>
+    <dd class="col-md-9 blacklight-journal_s"><%= @record.journal %></dd>
+    <dt class="col-md-3 blacklight-issn_s">issn:</dt>
+    <dd class="col-md-9 blacklight-issn_s"><%= @record.issn %></dd>
+    <dt class="col-md-3 blacklight-pubyear_s">Publication year:</dt>
+    <dd class="col-md-9 blacklight-pubyear_s"><%= @record.pubyear %></dd>
+    <dt class="col-md-3 blacklight-startpage_s">pages:</dt>
+    <dd class="col-md-9 blacklight-startpage_s"><%= @record.startpage %></dd>
+    <dt class="col-md-3 blacklight-ss_sm">Symptom status:</dt>
+    <dd class="col-md-9 blacklight-ss_sm">
       <% @record.ss.sort!.each do |v| %>
         <%= v %>
         <br>
       <% end %>
     </dd>
-    <dt class="blacklight-fs_sm">Functional status:</dt>
-    <dd class="blacklight-fs_sm">
+    <dt class="col-md-3 blacklight-fs_sm">Functional status:</dt>
+    <dd class="col-md-9 blacklight-fs_sm">
       <% @record.fs.sort!.each do |v| %>
         <%= v %>
         <br>
       <% end %>
     </dd>
-    <dt class="blacklight-age_sm">Age:</dt>
-    <dd class="blacklight-age_sm">
+    <dt class="col-md-3 blacklight-age_sm">Age:</dt>
+    <dd class="col-md-9 blacklight-age_sm">
       <% @record.age.sort!.each do |v| %>
         <%= v %>
         <br>
       <% end %>
     </dd>
-    <dt class="blacklight-disease_sm">Disease:</dt>
-    <dd class="blacklight-disease_sm">
+    <dt class="col-md-3 blacklight-disease_sm">Disease:</dt>
+    <dd class="col-md-9 blacklight-disease_sm">
       <% @record.disease.sort!.each do |v| %>
         <%= v %>
         <br>
       <% end %>
     </dd>
-    <dt class="blacklight-pnp_sm">PRO / non-PRO:</dt>
-    <dd class="blacklight-pnp_sm">
+    <dt class="col-md-3 blacklight-pnp_sm">PRO / non-PRO:</dt>
+    <dd class="col-md-9 blacklight-pnp_sm">
       <% @record.pnp.sort!.each do |v| %>
         <%= v %>
         <br>
       <% end %>
     </dd>
-    <dt class="blacklight-tmi_sm">Type of measurement instrument:</dt>
-    <dd class="blacklight-tmi_sm">
+    <dt class="col-md-3 blacklight-tmi_sm">Type of measurement instrument:</dt>
+    <dd class="col-md-9 blacklight-tmi_sm">
       <% @record.tmi.sort!.each do |v| %>
         <%= v %>
         <br>
       <% end %>
     </dd>
-    <dt class="blacklight-instrumentpresentation_sfm">Instrument:</dt>
-    <dd class="blacklight-instrumentpresentation_sfm">
+    <dt class="col-md-3 blacklight-instrumentpresentation_sfm">Instrument:</dt>
+    <dd class="col-md-9 blacklight-instrumentpresentation_sfm">
       <% @record.instruments.order(name: :asc).each do |instrument| %>
         <%= instrument.name.strip %>
-        <a href="<%= instrument.url1.strip %>"><%= instrument.url1.strip %></a>
-        <a href="<%= instrument.url2.strip %>"><%= instrument.url2.strip %></a>
-        <a href="<%= instrument.url3.strip %>"><%= instrument.url3.strip %></a>
+        <a href="<%= instrument.url1 %>"><%= instrument.url1 %></a>
+        <a href="<%= instrument.url2 %>"><%= instrument.url2 %></a>
+        <a href="<%= instrument.url3 %>"><%= instrument.url3 %></a>
         <br>
       <% end %>
     </dd>
