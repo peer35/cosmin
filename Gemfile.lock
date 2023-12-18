@@ -146,7 +146,7 @@ GEM
       sassc (~> 2.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    hashdiff (1.0.1)
+    hashdiff (1.1.0)
     htmlentities (4.3.4)
     http (5.1.1)
       addressable (~> 2.8)
@@ -279,7 +279,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    select2-rails (3.5.11)
+    select2-rails (4.0.13)
     sitemap_generator (6.3.0)
       builder (~> 3.0)
     solr_wrapper (4.0.2)
@@ -360,7 +360,7 @@ DEPENDENCIES
   rails (< 7.0)
   rsolr (>= 1.0)
   sass-rails (~> 6.0)
-  select2-rails (< 4.0.3)
+  select2-rails (~> 4.0.2)
   sitemap_generator
   solr_wrapper (>= 0.3)
   spring

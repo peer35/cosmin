@@ -133,6 +133,10 @@ table .absorbing-column {
     padding-bottom: 10px;
 }
 
+.btn-default {
+    border-color: #6c757d;
+}
+
 @media print {
     body {
         background-color: #FFFFFF;
