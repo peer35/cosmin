@@ -1,14 +1,16 @@
-<div id="header-navbar" class="navbar navbar-inverse navbar-static-top" role="navigation">
+
+<div id="header-navbar" class="navbar navbar-expand-md navbar-static-top" role="navigation">
   <div class="cosmin_menu">
     <div class="align-left">
-      <button type="button" class="navbar-toggle btn collapsed" data-toggle="collapse" data-target="#user-util-collapse">
-        <span class="sr-only">Toggle navigation</span>
+      <button type="button" class="navbar-toggler collapse" data-toggle="collapse" data-target="#user-util-collapse">
+        <span class="dark-blue-text"><i
+        class="fas fa-bars fa-1x"></i></span></button>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <div class="collapse navbar-collapse" id="user-util-collapse">
-        <%= render :partial => '/user_util_links' %>
+      <div class="navbar-collapse collapse" id="user-util-collapse">
+        <%= render :partial => 'shared/user_util_links' %>
       </div>
     </div>
     <!-- END .content -->
@@ -18,11 +20,11 @@
   <div class="<%= container_classes %>">
     <div class="navbar-header">
 
-      <%= link_to 'Cosmin Website', 'https://www.cosmin.nl', target: :_blank, class: "navbar-brand" %>
+      <%= link_to '', 'https://www.cosmin.nl', target: :_blank, class: "navbar-brand" %>
       <% if Rails.env.development? %>
-        <div class="header-title" style="color: red;">Database test, the stable version is at
-          <a href="https://database.cosmin.nl">https://database.cosmin.nl</a></div>
-        <!--<div class="header-title">Database of systematic reviews of outcome measurement instruments</div>-->
+        <!--<div class="header-title" style="color: red;">Database test2, the stable version is at
+          <a href="https://database.cosmin.nl">https://database.cosmin.nl</a></div>-->
+        <div class="header-title">Database of systematic reviews of outcome measurement instruments</div>
       <% else %>
         <div class="header-title">Database of systematic reviews of outcome measurement instruments</div>
       <% end %>

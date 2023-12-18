@@ -14,8 +14,7 @@
  *= require_self
  *= require select2
  *= require select2-bootstrap
- *= require font-awesome
-
+ 
  *= require 'blacklight_advanced_search'
 
 */
@@ -26,7 +25,11 @@
 */
 
 body {
+    font-size: 85%;
+}
 
+.container {
+    max-width: 100%;
 }
 
 table.sortable thead {
@@ -195,8 +198,12 @@ table .absorbing-column {
     margin-bottom: 10px
 }
 
-.facet-values {
-    margin-bottom: 0px;
+.facet-limit {
+    margin-bottom: 0.3rem;
+}
+
+.facet-field-heading .btn {
+    color: rgb(0, 93, 171);
 }
 
 .panel-body {
@@ -246,6 +253,8 @@ table .absorbing-column {
 
 #header-navbar {
     height: 170px;
+    display: block;
+    padding: 0;
 }
 
 #search-navbar .search-query-form {
@@ -257,7 +266,16 @@ table .absorbing-column {
     width: 85px;
     height: 103px;
     background-size: contain;
+    display: block;
+    float: left;
 }
+
+@media (min-width: 768px) {
+    #user-util-collapse {
+      float:right !important;
+      margin-right:-15px
+    }
+  }
 
 .form_note {
     font-size: 0.7em;
@@ -274,3 +292,36 @@ table .absorbing-column {
     word-break: break-all;
 }
 
+.site-footer .row {
+    display: block;
+}
+
+.site-footer ul {
+    height: 60px;
+}
+
+#main-container {
+    padding-bottom: 0px !important;
+}
+
+.facet-limit-active .card-header {
+    color: #3c763d !important;
+    background-color: #dff0d8 !important;
+    border-color: #d6e9c6 !important;
+}
+
+.applied-filter {
+    background-color: #dff0d8;
+
+}
+.applied-filter .btn:hover {
+    background-color: lightgray;
+}
+
+h5, .documents-list .document .document-title-heading, .h5 {
+    font-size: 1rem;
+  }
+
+.show-document {
+    padding-top: 5px;
+}
