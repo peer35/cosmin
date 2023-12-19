@@ -4,6 +4,8 @@ class CatalogController < ApplicationController
 
   include Blacklight::Catalog
 
+  def privacy
+  end
   
   layout :determine_layout if respond_to? :layout
 
