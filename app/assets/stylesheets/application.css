@@ -326,6 +326,18 @@ h5, .documents-list .document .document-title-heading, .h5 {
     font-size: 1rem;
   }
 
+h3 {
+    font-size: 1.4rem;
+}
+
+  h4 {
+    font-size: 1.2rem;
+  }
+
 .show-document {
     padding-top: 5px;
+}
+
+#record-edit .container {
+    padding: 0px;
 }
