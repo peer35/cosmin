@@ -46,13 +46,42 @@ services:
       #puma workers and threads
       WEB_CONCURRENCY: 1
       RAILS_MAX_THREADS: 5
-    command: sh -c "bin/delayed_job start && bin/rails server -e development -b 0.0.0.0"
+    command: sh -c "bin/rails server -e development -b 0.0.0.0"
     volumes:
       - ../cosmin:/usr/src/app
       - /usr/src/app/tmp/ # avoid permission issues
       - /docker/cosmin/log:/usr/src/app/log
     ports:
       - "3013:3000"
+
+  cosmin-job:
+    container_name: cosmin-job
+    #restart: always
+    build:
+      context: ../cosmin
+      args:
+        - APP_USER_UID=${COSMIN_USER_UID}
+        - APP_USER_GID=${COSMIN_USER_GID}
+    user: ${COSMIN_USER_UID}:${COSMIN_USER_GID}
+    depends_on:
+      - cosmin-db
+      - solr
+    environment:
+      DB_USER: ${DB_USER_COSMIN}
+      DB_PW: ${DB_PW_COSMIN}
+      DB_HOST: ${DB_HOST_COSMIN}
+      DB_NAME: ${DB_NAME_COSMIN}
+      RAILS_ENV: development
+      #SITE_NAME: database.cosmin.nl
+      SITE_NAME: 127.0.0.1
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE_COSMIN}
+      SOLR_URL: http://${SOLR_HOST}:8983/solr/${SOLR_CORE_COSMIN}
+    command: sh -c "RAILS_ENV=development bundle exec rails jobs:work"
+    volumes:
+      - ../cosmin:/usr/src/app
+      - /usr/src/app/tmp/ # avoid permission issues
+      - /docker/cosmin/log:/usr/src/app/log
+
 
   cosmin-db:
     container_name: ${DB_HOST_COSMIN}
