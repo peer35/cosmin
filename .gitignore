@@ -32,5 +32,3 @@ sitemap.xml.gz
 /.svn
 .env
 pid
-
-.vscode/
