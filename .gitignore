@@ -33,4 +33,4 @@ sitemap.xml.gz
 .env
 pid
 
-/.vscode
+.vscode/
