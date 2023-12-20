@@ -1,8 +1,8 @@
 version: '3'
 networks:
   default:
-    external:
-      name: bl-network # create with docker network create bl-network
+    name: bl-network # create with docker network create bl-network
+    external: true      
 
 services:
   solr:
@@ -49,7 +49,7 @@ services:
     command: sh -c "bin/delayed_job start && bin/rails server -e development -b 0.0.0.0"
     volumes:
       - ../cosmin:/usr/src/app
-      - /usr/src/app/tmp/
+      - /usr/src/app/tmp/ # avoid permission issues
       - /docker/cosmin/log:/usr/src/app/log
     ports:
       - "3013:3000"
