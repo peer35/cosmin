@@ -1,4 +1,4 @@
-FROM ruby:2.7-buster
+FROM ruby:3.2-buster
 
 ARG APP_USER=appuser
 ARG APP_GROUP=appgroup
@@ -13,18 +13,18 @@ RUN apt-get update \
     #for troubleshooting
     && apt-get install -y nano \
     && apt-get install -y htop \
-    #&& addgroup --gid $APP_GROUP_GID $APP_GROUP \
-    #&& adduser --system --disabled-login --uid $APP_USER_UID --ingroup $APP_GROUP $APP_USER \
+    && addgroup --gid $APP_GROUP_GID $APP_GROUP \
+    && adduser --system --disabled-login --uid $APP_USER_UID --ingroup $APP_GROUP $APP_USER \
     && mkdir /usr/src/app \
-    #&& chown $APP_USER:$APP_GROUP /usr/src/app \
+    && chown $APP_USER:$APP_GROUP /usr/src/app \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src/app
-#COPY --chown=$APP_USER:$APP_GROUP Gemfile* ./
+COPY --chown=$APP_USER:$APP_GROUP Gemfile* ./
 COPY Gemfile* ./
 ENV ENV_RAILS=production
 RUN bundle install
-#COPY --chown=$APP_USER_UID:$APP_GROUP_UID . .
+COPY --chown=$APP_USER_UID:$APP_GROUP_UID . .
 COPY . .
 RUN chmod -R 777 /usr/src/app/tmp && chmod +x /usr/src/app/lib/docker-entrypoint.sh && bundle exec rake app:update:bin && rails generate delayed_job
 ENTRYPOINT ["sh","/usr/src/app/lib/docker-entrypoint.sh"]

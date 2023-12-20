@@ -131,7 +131,7 @@ GEM
     domain_name (0.6.20231109)
     erubi (1.12.0)
     execjs (2.9.1)
-    faraday (2.7.12)
+    faraday (2.8.0)
       base64
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
@@ -210,8 +210,8 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     ostruct (0.6.0)
-    paper_trail (14.0.0)
-      activerecord (>= 6.0)
+    paper_trail (15.1.0)
+      activerecord (>= 6.1)
       request_store (~> 1.4)
     parslet (2.0.0)
     pg (1.5.4)
@@ -330,7 +330,7 @@ GEM
     zeitwerk (2.6.12)
 
 PLATFORMS
-  ruby
+  x86_64-linux
 
 DEPENDENCIES
   alphabetical_paginate
@@ -373,4 +373,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   2.1.4
+   2.4.10
