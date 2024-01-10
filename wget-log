@@ -1,3 +1,0 @@
---2023-12-11 13:04:37--  https://auth.docker.io/token?scope=repository%3Alibrary%2Fruby%3Apull
-Resolving auth.docker.io (auth.docker.io)... failed: Temporary failure in name resolution.
-wget: unable to resolve host address ‘auth.docker.io’

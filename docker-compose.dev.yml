@@ -26,10 +26,6 @@ services:
     #restart: always
     build:
       context: ../cosmin
-      args:
-        - APP_USER_UID=${COSMIN_USER_UID}
-        - APP_USER_GID=${COSMIN_USER_GID}
-    user: ${COSMIN_USER_UID}:${COSMIN_USER_GID}
     depends_on:
       - cosmin-db
       - solr
@@ -49,8 +45,7 @@ services:
     command: sh -c "bin/rails server -e development -b 0.0.0.0"
     volumes:
       - ../cosmin:/usr/src/app
-      - /usr/src/app/tmp/ # avoid permission issues
-      - /docker/cosmin/log:/usr/src/app/log
+      - /docker/cosmin/log/app:/usr/src/app/log
     ports:
       - "3013:3000"
 
@@ -59,10 +54,6 @@ services:
     #restart: always
     build:
       context: ../cosmin
-      args:
-        - APP_USER_UID=${COSMIN_USER_UID}
-        - APP_USER_GID=${COSMIN_USER_GID}
-    user: ${COSMIN_USER_UID}:${COSMIN_USER_GID}
     depends_on:
       - cosmin-db
       - solr
@@ -79,8 +70,7 @@ services:
     command: sh -c "RAILS_ENV=development bundle exec rails jobs:work"
     volumes:
       - ../cosmin:/usr/src/app
-      - /usr/src/app/tmp/ # avoid permission issues
-      - /docker/cosmin/log:/usr/src/app/log
+      - /docker/cosmin/log/job:/usr/src/app/log
 
 
   cosmin-db:
