@@ -2,8 +2,8 @@ FROM ruby:3.2
 
 ARG APP_USER=appuser
 ARG APP_GROUP=appgroup
-ARG APP_USER_UID=1001
-ARG APP_GROUP_GID=1000
+ARG APP_USER_UID=900
+ARG APP_GROUP_GID=900
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
