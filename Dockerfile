@@ -1,4 +1,4 @@
-FROM ruby:3.2-buster
+FROM ruby:3.2
 
 ARG APP_USER=appuser
 ARG APP_GROUP=appgroup
