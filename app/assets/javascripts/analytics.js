@@ -1,7 +1,6 @@
-$(document).on('page:change', function () {
-    if (window._gaq != null) {
-        return _gaq.push(['_trackPageview']);
-    } else if (window.pageTracker != null) {
-        return pageTracker._trackPageview();
+document.addEventListener('turbolinks:load', function(event) {
+    if (typeof ga === 'function') {
+      ga('set', 'location', event.data.url);
+      return ga('send', 'pageview');
     }
-});
+  });

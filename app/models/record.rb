@@ -77,7 +77,7 @@ private
 def update_solr
   record = self
   solr_config = Rails.application.config_for :blacklight
-  @@solr = RSolr.connect :url => solr_config['url'] # get this from blacklight config
+  solr = RSolr.connect :url => solr_config['url'] # get this from blacklight config
 
   if record.status == 'published'
     if record.author.length > 0
@@ -95,7 +95,7 @@ def update_solr
 
     logger.info 'add to solr index ' + record.id.to_s
 
-    @@solr.add :id => record.id,
+    solr.add :id => record.id,
                :endnum_i => record.endnum,
                :abstract_s => record.abstract,
                :accnum_s => record.accnum,
@@ -124,10 +124,10 @@ def update_solr
                :tmi_sm => record.tmi.sort!,
                :author_sort => first_author,
                :weight_f => 100
-    @@solr.commit
+    solr.commit
   else
-    @@solr.delete_by_id(record.id)
-    @@solr.commit
+    solr.delete_by_id(record.id)
+    solr.commit
   end
   return true
 end
@@ -136,9 +136,9 @@ def delete_from_solr
   record = self
   solr_config = Rails.application.config_for :blacklight
   logger.debug 'delete record from solr'
-  @@solr = RSolr.connect :url => solr_config['url'] # get this from blacklight config
-  @@solr.delete_by_id(record.id)
-  @@solr.commit
+  solr = RSolr.connect :url => solr_config['url'] # get this from blacklight config
+  solr.delete_by_id(record.id)
+  solr.commit
 end
 
 def delayed_solr_update

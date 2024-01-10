@@ -48,7 +48,7 @@
     </div>
   <% end %>
   <h3>Reference</h3>
-
+<div id="record-edit">
   <div class="field row">
     <div class="col-sm-12 form-group">
       <%= f.label 'Endnote Record Number' %>
@@ -138,9 +138,12 @@
   </div>
 
   <h3>Construct</h3>
+  <div class="container">
+    <h5>Biological and physiological variables</h5>
   <div class="field row">
-    <h4>Biological and physiological variables</h4>
-    <div class="col-md-3 ">
+  
+  
+    <div class="col-md-3">
       <% catall[:bpv].each do |d| %>
         <div class="form-check">
           <label>
@@ -150,11 +153,15 @@
         </div>
       <% end %>
     </div>
+    </div>
   </div>
-
+<div class="container">
+<h5>Symptom status</h5>
   <div class="field row">
-    <h4>Symptom status</h4>
-    <div class="col-md-3 ">
+    
+    
+    
+    <div class="col-md-3">
       <% catall[:ss].each do |d| %>
         <div class="form-check ">
           <label>
@@ -164,10 +171,13 @@
         </div>
       <% end %>
     </div>
+    </div>
   </div>
-
+<div class="container">
+  <h5>Functional status</h5>
   <div class="field row">
-    <h4>Functional status</h4>
+  
+  
     <div class="col-md-3 ">
       <% catall[:fs].each do |d| %>
         <div class="form-check ">
@@ -178,11 +188,12 @@
         </div>
       <% end %>
     </div>
+    </div>
   </div>
-
+  <div class="container">
+  <h5>General health perceptions / HRQoL</h5>
   <div class="field row">
-    <h4>General health perceptions / HRQoL</h4>
-    <div class="col-md-3 ">
+      <div class="col-md-3 ">
       <% catall[:ghp].each do |d| %>
         <div class="form-check ">
           <label>
@@ -193,9 +204,12 @@
       <% end %>
     </div>
   </div>
+  </div>
 
+<div class="container">
+<h5>Overall QoL</h5>
   <div class="field row">
-    <h4>Overall QoL</h4>
+    
     <div class="col-md-3 ">
       <% catall[:oql].each do |d| %>
         <div class="form-check ">
@@ -206,12 +220,14 @@
         </div>
       <% end %>
     </div>
-  </div>
+  </div></div>
 
 
   <h3>Population</h3>
+  <div class="container">
+  <h5>Age</h5>
   <div class="field row">
-    <h4>Age</h4>
+    
     <div class="col-md-3 ">
       <% catall[:age].each do |d| %>
         <div class="form-check ">
@@ -222,12 +238,13 @@
         </div>
       <% end %>
     </div>
-  </div>
-
+  </div></div>
+<div class="container">
+<h5>Disease</h5>
   <div class="field row">
     <!--<%= select_tag "disease[]", options_from_collection_for_select(Category.all.select { |c| c.cat == 'disease' }, :name, :name, {:selected => @record.disease}), :multiple => true, :id => "disease", :class => "form-control category" %>-->
 
-    <h4>Disease</h4>
+    
     <% i = 0 %>
     <% catall[:disease].each do |d| %>
       <% if i % 6 == 0
@@ -246,12 +263,15 @@
 
     <% end %>
     </div>
-    </div>
+    </div></div>
 
 
     <h3>Measurement instrument</h3>
+    <div class="container">
+          <h5>PRO / non-PRO </h5>
     <div class="field row">
-      <h4>PRO / non-PRO </h4>
+    
+
       <div class="col-md-3 ">
         <% catall[:pnp].each do |d| %>
           <div class="form-check ">
@@ -262,10 +282,13 @@
           </div>
         <% end %>
       </div>
-    </div>
+    </div></div>
 
+    <div class="container">
+    <h5>Type of measurement instrument</h5>
     <div class="field row">
-      <h4>Type of measurement instrument</h4>
+    
+      
       <div class="col-md-3 ">
         <% catall[:tmi].each do |d| %>
           <div class="form-check ">
@@ -276,9 +299,10 @@
           </div>
         <% end %>
       </div>
-    </div>
-
+    </div></div>
+    
     <h3>Cosmin Used</h3>
+    <div class="container">
     <div class="field row">
       <div class="col-md-3 ">
         <div class="form-check ">
@@ -288,7 +312,7 @@
           </label>
         </div>
       </div>
-    </div>
+    </div></div>
 
     <h3>Name of included instruments</h3>
     <div class="field row">
@@ -317,5 +341,6 @@
     <div class="actions">
       <%= f.submit %>
 
+    </div>
     </div>
 <% end %>

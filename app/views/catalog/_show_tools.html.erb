@@ -1,37 +1,31 @@
-<%-
-  # Compare with render_document_functions_partial helper, and
-  # _document_functions partial. BL actually has two groups
-  # of document-related tools. "document functions" by default
-  # contains Bookmark functionality shown on both results and
-  # item view. While "document tools" contains external export type
-  # functions by default only on detail.
-
--%>
 <% if show_doc_actions? %>
-  <div class="panel panel-default show-tools">
-    <div class="panel-heading">
-      <%= t('blacklight.tools.title') %>
+  <div class="card show-tools">
+    <div class="card-header">
+      <h2 class="mb-0 h6"><%= t('blacklight.tools.title') %></h2>
     </div>
-
-    <div class="panel-body">
-      <ul class="nav">
-        <% unless current_user.to_s.blank? %>
-          <% if Rails.configuration.x.admin_users_email.include? current_user.email %>
-            <li>
-              <%= link_to 'Edit this record', {:action => "edit", :controller => "records", :id => @document.id} %>
-            </li>
-            <li>
-              <%= link_to 'Delete this record', {:controller => "records", :action => "destroy", :id => @document.id}, :method => :delete, :data => {:confirm => 'Are you sure?'} %>
-            </li>
-          <% end %>
+    <% if render_show_doc_actions_method_from_blacklight? %>
+      <%= render(Blacklight::Document::ActionsComponent.new(document: @document, tag: 'ul', classes: 'list-group list-group-flush', wrapping_tag: 'li', wrapping_classes: 'list-group-item', actions: document_actions(@document), url_opts: Blacklight::Parameters.sanitize(params.to_unsafe_h))) %>
+      <ul class="list-group list-group-flush">
+      <% unless current_user.to_s.blank? %>
+        <% if Rails.configuration.x.admin_users_email.include? current_user.email %>
+          <li class="list-group-item">
+            <%= link_to 'Edit this record', {:action => "edit", :controller => "records", :id => @document.id} %>
+          </li>
+          <li class="list-group-item">
+            <%= link_to 'Delete this record', {:controller => "records", :action => "destroy", :id => @document.id}, :method => :delete, :data => {:confirm => 'Are you sure?'} %>
+          </li>
         <% end %>
-
+      <% end %>
+    </ul>
+    <% else %>
+      <% Deprecation.warn(self, '#render_show_doc_actions is deprecated; use ActionComponents instead') %>
+      <ul class="list-group list-group-flush">
         <%= render_show_doc_actions @document do |config, inner| %>
-          <li class="<%= config.key %>">
+          <li class="list-group-item <%= config.key %>">
             <%= inner %>
           </li>
         <% end %>
       </ul>
-    </div>
+    <% end %>
   </div>
 <% end %>

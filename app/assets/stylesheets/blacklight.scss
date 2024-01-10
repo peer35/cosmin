@@ -1,7 +1,6 @@
-@import 'bootstrap-sprockets';
 @import 'bootstrap';
+@import "font-awesome";
 @import 'blacklight/blacklight';
-@import 'blacklight_marc';
 
 
 $logo-image: image_url('cosmin_logo.png') !default;

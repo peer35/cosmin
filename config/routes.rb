@@ -13,9 +13,11 @@ Rails.application.routes.draw do
 
   get 'advanced' => 'advanced#index', as: 'advanced_search'
 
-  Blacklight::Marc.add_routes(self)
+  
   root to: "catalog#index"
   concern :searchable, Blacklight::Routes::Searchable.new
+
+  get 'privacy' => 'catalog#privacy', as: 'privacy'
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
     concerns :searchable
