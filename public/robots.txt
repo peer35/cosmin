@@ -3,6 +3,9 @@
 # To ban all spiders from the entire site uncomment the next two lines:
 # User-agent: *
 # Disallow: /
+User-agent: AhrefsBot
+Disallow: /
+
 User-agent: *
 Disallow: *?q= # blocks search results pages
 Disallow: *?f
@@ -11,3 +14,4 @@ Disallow: /catalog/range_limit
 Disallow: /catalog/search_history
 
 Sitemap: https://database.cosmin.nl/sitemap.xml.gz
+
