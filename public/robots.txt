@@ -5,6 +5,8 @@
 # Disallow: /
 User-agent: AhrefsBot
 Disallow: /
+User-agent: PetalBot
+Disallow: /
 
 User-agent: *
 Disallow: *?q= # blocks search results pages
