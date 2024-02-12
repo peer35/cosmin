@@ -42,6 +42,7 @@ services:
       #puma workers and threads
       WEB_CONCURRENCY: 1
       RAILS_MAX_THREADS: 5
+      ENGINE_CART_RAILS_OPTIONS: --skip-git --skip-listen --skip-spring --skip-keeps --skip-action-cable --skip-coffee --skip-test --skip-solr
     command: sh -c "bin/rails server -e development -b 0.0.0.0"
     volumes:
       - ../cosmin:/usr/src/app
@@ -67,6 +68,7 @@ services:
       SITE_NAME: 127.0.0.1
       SECRET_KEY_BASE: ${SECRET_KEY_BASE_COSMIN}
       SOLR_URL: http://${SOLR_HOST}:8983/solr/${SOLR_CORE_COSMIN}
+    entrypoint: ["sh","/usr/src/app/lib/docker-entrypoint.job.sh"]
     command: sh -c "RAILS_ENV=development bundle exec rails jobs:work"
     volumes:
       - ../cosmin:/usr/src/app
