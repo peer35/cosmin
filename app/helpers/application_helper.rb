@@ -63,7 +63,8 @@ module ApplicationHelper
   end
 
   def h_facet_params(field, v)
-    search_state.reset.add_facet_params(field, v)
+    #search_state.reset.add_facet_params(field, v)
+    search_state.reset.filter(field).add(v)
   end
 end
 
