@@ -7,7 +7,7 @@ SitemapGenerator::Sitemap.create do
 
   # Add single record pages
   cursorMark = '*'
-  solr = RSolr.connect :url => 'http://127.0.0.1:8983/solr/cosmin'
+  solr = RSolr.connect :url => 'http://solr:8983/solr/cosmin-core'
 
   loop do
     response = solr.get('select', :params => {# you may need to change the request handler
