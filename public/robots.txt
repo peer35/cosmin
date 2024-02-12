@@ -14,6 +14,7 @@ Disallow: *?f
 Disallow: /catalog/facet # blocks facet pages
 Disallow: /catalog/range_limit
 Disallow: /catalog/search_history
+Disallow: /advanced
 
 Sitemap: https://database.cosmin.nl/sitemap.xml.gz
 
