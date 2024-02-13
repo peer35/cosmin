@@ -7,6 +7,8 @@ User-agent: AhrefsBot
 Disallow: /
 User-agent: PetalBot
 Disallow: /
+User-agent: sfFeedReader
+Disallow: /
 
 User-agent: *
 Disallow: *?q= # blocks search results pages
