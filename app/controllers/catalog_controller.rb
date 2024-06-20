@@ -113,6 +113,7 @@ class CatalogController < ApplicationController
     #config.add_facet_field 'cu_sm', label: 'COSMIN used', sort: 'index'
     config.add_facet_field 'instrument_sm', label: 'Instrument', sort: 'count', limit: 10, index_range: 'A'..'Z'
     config.add_facet_field 'author_sm', label: 'Author', sort: 'count', limit: 10, index_range: 'A'..'Z'
+    config.add_facet_field 'instrumentid_im', label: 'Instrument id', show: false
 
 
     #config.add_facet_field 'example_query_facet_field', label: 'Publish Date', :query => {
