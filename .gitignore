@@ -32,3 +32,4 @@ sitemap.xml.gz
 /.svn
 .env
 pid
+*.key
