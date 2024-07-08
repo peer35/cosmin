@@ -123,6 +123,27 @@ class InstrumentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def api_getbyid
+    @instrument = Instrument.find(params[:id])
+    #format.json { render :show, location: @instrument }
+    output={}
+    output['id'] = @instrument.id
+    output['name'] = @instrument.name
+    output['cosmin'] = []
+    #output['cosmin_url'] = []
+    for r in @instrument.records
+
+      output['cosmin'].append({'id': r.id, 'authors':r.author, 'year': r.pubyear, 'doi': r.doi, 'url': "#{request.protocol}#{request.host_with_port}/catalog/#{r.id}"})
+      #output['authors'].append(r.author)
+      #output['doi'].append(r.doi)
+      #output['cosmin_url'].append("#{request.protocol}#{request.host_with_port}/catalog/#{r.id}")
+      #output['cosmin_url'].append(helpers.link_to('show', {:controller => 'catalog', action: "show", id: r.id}, :target => '_blank'))
+    end
+    
+    render :json => output
+  end
+
 
   private
 

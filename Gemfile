@@ -88,3 +88,6 @@ gem "daemons"
 gem 'bootstrap', '~> 4.0'
 gem 'popper_js'
 gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript' 
+gem "lockbox", "~> 1.3"
+
+gem "blind_index", "~> 2.5"

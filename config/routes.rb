@@ -38,5 +38,16 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :user do
+    resource :private_api_keys, only: :update
+  end
+
+  namespace :api do
+    namespace :v1 do
+      defaults format: :json do
+        resources :instruments, only: %i[index show]
+      end
+    end
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
