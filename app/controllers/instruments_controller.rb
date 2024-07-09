@@ -73,7 +73,7 @@ class InstrumentsController < ApplicationController
         redirect_to '/?f[instrument_sm][]=' + @instrument.name
     rescue ActiveRecord::ActiveRecordError
       	redirect_to :controller => 'catalog', action: "index"
-        flash[:notice] = "Instrument not found"
+        flash[:error] = "Instrument not found"
     end
   end
 
