@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   get 'advanced' => 'advanced#index', as: 'advanced_search'
 
   # search for instrument by id
-  get 'instrument/:id' => 'instruments#search', :as => 'instrument_search'
+  resource :catalog do
+    get 'instrument/:id' => 'instruments#search', :as => 'instrument_search'
+  end
   
   root to: "catalog#index"
   concern :searchable, Blacklight::Routes::Searchable.new
