@@ -66,6 +66,10 @@ class RecordsController < ApplicationController
     end
   end
 
+  # GET /records/1
+  # GET /records/1.json
+  def show
+  end
 
   # GET /records/new
   def new
