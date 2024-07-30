@@ -33,8 +33,7 @@ module ApplicationHelper
       html = html + facet_link("instrument_sm", o["name"])
       url_list = []
       unless o["url1"].nil? || o["url1"] == ""
-        #url_list.append(link_to('proqolid', o['url1'], target: "_blank"))
-        url_list.append(link_to(image_tag("proqolid-blue-crop.png", height: "14"), o["url1"], target: "_blank"))
+        url_list.append(link_to(image_tag("proqolid-blue-crop.png", height: "14"), o["url1"], target: "_blank", alt: o["name"] + " PROQOLID"))
       end
       unless o["url2"].nil? || o["url2"] == ""
         url_list.append(link_to(image_tag("LogoZUYD.png", height: "14"), o["url2"], target: "_blank"))
