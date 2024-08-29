@@ -13,11 +13,7 @@ Rails.application.routes.draw do
 
   get 'advanced' => 'advanced#index', as: 'advanced_search'
 
-  # search for instrument by id
-  resource :catalog do
-    get 'instrument/:id' => 'instruments#search', :as => 'instrument_search'
-  end
-  
+
   root to: "catalog#index"
   concern :searchable, Blacklight::Routes::Searchable.new
 
@@ -40,6 +36,11 @@ Rails.application.routes.draw do
     collection do
       delete 'clear'
     end
+  end
+
+  # search for instrument by id
+  resource :catalog do
+    get 'instrument/:id' => 'instruments#search', :as => 'instrument_search'
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
