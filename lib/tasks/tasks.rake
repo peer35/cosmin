@@ -20,11 +20,14 @@ namespace :tasks do
       .where("guest = ? and updated_at < ?", true, Time.now - args[:days_old].to_i.days)
       .find_each(batch_size: 1000, &:destroy)
   end
+
+  # task to process proqolid instrument list
+  # rake tasks:db:process_proqolid_list
   namespace :db do
     desc "Process proqolid instrument list"
     task process_list: :environment do
       require 'csv'
-      records_to_update=[]
+      records_to_update=[] # list of records that should be reindexed because of instrument changes
       listfile = 'proqolid_matching.csv'
       CSV.foreach('lib/tasks/eprovide/' + listfile,
                   encoding: "bom|utf-8",
