@@ -73,6 +73,7 @@ services:
     volumes:
       - ../cosmin:/usr/src/app
       - /docker/cosmin/log/job:/usr/src/app/log
+      - /docker/cosmin/proqolid:/usr/src/app/lib/tasks/proqolid
 
 
   cosmin-db:

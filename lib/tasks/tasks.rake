@@ -25,11 +25,12 @@ namespace :tasks do
   # rake tasks:db:process_proqolid_list
   namespace :db do
     desc "Process proqolid instrument list"
-    task process_list: :environment do
+    task process_proqolid_list: :environment do
       require 'csv'
       records_to_update=[] # list of records that should be reindexed because of instrument changes
-      listfile = 'proqolid_matching.csv'
-      CSV.foreach('lib/tasks/eprovide/' + listfile,
+      puts "Enter name of csv file to process (should be located in /docker/cosmin/proqolid/)"
+      listfile = STDIN.gets.chomp
+      CSV.foreach('lib/tasks/proqolid/' + listfile,
                   encoding: "bom|utf-8",
                   headers: :first_row,
                   col_sep: ',',
