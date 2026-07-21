@@ -33,3 +33,4 @@ sitemap.xml.gz
 .env
 pid
 *.key
+/.claude
