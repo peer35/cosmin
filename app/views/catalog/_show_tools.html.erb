@@ -3,29 +3,18 @@
     <div class="card-header">
       <h2 class="mb-0 h6"><%= t('blacklight.tools.title') %></h2>
     </div>
-    <% if render_show_doc_actions_method_from_blacklight? %>
-      <%= render(Blacklight::Document::ActionsComponent.new(document: @document, tag: 'ul', classes: 'list-group list-group-flush', wrapping_tag: 'li', wrapping_classes: 'list-group-item', actions: document_actions(@document), url_opts: Blacklight::Parameters.sanitize(params.to_unsafe_h))) %>
-      <ul class="list-group list-group-flush">
-      <% unless current_user.to_s.blank? %>
-        <% if Rails.configuration.x.admin_users_email.include? current_user.email %>
-          <li class="list-group-item">
-            <%= link_to 'Edit this record', {:action => "edit", :controller => "records", :id => @document.id} %>
-          </li>
-          <li class="list-group-item">
-            <%= link_to 'Delete this record', {:controller => "records", :action => "destroy", :id => @document.id}, :method => :delete, :data => {:confirm => 'Are you sure?'} %>
-          </li>
-        <% end %>
+    <%= render(Blacklight::Document::ActionsComponent.new(document: @document, tag: 'ul', classes: 'list-group list-group-flush', wrapping_tag: 'li', wrapping_classes: 'list-group-item', actions: document_actions(@document), url_opts: Blacklight::Parameters.sanitize(params.to_unsafe_h))) %>
+    <ul class="list-group list-group-flush">
+    <% unless current_user.to_s.blank? %>
+      <% if Rails.configuration.x.admin_users_email.include? current_user.email %>
+        <li class="list-group-item">
+          <%= link_to 'Edit this record', {:action => "edit", :controller => "records", :id => @document.id} %>
+        </li>
+        <li class="list-group-item">
+          <%= link_to 'Delete this record', {:controller => "records", :action => "destroy", :id => @document.id}, :method => :delete, :data => {:confirm => 'Are you sure?'} %>
+        </li>
       <% end %>
-    </ul>
-    <% else %>
-      <% Deprecation.warn(self, '#render_show_doc_actions is deprecated; use ActionComponents instead') %>
-      <ul class="list-group list-group-flush">
-        <%= render_show_doc_actions @document do |config, inner| %>
-          <li class="list-group-item <%= config.key %>">
-            <%= inner %>
-          </li>
-        <% end %>
-      </ul>
     <% end %>
+  </ul>
   </div>
 <% end %>

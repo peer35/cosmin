@@ -11,9 +11,7 @@
 // about supported directives.
 //
 //= require jquery3
-//= require 'blacklight_advanced_search'
 //= require popper
-//= require twitter/typeahead
 //= require bootstrap
 
 //= require jquery_ujs
