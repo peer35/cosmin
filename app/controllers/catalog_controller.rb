@@ -10,6 +10,11 @@ class CatalogController < ApplicationController
   layout :determine_layout if respond_to? :layout
 
   configure_blacklight do |config|
+    # Opt in to Blacklight 8's stricter search param filtering now, instead of
+    # relying on the deprecated pass-through behavior (silences the
+    # "Blacklight 8 will filter out non-search parameter, including: utf8" warning).
+    config.filter_search_state_fields = true
+
     # default advanced config values
     config.advanced_search ||= Blacklight::OpenStructWithHashAccess.new
     # config.advanced_search[:qt] ||= 'advanced'
