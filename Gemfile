@@ -14,8 +14,10 @@ gem 'sqlite3', '~> 2.1'
 gem 'puma', '~> 6.4'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 6.0'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+# Use Terser as compressor for JavaScript assets (Uglifier/UglifyJS2 can't
+# parse the ES6+ syntax Blacklight 8's JS bundle uses, e.g. classes and
+# optional chaining; Terser is uglifier's actively-maintained ES6+ successor)
+gem 'terser'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
