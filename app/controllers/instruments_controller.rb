@@ -2,7 +2,7 @@ class InstrumentsController < ApplicationController
   require 'csv'
   require 'caxlsx'
 
-  include Pundit
+  include Pundit::Authorization
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   before_action :set_paper_trail_whodunnit
