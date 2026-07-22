@@ -21,7 +21,6 @@ class RecordsController < ApplicationController
   before_action :set_paper_trail_whodunnit
   before_action :set_record, only: [:show, :edit, :update, :destroy]
 
-  before_action :require_user_authentication_provider
   before_action :verify_user
 
   def verify_user

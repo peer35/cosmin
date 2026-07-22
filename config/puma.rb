@@ -22,6 +22,12 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 # processes).
 #
 #workers ENV.fetch("WEB_CONCURRENCY") { 1 }
+#
+# Puma 6+ auto-detects WEB_CONCURRENCY from the environment even with the
+# `workers` directive above commented out, switching to cluster mode with a
+# single worker (which Puma itself warns is a misconfiguration). Force single
+# mode explicitly to keep the original process model.
+workers 0
 
 # Use the `preload_app!` method when specifying a `workers` number.
 # This directive tells Puma to first boot the application and load code

@@ -15,6 +15,10 @@ class CatalogController < ApplicationController
     # "Blacklight 8 will filter out non-search parameter, including: utf8" warning).
     config.filter_search_state_fields = true
 
+    # Keep Bootstrap 4 markup/behavior (e.g. flash message close buttons)
+    # working under Blacklight 8, which defaults to Bootstrap 5.
+    config.bootstrap_version = 4
+
     # default advanced config values
     config.advanced_search ||= Blacklight::OpenStructWithHashAccess.new
     # config.advanced_search[:qt] ||= 'advanced'

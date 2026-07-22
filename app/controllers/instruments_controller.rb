@@ -8,7 +8,6 @@ class InstrumentsController < ApplicationController
   before_action :set_paper_trail_whodunnit
   before_action :set_instrument, only: [:show, :edit, :update, :destroy]
 
-  before_action :require_user_authentication_provider, except: [:search]
   before_action :verify_user, except: [:search]
 
   helper_method :startletter

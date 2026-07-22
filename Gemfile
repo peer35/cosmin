@@ -11,7 +11,7 @@ gem 'rails', '< 7.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
-gem 'puma', '~> 4.0'
+gem 'puma', '~> 6.4'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 6.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -52,8 +52,8 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'blacklight', '< 8.0'
-gem "blacklight_advanced_search", "< 8.0"
+gem 'blacklight', '~> 8.0'
+gem "blacklight_advanced_search", "~> 8.0"
 
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
@@ -87,4 +87,3 @@ gem "daemons"
 
 gem 'bootstrap', '~> 4.0'
 gem 'popper_js'
-gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript' 

@@ -1,6 +1,6 @@
 docx.h1 'Search results'
 
-@document_list.each_with_index do |document, document_counter|
+@response.documents.each_with_index do |document, document_counter|
   docx.h2 document[:id] + '. ' + document[:title_s]
   docx.p 'authors:', bold: true
   docx.p document[:author_sm].join(', ')
