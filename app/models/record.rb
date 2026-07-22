@@ -7,18 +7,18 @@ class Record < ApplicationRecord
     end
   end
 
-  serialize :age, JSON
-  serialize :bpv, JSON
-  serialize :disease, JSON
-  serialize :fs, JSON
-  serialize :ghp, JSON
-  serialize :oql, JSON
-  serialize :pnp, JSON
-  serialize :ss, JSON
-  serialize :tmi, JSON
-  serialize :author, JSON
-  serialize :url, JSON
-  serialize :instrument, JSON
+  serialize :age, coder: JSON
+  serialize :bpv, coder: JSON
+  serialize :disease, coder: JSON
+  serialize :fs, coder: JSON
+  serialize :ghp, coder: JSON
+  serialize :oql, coder: JSON
+  serialize :pnp, coder: JSON
+  serialize :ss, coder: JSON
+  serialize :tmi, coder: JSON
+  serialize :author, coder: JSON
+  serialize :url, coder: JSON
+  serialize :instrument, coder: JSON
 
   validates :title, presence: true
   validate :check_doubles, :on => :create
