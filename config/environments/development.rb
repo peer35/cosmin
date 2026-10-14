@@ -3,10 +3,17 @@ Rails.application.configure do
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
-  config.cache_classes = false
+  # The delayed_job worker (JOB_WORKER=true) runs without code reloading:
+  # delayed_job reloads the app between jobs when cache_classes is false, which
+  # breaks Rails 8 lazy route loading (devise_for -> User -> Blacklight::User).
+  job_worker = ENV['JOB_WORKER'] == 'true'
 
-  # Do not eager load code on boot.
-  config.eager_load = false
+  config.cache_classes = job_worker
+
+  # Do not eager load code on boot (except for the job worker).
+  config.eager_load = job_worker
+  # rake tasks (e.g. jobs:work) skip eager loading unless this is set too
+  config.rake_eager_load = job_worker
 
   # Show full error reports.
   config.consider_all_requests_local = true

@@ -1,4 +1,3 @@
-version: '3'
 networks:
   default:
     name: bl-network # create with docker network create bl-network
@@ -14,8 +13,8 @@ services:
     ports:
       - "8985:8983"
     volumes:
-      - /docker/solr/data:/var/solr/data
-      - /docker/solr/configsets:/opt/solr/server/solr/configsets
+      - ${DATA_DIR}/solr/data:/var/solr/data
+      - ${DATA_DIR}/solr/configsets:/opt/solr/server/solr/configsets
     entrypoint:
       - bash
       - "-c"
@@ -46,7 +45,8 @@ services:
     command: sh -c "bin/rails server -e development -b 0.0.0.0"
     volumes:
       - ../cosmin:/usr/src/app
-      - /docker/cosmin/log/app:/usr/src/app/log
+      - /usr/src/app/tmp
+      - ${DATA_DIR}/cosmin/log/app:/usr/src/app/log
     ports:
       - "3013:3000"
 
@@ -68,12 +68,13 @@ services:
       SITE_NAME: 127.0.0.1
       SECRET_KEY_BASE: ${SECRET_KEY_BASE_COSMIN}
       SOLR_URL: http://${SOLR_HOST}:8983/solr/${SOLR_CORE_COSMIN}
+      JOB_WORKER: "true"
     entrypoint: ["sh","/usr/src/app/lib/docker-entrypoint.job.sh"]
     command: sh -c "RAILS_ENV=development bundle exec rails jobs:work"
     volumes:
       - ../cosmin:/usr/src/app
-      - /docker/cosmin/log/job:/usr/src/app/log
-      - /docker/cosmin/proqolid:/usr/src/app/lib/tasks/proqolid
+      - ${DATA_DIR}/cosmin/log/job:/usr/src/app/log
+      - ${DATA_DIR}/cosmin/proqolid:/usr/src/app/lib/tasks/proqolid
 
 
   cosmin-db:
@@ -86,4 +87,4 @@ services:
       POSTGRES_DB: ${DB_NAME_COSMIN}
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
-      - /docker/cosmin/db:/var/lib/postgresql/data
+      - ${DATA_DIR}/cosmin/db:/var/lib/postgresql/data
